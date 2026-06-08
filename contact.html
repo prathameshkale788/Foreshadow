@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Enquire — ForeShadow</title>
+  <meta name="description"
+    content="Get in touch with ForeShadow to enquire about wedding photography and cinematography pricing. Custom packages available.">
+  <meta property="og:title" content="Enquire — ForeShadow">
+  <meta property="og:description"
+    content="Let's create something beautiful together. Reach out for availability and custom quotes.">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+
+<body>
+  <div class="page-transition"></div>
+
+  <!-- ═══════════════ Navigation (Split: Centered Logo, Split Links) ═══════════════ -->
+  <nav class="nav nav--dark" id="nav">
+    <!-- Left Menu Links -->
+    <ul class="nav-links nav-links--left">
+      <li><a href="index.html" class="nav-link" data-page>Home</a></li>
+      <li><a href="portfolio.html" class="nav-link" data-page>Portfolio</a></li>
+      <li><a href="films.html" class="nav-link" data-page>Films</a></li>
+    </ul>
+
+    <!-- Centered Logo/Brand -->
+    <div class="nav-brand-container">
+      <a href="index.html" class="nav-logo-link">
+        <img src="assets/images/logo.png" alt="ForeShadow Logo" class="nav-logo-img">
+      </a>
+    </div>
+
+    <!-- Right Menu Links -->
+    <ul class="nav-links nav-links--right">
+      <li><a href="about.html" class="nav-link" data-page>About</a></li>
+      <li><a href="testimonials.html" class="nav-link" data-page>Reviews</a></li>
+      <li><a href="contact.html" class="nav-cta active" data-page>Contact</a></li>
+    </ul>
+
+    <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Fullscreen Mobile Menu -->
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="nav-overlay-links">
+      <a href="index.html" class="nav-overlay-link" data-page>HOME</a>
+      <a href="portfolio.html" class="nav-overlay-link" data-page>PORTFOLIO</a>
+      <a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
+      <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
+      <a href="testimonials.html" class="nav-overlay-link" data-page>REVIEWS</a>
+      <a href="contact.html" class="nav-overlay-link active" data-page>CONTACT</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════ BOOK / CONTACT SECTION ═══════════════ -->
+  <section class="fs-contact-section" id="pagetop">
+    <div class="fs-contact-container">
+      <div class="fs-contact-header">
+        <h1 class="fs-contact-title-main">think we'd make a good fit ?</h1>
+        <h2 class="fs-contact-title-sub">Let's start the conversation</h2>
+        <a href="mailto:foreshadow.pkp@gmail.com" class="fs-contact-email">foreshadow.pkp@gmail.com</a>
+      </div>
+
+      <form class="fs-contact-form" id="contact-form">
+        <!-- Honeypot field for spam prevention -->
+        <div class="fs-form-group fs-honeypot" style="display: none !important;">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" autocomplete="off" tabindex="-1">
+        </div>
+
+        <!-- Field 1: Name (First Name, Last Name) -->
+        <div class="fs-form-group">
+          <label class="fs-field-label">Name <span class="required-star">*</span></label>
+          <div class="fs-name-row">
+            <div class="fs-name-col">
+              <input type="text" id="first-name" name="firstName" required>
+              <label for="first-name" class="fs-sub-label">First Name</label>
+            </div>
+            <div class="fs-name-col">
+              <input type="text" id="last-name" name="lastName" required>
+              <label for="last-name" class="fs-sub-label">Last Name</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Field 2: Email -->
+        <div class="fs-form-group">
+          <label for="email" class="fs-field-label">Email <span class="required-star">*</span></label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <!-- Field 3: Phone -->
+        <div class="fs-form-group">
+          <label for="phone" class="fs-field-label">Phone <span class="required-star">*</span></label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <!-- Field 4: Subject -->
+        <div class="fs-form-group">
+          <label for="subject" class="fs-field-label">Subject <span class="required-star">*</span></label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+
+        <!-- Field 5: How did you hear about us? -->
+        <div class="fs-form-group">
+          <label for="source" class="fs-field-label">How did you hear about us ? <span class="required-star">*</span></label>
+          <select id="source" name="source" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Referred by a Friend">Referred by a Friend</option>
+            <option value="Youtube">Youtube</option>
+            <option value="Any other">Any other</option>
+          </select>
+        </div>
+
+        <!-- Field 6: Wedding Dates -->
+        <div class="fs-form-group">
+          <label for="wedding-dates" class="fs-field-label">Wedding Dates <span class="required-star">*</span></label>
+          <input type="text" id="wedding-dates" name="weddingDates" required>
+        </div>
+
+        <!-- Field 7: Wedding Location -->
+        <div class="fs-form-group">
+          <label for="wedding-location" class="fs-field-label">Wedding Location (Venue, City, Country) <span class="required-star">*</span></label>
+          <input type="text" id="wedding-location" name="weddingLocation" required>
+        </div>
+
+        <!-- Field 8: List of wedding events -->
+        <div class="fs-form-group">
+          <label for="events-details" class="fs-field-label">List of wedding events (by day in case of multiple days) with approximate timings & Guest size: <span class="required-star">*</span></label>
+          <textarea id="events-details" name="eventsDetails" rows="6" required></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="fs-form-submit">SUBMIT</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════ WEDDING MOMENTS PHOTO FEED (3:4 GRID) ═══════════════ -->
+  <section class="fs-instagram-feed">
+    <div class="fs-feed-header">
+      <span class="fs-feed-label">recent moments</span>
+      <h3 class="fs-feed-title">Stories from our lenses</h3>
+    </div>
+    
+    <div class="fs-feed-grid">
+      <!-- Item 1 -->
+      <div class="fs-feed-item">
+        <img src="assets/images/drive_photos/folder_1/PKP_-10.jpg" alt="Wedding Moment 1" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Honoured to be featured among the Top 20 Best Photographers for Indian Weddings Worldwide. Grateful for every story.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Item 2 -->
+      <div class="fs-feed-item">
+        <img src="assets/images/drive_photos/folder_1/PKP_-12.jpg" alt="Wedding Moment 2" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Dilpreet and Jai’s beautiful destination wedding. A celebration of love and heritage.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Item 3 -->
+      <div class="fs-feed-item">
+        <img src="assets/images/drive_photos/folder_1/PKP_-15.jpg" alt="Wedding Moment 3" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Purti & Amit’s beautiful wedding at Six Senses Fort. Effortless regal splendor.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Item 4 -->
+      <div class="fs-feed-item">
+        <img src="assets/images/drive_photos/folder_1/PKP_-20.jpg" alt="Wedding Moment 4" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Rashi and Dhruv’s wedding at Umaid Bhawan Palace, Jodhpur. Timeless tradition with modern luxury.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Item 5 -->
+      <div class="fs-feed-item">
+        <img src="assets/images/drive_photos/folder_1/PKP_-25.jpg" alt="Wedding Moment 5" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">A love that felt like home. In every glance, every laugh, every tear. Captured forever.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Item 6 -->
+      <div class="fs-feed-item">
+        <img src="assets/images/drive_photos/folder_1/PKP_-35.jpg" alt="Wedding Moment 6" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Grateful for every couple and every moment that trusted us to preserve their stories.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER — 3-Column Sitemap ═══════════════ -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- Column 1: Social -->
+        <div class="footer-col">
+          <h4 class="footer-heading">SOCIAL</h4>
+          <div class="footer-social-icons">
+            <a href="https://www.instagram.com/foreshadow.in?igsh=Y2RhaHdyN2I4dmNj" target="_blank" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://youtube.com/@foreshadow-pkp?si=d2lc0o6XlELBHqq-" target="_blank" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z">
+                </path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+            <a href="#" aria-label="Behance">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path
+                  d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 2.211 1.734 3.007 3.189 3.007 1.525 0 2.452-.764 2.852-1.657l1.715.679zM19.862 13c-.11-1.559-.986-2.546-2.443-2.546-1.407 0-2.285.846-2.501 2.546h4.944zM9.076 21.084H1V3.292h7.474c2.548 0 4.578 1.317 4.578 4.123 0 1.76-.834 2.937-2.249 3.604v.063c1.895.453 2.966 2.07 2.966 3.965 0 3.069-2.377 4.037-4.693 4.037zM7.62 9.724c1.325 0 2.292-.471 2.292-1.838 0-1.468-1.005-1.79-2.352-1.79H4.278v3.628H7.62zm.238 7.559c1.54 0 2.613-.63 2.613-2.218 0-1.589-1.03-2.28-2.613-2.28H4.278v4.498h3.58z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Logo -->
+        <div class="footer-col" style="display: flex; align-items: center; justify-content: center;">
+          <a href="index.html">
+            <img src="assets/images/logo.png" alt="ForeShadow" class="footer-brand-img" style="height: 300px; max-width: 100%; object-fit: contain; margin: 0 auto;">
+          </a>
+        </div>
+
+        <!-- Column 3: Details -->
+        <div class="footer-col">
+          <h4 class="footer-heading">DETAILS</h4>
+          <div class="footer-details">
+            <p>#foreshadow</p>
+            <p>Cinematic Wedding Photography by ForeShadow</p>
+            <p>INDIA — +91 7887334267</p>
+            <p>foreshadow.pkp@gmail.com</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <span>© #foreshadow 2026</span>
+        <a href="#pagetop" id="back-to-top">To The Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
+
+  <!-- ═══════════════ Scripts ═══════════════ -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
