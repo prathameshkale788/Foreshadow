@@ -108,19 +108,35 @@
   </div>
 
   <!-- ═══════════════ HERO — Full Viewport ═══════════════ -->
-  <section class="home-hero" id="hometop">
-    <div class="hero-video-bg">
-      <video autoplay loop muted playsinline>
-        <source src="https://youtu.be/Nd7c--y9vYc?si=SHo_az0YXy--urtM" type="video/mp4">
-      </video>
-    </div>
+  <div class="hero-scroll-wrapper" style="height: 300vh; position: relative;">
+    <section class="home-hero" id="hometop" style="position: sticky; top: 0; height: 100vh; overflow: hidden;">
+      <div class="hero-video-bg">
+        <video class="hero-video" autoplay muted loop playsinline
+          poster="assets/images/drive_photos/folder_3/PKP-10.jpg">
+          <source src="assets/videos/hero-video.mp4" type="video/mp4">
+        </video>
+      </div>
 
-    <!-- Hero Text Overlay -->
-    <div class="home-hero-content">
-      <h1 class="home-hero-title">Stories before the vows</h1>
-      <p class="home-hero-subtitle">DESTINATION WEDDING PHOTOGRAPHER & WEDDING VIDEOGRAPHER</p>
-    </div>
-  </section>
+      <!-- Scattered Grid Photos (Luca Mori style) -->
+      <div class="hero-mosaic-grid">
+        <div class="mosaic-item m-1"><img src="assets/images/drive_photos/folder_1/PKP_-10.jpg" alt="Gallery"></div>
+        <div class="mosaic-item m-2"><img src="assets/images/drive_photos/folder_1/PKP_-11.jpg" alt="Gallery"></div>
+        <div class="mosaic-item m-3"><img src="assets/images/drive_photos/folder_1/PKP_-12.jpg" alt="Gallery"></div>
+        <div class="mosaic-item m-4"><img src="assets/images/drive_photos/folder_1/PKP_-13.jpg" alt="Gallery"></div>
+        <div class="mosaic-item m-5"><img src="assets/images/drive_photos/folder_1/PKP_-14.jpg" alt="Gallery"></div>
+        <div class="mosaic-item m-6"><img src="assets/images/drive_photos/folder_1/PKP_-15.jpg" alt="Gallery"></div>
+        <div class="mosaic-item m-7"><img src="assets/images/drive_photos/folder_1/PKP_-16.jpg" alt="Gallery"></div>
+        <div class="mosaic-item m-8"><img src="assets/images/drive_photos/folder_1/PKP_-17.jpg" alt="Gallery"></div>
+      </div>
+
+      <!-- Hero Text Overlay -->
+      <div class="home-hero-content luca-hero-content" style="z-index: 3; position: relative;">
+        <h1 class="home-hero-title luca-mori-title">Stories Before<br>the Vows</h1>
+        <p class="home-hero-subtitle black-font" style="color: #000000 !important; font-weight: 600;">We Don't Just Film
+          Weddings, We Make Cinema.</p>
+      </div>
+    </section>
+  </div>
 
   <!-- ═══════════════ ETHOS SECTION (Cinema, Art & Documentary Photo Wall) ═══════════════ -->
   <section class="photo-wall-section" id="ethos">
@@ -267,7 +283,8 @@
   </section>
 
   <!-- ═══════════════ CINEMATIC STORYTELLING PARALLAX ═══════════════ -->
-  <section class="parallax-divider-section" style="background-image: url('assets/images/drive_photos/folder_3/PKP-10.jpg');">
+  <section class="parallax-divider-section"
+    style="background-image: url('assets/images/drive_photos/folder_3/PKP-10.jpg');">
     <div class="parallax-overlay"></div>
     <div class="parallax-content">
       <h2 class="parallax-title reveal">Cinematic Storytelling</h2>
@@ -305,7 +322,8 @@
             <p class="story-label reveal">PRE-WEDDING SESSION</p>
             <h3 class="story-couple-names reveal stagger-1">Julia & Eric</h3>
             <p class="story-description reveal stagger-2">
-              A windswept coastal sunset pre-wedding session. The crashing waves and raw emotion made for the most cinematic and romantic moments.
+              A windswept coastal sunset pre-wedding session. The crashing waves and raw emotion made for the most
+              cinematic and romantic moments.
             </p>
             <div class="reveal stagger-3">
               <a href="portfolio.html" class="story-btn">VIEW STORY</a>
@@ -322,7 +340,8 @@
             <p class="story-label">ROYAL CELEBRATION</p>
             <h3 class="story-couple-names">Aria & Kabir</h3>
             <p class="story-description">
-              A grand celebration set against the historic palaces of Udaipur. Capturing the timeless elegance, laughter, and heritage vows.
+              A grand celebration set against the historic palaces of Udaipur. Capturing the timeless elegance,
+              laughter, and heritage vows.
             </p>
             <div>
               <a href="portfolio.html" class="story-btn">VIEW STORY</a>
@@ -339,7 +358,8 @@
             <p class="story-label">FOREST ELOPEMENT</p>
             <h3 class="story-couple-names">Mira & Rohan</h3>
             <p class="story-description">
-              An intimate promise exchanged amidst towering pines and morning mist. Editorial storytelling and candid beauty at its absolute finest.
+              An intimate promise exchanged amidst towering pines and morning mist. Editorial storytelling and candid
+              beauty at its absolute finest.
             </p>
             <div>
               <a href="portfolio.html" class="story-btn">VIEW STORY</a>
@@ -358,8 +378,7 @@
   <section class="les-voyages-section">
     <div class="les-voyages-bg-overlay"></div>
     <div class="les-voyages-container">
-      <h2 class="les-voyages-title reveal-left">LES</h2>
-      <h2 class="les-voyages-title reveal-right">VOYAGES</h2>
+      <h2 class="les-voyages-title reveal">LET'S CREATE<br>MAGIC</h2>
       <p class="les-voyages-subtitle reveal stagger-1">photos are a return ticket to a moment otherwise gone</p>
       <div class="reveal stagger-2" style="margin-top: 2.5rem;">
         <a href="contact.html" class="btn-primary btn-primary--light" data-page>BOOK NOW</a>
@@ -382,28 +401,38 @@
   <section class="split-services-section" id="split-services-section">
     <!-- Left Background Images -->
     <div class="split-bg split-bg-left">
-      <div class="split-bg-image active" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-12.jpg');" data-bg="default"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-10.jpg');" data-bg="photography"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_2/FS-10.jpg');" data-bg="films"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_4/FS-101.jpg');" data-bg="prewedding"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-14.jpg');" data-bg="experience"></div>
+      <div class="split-bg-image active"
+        style="background-image: url('assets/images/drive_photos/folder_1/PKP_-12.jpg');" data-bg="default"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-10.jpg');"
+        data-bg="photography"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_2/FS-10.jpg');"
+        data-bg="films"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_4/FS-101.jpg');"
+        data-bg="prewedding"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-14.jpg');"
+        data-bg="experience"></div>
       <div class="split-overlay"></div>
     </div>
-    
+
     <!-- Right Background Images -->
     <div class="split-bg split-bg-right">
-      <div class="split-bg-image active" style="background-image: url('assets/images/drive_photos/folder_2/FS-101.jpg');" data-bg="default"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-11.jpg');" data-bg="photography"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_2/FS-100.jpg');" data-bg="films"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_4/FS-102.jpg');" data-bg="prewedding"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_3/PKP-14.jpg');" data-bg="experience"></div>
+      <div class="split-bg-image active"
+        style="background-image: url('assets/images/drive_photos/folder_2/FS-101.jpg');" data-bg="default"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-11.jpg');"
+        data-bg="photography"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_2/FS-100.jpg');"
+        data-bg="films"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_4/FS-102.jpg');"
+        data-bg="prewedding"></div>
+      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_3/PKP-14.jpg');"
+        data-bg="experience"></div>
       <div class="split-overlay"></div>
     </div>
 
     <!-- Centered Content -->
     <div class="split-content-container">
       <p class="split-section-subtitle reveal">EXPLORE OUR SERVICES</p>
-      
+
       <div class="split-menu-list">
         <div class="split-menu-item reveal stagger-1" data-service="photography">
           <span class="split-number">01</span>
@@ -449,7 +478,7 @@
         <div class="footer-col">
           <h4 class="footer-heading">SOCIAL</h4>
           <div class="footer-social-icons">
-            <a href="https://www.instagram.com/foreshadow.in?utm_source=qr" target="_blank"
+            <a href="https://www.instagram.com/foreshadow.in?igsh=Y2RhaHdyN2I4dmNj" target="_blank"
               aria-label="Instagram">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"
                 stroke-linecap="round" stroke-linejoin="round">
@@ -479,7 +508,8 @@
         <!-- Column 2: Logo -->
         <div class="footer-col" style="display: flex; align-items: center; justify-content: center;">
           <a href="index.html">
-            <img src="assets/images/logo.png" alt="ForeShadow" class="footer-brand-img" style="height: 300px; max-width: 100%; object-fit: contain; margin: 0 auto;">
+            <img src="assets/images/logo.png" alt="ForeShadow" class="footer-brand-img"
+              style="height: 300px; max-width: 100%; object-fit: contain; margin: 0 auto;">
           </a>
         </div>
 
@@ -490,7 +520,7 @@
             <p>#foreshadow</p>
             <p>Cinematic Wedding Photography by ForeShadow</p>
             <p>INDIA — +91 7887334267</p>
-            <p>foreshadow.pkp@gmail.com</p>
+            <p>hello@foreshadow.in</p>
           </div>
         </div>
 
