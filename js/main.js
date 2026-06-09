@@ -24,7 +24,16 @@ const init = () => {
   // ─────────────── Preloader / Grid Landing Gate ───────────────
   const preloader = document.getElementById('preloader');
   const enterBtn = document.getElementById('enter-btn');
-  
+  const heroVideo = document.querySelector('.hero-video-bg video');
+
+  if (heroVideo) {
+    // Ensure video properties for strict browser autoplay policies
+    heroVideo.muted = true;
+
+    // Attempt to play immediately
+    heroVideo.play().catch(err => console.warn('Autoplay initially prevented:', err));
+  }
+
   if (preloader) {
     let hasEntered = false;
     try {
@@ -32,19 +41,19 @@ const init = () => {
     } catch (e) {
       console.warn('sessionStorage is not accessible:', e);
     }
-    
+
     if (hasEntered) {
       preloader.style.display = 'none';
       document.body.style.overflow = '';
     } else {
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
-      
+
       if (enterBtn) {
         enterBtn.textContent = 'ENTER';
         enterBtn.classList.add('ready');
-        
-        enterBtn.addEventListener('click', function() {
+
+        enterBtn.addEventListener('click', function () {
           try {
             sessionStorage.setItem('fosh_entered', 'true');
           } catch (e) {
@@ -53,7 +62,7 @@ const init = () => {
           preloader.classList.add('loaded');
           document.body.style.overflow = '';
           if (lenis) lenis.start();
-          setTimeout(function() {
+          setTimeout(function () {
             preloader.style.display = 'none';
           }, 1500);
         });
@@ -99,7 +108,7 @@ const init = () => {
   if (nav) {
     // On desktop, transition from transparent to solid on scroll
     const scrollThreshold = 100;
-    
+
     window.addEventListener('scroll', () => {
       const scrollY = window.pageYOffset || document.documentElement.scrollTop;
       if (scrollY > scrollThreshold) {
@@ -151,7 +160,7 @@ const init = () => {
   });
 
   document.querySelectorAll('a[data-page]').forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
       e.preventDefault();
       const href = this.getAttribute('href');
       if (pageTransition) {
@@ -170,11 +179,11 @@ const init = () => {
     // Split by <br> tags to preserve line breaks
     const lines = html.split(/<br\s*\/?>/i);
     heroTitle.innerHTML = '';
-    
+
     lines.forEach((line, li) => {
       const lineText = line.trim();
       const words = lineText.split(' ');
-      
+
       words.forEach((word, wi) => {
         const wordSpan = document.createElement('span');
         wordSpan.style.display = 'inline-block';
@@ -197,11 +206,76 @@ const init = () => {
           heroTitle.appendChild(space);
         }
       });
-      
+
       if (li < lines.length - 1) {
         heroTitle.appendChild(document.createElement('br'));
       }
     });
+  }
+
+  // ─────────────── Hero Scroll Animation (Luca Mori Style) ───────────────
+  const heroWrapper = document.querySelector('.hero-scroll-wrapper');
+  const heroText = document.querySelector('.luca-hero-content');
+  const mosaicItems = document.querySelectorAll('.mosaic-item');
+
+  if (heroWrapper) {
+    // Starting coordinates, angles, and scale for mosaic items when they are deep/scattered
+    const scatteredProps = [
+      { tx: -250, ty: -180, tz: -600, r: -15, scale: 0.3 }, // m-1
+      { tx: 100, ty: -250, tz: -800, r: 12, scale: 0.2 }, // m-2
+      { tx: 300, ty: -150, tz: -500, r: -8, scale: 0.35 }, // m-3
+      { tx: -350, ty: -50, tz: -700, r: 10, scale: 0.25 }, // m-4
+      { tx: 350, ty: 80, tz: -650, r: -12, scale: 0.3 }, // m-5
+      { tx: -300, ty: 200, tz: -750, r: -10, scale: 0.2 }, // m-6
+      { tx: -80, ty: 280, tz: -600, r: 6, scale: 0.3 }, // m-7
+      { tx: 250, ty: 220, tz: -800, r: 14, scale: 0.25 }  // m-8
+    ];
+
+    const scrollHandler = () => {
+      const rect = heroWrapper.getBoundingClientRect();
+      const scrollDistance = rect.height - window.innerHeight;
+      let progress = -rect.top / scrollDistance;
+      progress = Math.max(0, Math.min(1, progress));
+
+      // 1. Text scales up and fades out
+      if (heroText) {
+        const textScale = 1 + (progress * 1.5);
+        let textOpacity = 1;
+        if (progress > 0.1) textOpacity = 1 - ((progress - 0.1) / 0.3);
+        heroText.style.transform = `scale(${textScale})`;
+        heroText.style.opacity = Math.max(0, Math.min(1, textOpacity));
+      }
+
+      // 2. Mosaic images zoom forward from depth and settle into their grid positions
+      mosaicItems.forEach((item, i) => {
+        const props = scatteredProps[i % scatteredProps.length];
+
+        // Interpolate position from scattered state (progress = 0) to grid layout (progress = 1)
+        const tx = props.tx * (1 - progress);
+        const ty = props.ty * (1 - progress);
+        const tz = props.tz * (1 - progress);
+        const r = props.r * (1 - progress);
+        const scale = props.scale + (1 - props.scale) * progress;
+
+        // Fade in as we scroll (fully opaque by 70% of scroll progress)
+        const opacity = Math.min(1, progress / 0.7);
+
+        item.style.transform = `translate3d(${tx}px, ${ty}px, ${tz}px) rotate(${r}deg) scale(${scale})`;
+        item.style.opacity = opacity;
+        item.style.zIndex = i + 1; // Prevent z-fighting during translation
+
+        // Optimize performance by managing will-change dynamic life-cycle
+        if (progress > 0.01 && progress < 0.99) {
+          item.style.willChange = 'transform, opacity';
+        } else {
+          item.style.willChange = 'auto';
+        }
+      });
+    };
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    window.addEventListener('resize', scrollHandler, { passive: true });
+    scrollHandler();
   }
 
   // ─────────────── Hero Background Slideshow ───────────────
@@ -386,17 +460,17 @@ const init = () => {
       container.id = 'form-notification-container';
       document.body.appendChild(container);
     }
-    
+
     const toast = document.createElement('div');
     toast.className = `form-toast form-toast--${type}`;
     toast.textContent = message;
     container.appendChild(toast);
-    
+
     // Animate in
     setTimeout(() => {
       toast.classList.add('show');
     }, 50);
-    
+
     // Animate out
     setTimeout(() => {
       toast.classList.remove('show');
@@ -410,15 +484,15 @@ const init = () => {
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('.tbt-form-submit');
+
+      const submitBtn = contactForm.querySelector('.fs-form-submit');
       const originalText = submitBtn.textContent;
-      
+
       // Extract form values
       const firstNameVal = document.getElementById('first-name')?.value.trim() || '';
       const lastNameVal = document.getElementById('last-name')?.value.trim() || '';
       const fullName = `${firstNameVal} ${lastNameVal}`.trim();
-      
+
       const emailVal = document.getElementById('email')?.value.trim() || '';
       const phoneVal = document.getElementById('phone')?.value.trim() || '';
       const subjectVal = document.getElementById('subject')?.value.trim() || '';
@@ -426,35 +500,35 @@ const init = () => {
       const weddingDatesVal = document.getElementById('wedding-dates')?.value.trim() || '';
       const weddingLocationVal = document.getElementById('wedding-location')?.value.trim() || '';
       const eventsDetailsVal = document.getElementById('events-details')?.value.trim() || '';
-      
+
       // Client-side validations
       if (!firstNameVal || !lastNameVal) {
         showFormNotification('Please enter your first name and last name.', 'error');
         return;
       }
-      
+
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(emailVal)) {
         showFormNotification('Please enter a valid email address.', 'error');
         return;
       }
-      
+
       const phoneRegex = /^[+]?[0-9\s\-()]{7,20}$/;
       if (!phoneRegex.test(phoneVal)) {
         showFormNotification('Please enter a valid phone number (at least 7 digits).', 'error');
         return;
       }
-      
+
       if (!subjectVal) {
         showFormNotification('Please enter a subject.', 'error');
         return;
       }
-      
+
       if (!weddingDatesVal || !weddingLocationVal || !eventsDetailsVal) {
         showFormNotification('Please fill out all required fields.', 'error');
         return;
       }
-      
+
       // Honeypot check for spam prevention
       const honeypotVal = document.getElementById('website')?.value;
       if (honeypotVal) {
@@ -470,6 +544,7 @@ const init = () => {
 
       // Construct payload for the backend API (using expected snake_case keys)
       const payload = {
+        access_key: '869cbdae-ec04-4b53-8594-0b07b34f29d3',
         name: fullName,
         email: emailVal,
         phone: phoneVal,
@@ -477,13 +552,14 @@ const init = () => {
         source: sourceVal,
         wedding_dates: weddingDatesVal,
         wedding_location: weddingLocationVal,
-        events_details: eventsDetailsVal
+        events_details: eventsDetailsVal,
+        from_name: 'ForeShadow Website Enquiry'
       };
 
       // Correct recipient address
-      const recipient = 'ForeShadow <foreshadow.pkp@gmail.com>';
+      const recipient = 'ForeShadow <hello@foreshadow.in>';
       const emailSubject = `Wedding Enquiry — ${fullName} | ${subjectVal}`;
-      
+
       const emailBody = [
         `Name: ${fullName}`,
         `Email: ${emailVal}`,
@@ -500,72 +576,74 @@ const init = () => {
         `---`,
         `Sent via ForeShadow Contact Form`
       ].join('\n');
-      
+
       // Construct mailto link
       const mailtoLink = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-      
-      // Post to the local Express server
-      fetch(`${apiBase}/api/enquire`, {
+
+      // Post to Web3Forms API
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(payload)
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Server returned error response');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Enquiry logged on server:', data);
-        
-        // Open user's mail client
-        window.location.href = mailtoLink;
-        
-        // Show success feedback
-        submitBtn.textContent = 'Enquiry Sent ✓';
-        submitBtn.style.background = '#4a7c59';
-        submitBtn.style.color = '#ffffff';
-        submitBtn.style.borderColor = '#4a7c59';
-        submitBtn.style.opacity = '1';
-        
-        showFormNotification('Enquiry saved successfully and mail client opened!', 'success');
-        
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = '';
-          submitBtn.style.color = '';
-          submitBtn.style.borderColor = '';
-          submitBtn.disabled = false;
-          contactForm.reset();
-        }, 4000);
-      })
-      .catch(error => {
-        console.error('Error submitting enquiry to server:', error);
-        
-        // Fallback: Still open mail client even if the server is down
-        window.location.href = mailtoLink;
-        
-        // Show warning/semi-success feedback
-        submitBtn.textContent = 'Mail App Opened ✓';
-        submitBtn.style.background = '#c9a054';
-        submitBtn.style.color = '#ffffff';
-        submitBtn.style.borderColor = '#c9a054';
-        submitBtn.style.opacity = '1';
-        
-        showFormNotification('Mail app opened. (Server backup failed to save, but mail will send)', 'warning');
-        
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = '';
-          submitBtn.style.color = '';
-          submitBtn.style.borderColor = '';
-          submitBtn.disabled = false;
-          contactForm.reset();
-        }, 4000);
-      });
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Server returned error response');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            console.log('Enquiry submitted to Web3Forms:', data);
+
+            // Show success feedback
+            submitBtn.textContent = 'Enquiry Sent ✓';
+            submitBtn.style.background = '#4a7c59';
+            submitBtn.style.color = '#ffffff';
+            submitBtn.style.borderColor = '#4a7c59';
+            submitBtn.style.opacity = '1';
+
+            showFormNotification('Enquiry submitted successfully!', 'success');
+          } else {
+            throw new Error(data.message || 'Submission failed');
+          }
+
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '';
+            submitBtn.style.color = '';
+            submitBtn.style.borderColor = '';
+            submitBtn.disabled = false;
+            contactForm.reset();
+          }, 4000);
+        })
+        .catch(error => {
+          console.error('Error submitting enquiry to server:', error);
+
+          // Fallback: Still open mail client even if the server is down
+          window.location.href = mailtoLink;
+
+          // Show warning/semi-success feedback
+          submitBtn.textContent = 'Mail App Opened ✓';
+          submitBtn.style.background = '#c9a054';
+          submitBtn.style.color = '#ffffff';
+          submitBtn.style.borderColor = '#c9a054';
+          submitBtn.style.opacity = '1';
+
+          showFormNotification('Mail app opened. (Server backup failed to save, but mail will send)', 'warning');
+
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '';
+            submitBtn.style.color = '';
+            submitBtn.style.borderColor = '';
+            submitBtn.disabled = false;
+            contactForm.reset();
+          }, 4000);
+        });
     });
   }
 
@@ -598,7 +676,7 @@ const init = () => {
     if (!lightboxTrack || !imageLightbox) return;
     lightboxTrack.innerHTML = '';
     lightboxSlides = [];
-    
+
     imageUrls.forEach((url, i) => {
       const slide = document.createElement('div');
       slide.className = 'lightbox-slide';
@@ -609,10 +687,10 @@ const init = () => {
       lightboxTrack.appendChild(slide);
       lightboxSlides.push(slide);
     });
-    
+
     currentLightboxSlideIndex = index;
     showSlide(currentLightboxSlideIndex);
-    
+
     imageLightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
     if (lenis) lenis.stop();
@@ -682,22 +760,38 @@ const init = () => {
   const filmCards = document.querySelectorAll('.film-card');
   const videoLightbox = document.getElementById('lightbox-modal');
   const videoWrapper = document.getElementById('lightbox-video-wrapper');
-  
+
   if (videoLightbox && videoWrapper && !lightboxTrack) {
     const closeBtn = document.getElementById('lightbox-close');
 
     function openVideo(url) {
-      let finalUrl = url;
+      let finalUrl = '';
       if (url.includes('vimeo.com')) {
-        finalUrl = url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+        // Extract ID and use player.vimeo.com for reliable embedding
+        const vimeoId = url.split('/').pop().split('?')[0];
+        finalUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&dnt=1&app_id=122963`;
       } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
-        finalUrl = url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+        // Automatically extract the YouTube ID and convert it to a playable embed URL
+        let videoId = '';
+        if (url.includes('youtu.be/')) {
+          videoId = url.split('youtu.be/')[1].split('?')[0];
+        } else if (url.includes('watch?v=')) {
+          videoId = url.split('watch?v=')[1].split('&')[0];
+        } else if (url.includes('/embed/')) {
+          videoId = url.split('/embed/')[1].split('?')[0];
+        }
+
+        if (videoId) {
+          finalUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+        } else {
+          finalUrl = url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+        }
       }
-      
+
       videoWrapper.innerHTML = `
-        <iframe src="${finalUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="${finalUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen frameborder="0" style="width:100%;height:100%;"></iframe>
       `;
-      
+
       videoLightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
@@ -762,7 +856,7 @@ const init = () => {
 
   // ─────────────── Smooth scroll anchors ───────────────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
@@ -783,7 +877,7 @@ const init = () => {
       const scrollAmount = window.innerWidth * 0.8;
       wallContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
-    
+
     wallNext.addEventListener('click', () => {
       const scrollAmount = window.innerWidth * 0.8;
       wallContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
@@ -794,7 +888,7 @@ const init = () => {
     if (cursor) {
       const addHover = () => cursor.classList.add('cursor-hover');
       const removeHover = () => cursor.classList.remove('cursor-hover');
-      
+
       wallPrev.addEventListener('mouseenter', addHover);
       wallPrev.addEventListener('mouseleave', removeHover);
       wallNext.addEventListener('mouseenter', addHover);
@@ -820,11 +914,11 @@ const init = () => {
 
     menuItems.forEach(item => {
       const service = item.getAttribute('data-service');
-      
+
       item.addEventListener('mouseenter', () => {
         setActiveBg(service);
       });
-      
+
       item.addEventListener('mouseleave', () => {
         setActiveBg('default');
       });
@@ -871,7 +965,7 @@ const init = () => {
     if (cursor) {
       const addHover = () => cursor.classList.add('cursor-hover');
       const removeHover = () => cursor.classList.remove('cursor-hover');
-      
+
       storyPrev.addEventListener('mouseenter', addHover);
       storyPrev.addEventListener('mouseleave', removeHover);
       storyNext.addEventListener('mouseenter', addHover);
@@ -918,7 +1012,7 @@ const init = () => {
     if (cursor) {
       const addHover = () => cursor.classList.add('cursor-hover');
       const removeHover = () => cursor.classList.remove('cursor-hover');
-      
+
       portfolioPrev.addEventListener('mouseenter', addHover);
       portfolioPrev.addEventListener('mouseleave', removeHover);
       portfolioNext.addEventListener('mouseenter', addHover);
@@ -933,21 +1027,22 @@ const init = () => {
       const slide = btn.closest('.story-slide');
       const slideIndex = slide ? slide.getAttribute('data-slide-index') : '0';
       const title = slide ? slide.querySelector('.story-title-middle').textContent : 'Featured Gallery';
-      
+
       const folderMap = {
         '0': 'folder_1',
         '1': 'folder_2',
         '2': 'folder_3',
         '3': 'folder_4',
-        '4': 'folder_1',
-        '5': 'folder_2'
+        '4': 'folder_1', // Rushi & Suprima (new index)
+        '5': 'folder_2', // Aishwarya & Sankhar (new index)
+        '6': 'folder_3'  // Krishna & Shweta (new index)
       };
       const folder = folderMap[slideIndex] || 'folder_1';
-      
+
       // Save images list in sessionStorage as a local fallback
       const imagesStr = btn.getAttribute('data-gallery-images') || '';
       sessionStorage.setItem('current_gallery_images', imagesStr);
-      
+
       const targetUrl = `gallery.html?folder=${folder}&title=${encodeURIComponent(title)}`;
       const pageTransition = document.querySelector('.page-transition');
       if (pageTransition) {
@@ -974,44 +1069,57 @@ const init = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const folder = urlParams.get('folder') || 'folder_1';
     const rawTitle = urlParams.get('title') || 'Featured Gallery';
-    
+
     // Update document title
     document.title = `${rawTitle} — ForeShadow`;
-    
+
     const titleEl = document.getElementById('gallery-page-title');
     if (titleEl) titleEl.textContent = rawTitle;
-    
+
     const countEl = document.getElementById('gallery-page-count');
     const loadingEl = document.getElementById('gallery-page-loading');
-    
+
     // Retrieve fallback images from sessionStorage
     const localImagesStr = sessionStorage.getItem('current_gallery_images');
     const localImages = localImagesStr ? localImagesStr.split(',').map(s => s.trim()).filter(s => s.length > 0) : [];
-    
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const renderGallery = (images) => {
       if (loadingEl) loadingEl.style.display = 'none';
       if (countEl) countEl.textContent = `${images.length} Photos`;
-      
+
+      const heroImg = document.getElementById('gallery-hero-img');
+      if (heroImg && images.length > 0) {
+        heroImg.src = images[0];
+      }
+
       galleryPageGrid.innerHTML = '';
-      
+
       images.forEach((imgUrl, index) => {
         const item = document.createElement('div');
         item.className = 'gallery-page-item';
-        item.style.animationDelay = `${index * 0.03}s`;
-        
+        item.setAttribute('data-index', index);
+        // Z-index stacking: later items get higher z-index to appear in front
+        item.style.zIndex = index + 1;
+        // Stagger delay for animation
+        item.style.animationDelay = `${index * 0.06}s`;
+
         const img = document.createElement('img');
         img.src = imgUrl;
         img.alt = `${rawTitle} - Photo ${index + 1}`;
         img.loading = 'lazy';
-        
+        // Reserve aspect-ratio on images to avoid layout shift
+        img.style.aspectRatio = '3 / 4';
+
         item.appendChild(img);
         galleryPageGrid.appendChild(item);
-        
+
         // Open full-screen lightbox slideshow when clicked
         item.addEventListener('click', () => {
           openLightbox(index, images);
         });
-        
+
         // Support for custom cursor if available
         const cursor = document.querySelector('.custom-cursor');
         if (cursor) {
@@ -1019,8 +1127,39 @@ const init = () => {
           item.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
         }
       });
+
+      // IntersectionObserver for staggered depth reveal
+      if (!prefersReducedMotion) {
+        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item');
+
+        const galleryObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              // Set will-change for animation performance
+              el.style.willChange = 'transform, opacity';
+              el.classList.add('gallery-item-revealed');
+              galleryObserver.unobserve(el);
+
+              // Remove will-change after animation completes for performance
+              el.addEventListener('animationend', () => {
+                el.style.willChange = 'auto';
+              }, { once: true });
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+        galleryItems.forEach(item => galleryObserver.observe(item));
+      } else {
+        // Reduced motion: show all items immediately
+        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item');
+        galleryItems.forEach(item => {
+          item.style.opacity = '1';
+          item.style.transform = 'none';
+        });
+      }
     };
-    
+
     // Fetch with apiBase. Fallback to local images on failure.
     fetch(`${apiBase}/api/gallery/${folder}`)
       .then(res => {
