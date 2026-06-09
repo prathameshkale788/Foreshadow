@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Gallery — ForeShadow</title>
   <meta name="description" content="Explore beautiful captured moments and wedding story galleries by ForeShadow.">
-  
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
 
@@ -59,11 +59,20 @@
     </div>
   </div>
 
-  <!-- ═══════════════ GALLERY HERO ═══════════════ -->
+  <!-- ═══════════════ GALLERY HERO (Full-Viewport + YouTube BG) ═══════════════ -->
   <section class="gallery-page-hero" id="pagetop">
-    <div class="container">
+    <!-- Static Image Background (Populated by JS) -->
+    <div class="gallery-hero-img-bg" id="gallery-hero-img-container">
+      <img src="" alt="" id="gallery-hero-img" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <!-- Dark overlay for text contrast -->
+    <div class="gallery-hero-overlay"></div>
+    <!-- Hero Content -->
+    <div class="gallery-hero-content">
       <a href="portfolio.html" class="gallery-back-link" data-page>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
@@ -91,13 +100,15 @@
   <!-- ═══════════════ LIGHTBOX MODAL ═══════════════ -->
   <div class="lightbox-modal" id="lightbox-modal">
     <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close gallery">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
     <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
     </button>
@@ -107,7 +118,8 @@
       </div>
     </div>
     <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
         <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </button>
@@ -142,22 +154,28 @@
         <div class="footer-col">
           <h4 class="footer-heading">SOCIAL</h4>
           <div class="footer-social-icons">
-            <a href="https://www.instagram.com/foreshadow.in?igsh=Y2RhaHdyN2I4dmNj" target="_blank" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <a href="https://www.instagram.com/foreshadow.in?igsh=Y2RhaHdyN2I4dmNj" target="_blank"
+              aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
               </svg>
             </a>
             <a href="https://youtube.com/@foreshadow-pkp?si=d2lc0o6XlELBHqq-" target="_blank" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z">
+                </path>
                 <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
               </svg>
             </a>
             <a href="#" aria-label="Behance">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 2.211 1.734 3.007 3.189 3.007 1.525 0 2.452-.764 2.852-1.657l1.715.679zM19.862 13c-.11-1.559-.986-2.546-2.443-2.546-1.407 0-2.285.846-2.501 2.546h4.944zM9.076 21.084H1V3.292h7.474c2.548 0 4.578 1.317 4.578 4.123 0 1.76-.834 2.937-2.249 3.604v.063c1.895.453 2.966 2.07 2.966 3.965 0 3.069-2.377 4.037-4.693 4.037zM7.62 9.724c1.325 0 2.292-.471 2.292-1.838 0-1.468-1.005-1.79-2.352-1.79H4.278v3.628H7.62zm.238 7.559c1.54 0 2.613-.63 2.613-2.218 0-1.589-1.03-2.28-2.613-2.28H4.278v4.498h3.58z"/>
+                <path
+                  d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 2.211 1.734 3.007 3.189 3.007 1.525 0 2.452-.764 2.852-1.657l1.715.679zM19.862 13c-.11-1.559-.986-2.546-2.443-2.546-1.407 0-2.285.846-2.501 2.546h4.944zM9.076 21.084H1V3.292h7.474c2.548 0 4.578 1.317 4.578 4.123 0 1.76-.834 2.937-2.249 3.604v.063c1.895.453 2.966 2.07 2.966 3.965 0 3.069-2.377 4.037-4.693 4.037zM7.62 9.724c1.325 0 2.292-.471 2.292-1.838 0-1.468-1.005-1.79-2.352-1.79H4.278v3.628H7.62zm.238 7.559c1.54 0 2.613-.63 2.613-2.218 0-1.589-1.03-2.28-2.613-2.28H4.278v4.498h3.58z" />
               </svg>
             </a>
           </div>
@@ -170,7 +188,7 @@
             <p>#foreshadow</p>
             <p>Cinematic Wedding Photography by ForeShadow</p>
             <p>INDIA — +91 7887334267</p>
-            <p>foreshadow.pkp@gmail.com</p>
+            <p>hello@foreshadow.in</p>
           </div>
         </div>
 
