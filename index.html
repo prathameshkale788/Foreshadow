@@ -28,41 +28,21 @@
     }
   </script>
 
-  <!-- ═══════════════ Loading Screen (Grid Splash Gate) ═══════════════ -->
+  <!-- ═══════════════ Loading Screen (Cosmos 3D Orbit Gallery) ═══════════════ -->
   <div class="preloader" id="preloader">
-    <div class="splash-grid">
-      <!-- Row 1 -->
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-10.jpg" alt="Wedding portrait"></div>
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-11.jpg" alt="Wedding portrait"></div>
-      <div class="splash-cell hide-mobile"><img src="assets/images/drive_photos/folder_1/PKP_-12.jpg"
-          alt="Wedding portrait"></div>
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-13.jpg" alt="Wedding portrait"></div>
-      <div class="splash-cell hide-mobile"><img src="assets/images/drive_photos/folder_1/PKP_-14.jpg"
-          alt="Wedding portrait"></div>
-      <!-- Row 2 -->
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-15.jpg" alt="Wedding portrait"></div>
-      <div class="splash-cell hide-mobile"><img src="assets/images/drive_photos/folder_1/PKP_-16.jpg"
-          alt="Wedding portrait"></div>
-      <!-- Center Gate Card -->
-      <div class="splash-cell splash-center-card">
-        <div class="splash-center-content">
-          <img src="assets/images/logo.png" alt="ForeShadow Logo" class="splash-center-logo">
-          <button type="button" class="splash-enter-btn" id="enter-btn">ENTER</button>
-          <span class="splash-center-brand">ForeShadow</span>
-        </div>
-      </div>
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-17.jpg" alt="Wedding portrait"></div>
-      <div class="splash-cell hide-mobile"><img src="assets/images/drive_photos/folder_1/PKP_-18.jpg"
-          alt="Wedding portrait"></div>
-      <!-- Row 3 -->
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-19.jpg" alt="Wedding portrait"></div>
-      <div class="splash-cell hide-mobile"><img src="assets/images/drive_photos/folder_1/PKP_-2.jpg"
-          alt="Wedding portrait"></div>
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-20.jpg" alt="Wedding portrait"></div>
-      <div class="splash-cell hide-mobile"><img src="assets/images/drive_photos/folder_1/PKP_-21.jpg"
-          alt="Wedding portrait"></div>
-      <div class="splash-cell"><img src="assets/images/drive_photos/folder_1/PKP_-22.jpg" alt="Wedding portrait"></div>
+    <!-- Three.js Canvas renders here -->
+    <div class="preloader-canvas-container" id="preloader-canvas-container"></div>
+
+    <!-- Overlay: Logo + Enter Button -->
+    <div class="preloader-overlay" id="preloader-overlay">
+      <img src="assets/images/logo.png" alt="ForeShadow Logo" class="preloader-logo">
+      <span class="preloader-brand">ForeShadow</span>
+      <span class="preloader-tagline">Cinematic Wedding Photography</span>
+      <button type="button" class="preloader-enter-btn" id="enter-btn">ENTER</button>
     </div>
+
+    <!-- Hint at bottom -->
+    <span class="preloader-hint">Drag to orbit · Scroll to zoom</span>
   </div>
 
 
@@ -108,200 +88,181 @@
   </div>
 
   <!-- ═══════════════ HERO — Full Viewport ═══════════════ -->
-  <div class="hero-scroll-wrapper" style="height: 300vh; position: relative;">
-    <section class="home-hero" id="hometop" style="position: sticky; top: 0; height: 100vh; overflow: hidden;">
-      <div class="hero-video-bg">
-        <iframe
-          src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
-          title="ForeShadow Hero Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
-      </div>
+  <section class="home-hero" id="hometop" style="height: 100vh; position: relative; overflow: hidden;">
+    <div class="hero-video-bg">
+      <iframe
+        src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+        title="ForeShadow Hero Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+    </div>
 
-      <!-- Scattered Grid Photos (Luca Mori style) -->
-      <div class="hero-mosaic-grid">
-        <div class="mosaic-item m-1"><img src="assets/images/drive_photos/folder_1/PKP_-10.jpg" alt="Gallery"></div>
-        <div class="mosaic-item m-2"><img src="assets/images/drive_photos/folder_1/PKP_-11.jpg" alt="Gallery"></div>
-        <div class="mosaic-item m-3"><img src="assets/images/drive_photos/folder_1/PKP_-12.jpg" alt="Gallery"></div>
-        <div class="mosaic-item m-4"><img src="assets/images/drive_photos/folder_1/PKP_-13.jpg" alt="Gallery"></div>
-        <div class="mosaic-item m-5"><img src="assets/images/drive_photos/folder_1/PKP_-14.jpg" alt="Gallery"></div>
-        <div class="mosaic-item m-6"><img src="assets/images/drive_photos/folder_1/PKP_-15.jpg" alt="Gallery"></div>
-        <div class="mosaic-item m-7"><img src="assets/images/drive_photos/folder_1/PKP_-16.jpg" alt="Gallery"></div>
-        <div class="mosaic-item m-8"><img src="assets/images/drive_photos/folder_1/PKP_-17.jpg" alt="Gallery"></div>
-      </div>
+    <!-- Hero Text Overlay -->
+    <div class="home-hero-content luca-hero-content" style="z-index: 3; position: relative;">
+      <h1 class="home-hero-title luca-mori-title">Stories Before<br>the Vows</h1>
+      <p class="home-hero-subtitle black-font" style="color: #000000 !important; font-weight: 600;">We Don't Just Film
+        Weddings, We Make Cinema.</p>
+    </div>
+  </section>
 
-      <!-- Hero Text Overlay -->
-      <div class="home-hero-content luca-hero-content" style="z-index: 3; position: relative;">
-        <h1 class="home-hero-title luca-mori-title">Stories Before<br>the Vows</h1>
-        <p class="home-hero-subtitle black-font" style="color: #000000 !important; font-weight: 600;">We Don't Just Film
-          Weddings, We Make Cinema.</p>
-      </div>
-    </section>
+  <!-- ═══════════════ SECTION TRANSITION: Hero → Modern Approach ═══════════════ -->
+  <div class="section-transition hero-to-modern">
+    <div class="transition-fade-overlay"></div>
   </div>
 
-  <!-- ═══════════════ ETHOS SECTION (Cinema, Art & Documentary Photo Wall) ═══════════════ -->
+  <!-- ═══════════════ A MODERN APPROACH SECTION ═══════════════ -->
+  <section class="modern-tradition-section" id="modern-approach">
+    <div class="modern-tradition-container">
+      
+      <!-- Title Area (Row 1, Column 2) -->
+      <div class="modern-tradition-header reveal">
+        <h2 class="modern-tradition-title">
+          <span class="main-title-line">A MODERN APPROACH</span>
+          <span class="sub-title-line"><span class="to-an-text">to an</span> <span class="highlight-serif">AGE OLD TRADITION</span></span>
+        </h2>
+      </div>
+
+      <!-- Left Column: Portrait Image (Row 2, Column 1) -->
+      <div class="modern-column col-left reveal stagger-1">
+        <div class="modern-image-wrapper left-img">
+          <img src="assets/images/drive_photos/folder_1/PKP_-19.jpg" alt="Bridal Close-up" class="modern-img" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Center Column: Philosophy Text (Row 2, Column 2) -->
+      <div class="modern-column col-center reveal stagger-2">
+        <h3 class="philosophy-title">Our Philosophy</h3>
+        
+        <p class="philosophy-text lead-text">
+          At Foreshadow, we believe the most powerful stories are found in the moments between moments.
+        </p>
+        
+        <p class="philosophy-text">
+          We don’t just capture how your day looked—we preserve how it felt. The laughter that echoed through the room, the tears that arrived unexpectedly, the glances that spoke louder than words.
+        </p>
+        
+        <p class="philosophy-text">
+          Every frame we create is guided by authenticity, emotion, and purpose. Our goal is to craft timeless films and photographs that allow you to relive your story exactly as it unfolded—honest, beautiful, and uniquely yours.
+        </p>
+        
+        <p class="philosophy-text conclusion-text">
+          Because every moment tells a story, and every story deserves to be remembered.
+        </p>
+      </div>
+
+      <!-- Right Column: Landscape Scenic Image (Row 1-2, Column 3) -->
+      <div class="modern-column col-right reveal stagger-3">
+        <div class="modern-image-wrapper right-img">
+          <img src="assets/images/drive_photos/folder_3/PKP-12.jpg" alt="Wedding Scenic Landscape" class="modern-img" loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ SECTION TRANSITION: Modern Approach → Grid ═══════════════ -->
+  <div class="section-transition modern-to-grid">
+    <div class="transition-fade-overlay"></div>
+  </div>
+
+  <!-- ═══════════════ ETHOS SECTION (Cinema, Art & Documentary — Iconic Grid) ═══════════════ -->
   <section class="photo-wall-section" id="ethos">
     <div class="photo-wall-subheading reveal">WE ARE CREATING FICTION OUT OF REALITY.</div>
 
-    <div class="photo-wall-wrapper">
-      <button class="photo-wall-arrow arrow-prev" id="wall-prev" aria-label="Previous photos">‹</button>
+    <div class="iconic-grid-wrapper">
+      <div class="iconic-grid" id="photo-wall-container">
+        <!-- Row 1: 5 images -->
+        <div class="iconic-cell reveal"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-36.jpg"
+            alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-1"><img loading="lazy"
+            src="assets/images/drive_photos/folder_1/PKP_-11.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-2"><img loading="lazy"
+            src="assets/images/drive_photos/folder_3/PKP-10.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-3"><img loading="lazy"
+            src="assets/images/drive_photos/folder_1/PKP_-13.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-4"><img loading="lazy"
+            src="assets/images/drive_photos/folder_2/FS-111.jpg" alt="Wedding moment"></div>
 
-      <div class="photo-wall-container" id="photo-wall-container">
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-36.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-11.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-10.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-11.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-111.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-15.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-103.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-2.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-111.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-3.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-15.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-100.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-22.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-13.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-108.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-27.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-12.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-30.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-23.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-10.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-106.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-40.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-20.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-17.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-10.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-29.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-14.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-104.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-107.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-105.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-16.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-10.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-103.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-25.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-20.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-18.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-22.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-2.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-38.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-39.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-19.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-109.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-107.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-105.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-26.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-112.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-37.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-11.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-35.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-110.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-11.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-101.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-41.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_2/FS-110.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-112.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-21.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-34.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-16.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-12.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-102.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-42.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-32.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-14.jpg"
-            alt="Wedding moment"></div>
-        <div class="photo-wall-item"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-28.jpg"
-            alt="Wedding moment"></div>
+        <!-- Row 2: 2 images + center text tile + 2 images -->
+        <div class="iconic-cell reveal"><img loading="lazy" src="assets/images/drive_photos/folder_4/FS-11.jpg"
+            alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-1"><img loading="lazy"
+            src="assets/images/drive_photos/folder_3/PKP-11.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell iconic-text-tile reveal stagger-2">
+          <div class="iconic-text-content">
+            <span class="iconic-text-top">some of the most</span>
+            <span class="iconic-text-main">"ICONIC"</span>
+            <span class="iconic-text-bottom">wedding images</span>
+          </div>
+        </div>
+        <div class="iconic-cell reveal stagger-3"><img loading="lazy"
+            src="assets/images/drive_photos/folder_1/PKP_-15.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-4"><img loading="lazy"
+            src="assets/images/drive_photos/folder_4/FS-103.jpg" alt="Wedding moment"></div>
+
+        <!-- Row 3: 5 images -->
+        <div class="iconic-cell reveal"><img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-22.jpg"
+            alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-1"><img loading="lazy"
+            src="assets/images/drive_photos/folder_3/PKP-15.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-2"><img loading="lazy"
+            src="assets/images/drive_photos/folder_1/PKP_-3.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-3"><img loading="lazy"
+            src="assets/images/drive_photos/folder_2/FS-100.jpg" alt="Wedding moment"></div>
+        <div class="iconic-cell reveal stagger-4"><img loading="lazy"
+            src="assets/images/drive_photos/folder_1/PKP_-30.jpg" alt="Wedding moment"></div>
       </div>
-
-      <button class="photo-wall-arrow arrow-next" id="wall-next" aria-label="Next photos">›</button>
     </div>
 
     <h2 class="photo-wall-heading reveal stagger-1">CINEMA, ART & DOCUMENTARY</h2>
   </section>
+  <!-- ═══════════════ SCROLL EXPANSION HERO SECTION ═══════════════ -->
+  <div class="scroll-expand-wrapper" id="scroll-expand-section">
+    <div class="scroll-expand-sticky">
+      
+      <!-- Background Image -->
+      <div class="scroll-expand-bg-img">
+        <img src="assets/images/bgvd.jpg" alt="Background">
+        <div class="scroll-expand-bg-overlay"></div>
+      </div>
 
-  <!-- ═══════════════ CINEMATIC STORYTELLING PARALLAX ═══════════════ -->
-  <section class="parallax-divider-section"
-    style="background-image: url('assets/images/drive_photos/folder_3/PKP-10.jpg');">
-    <div class="parallax-overlay"></div>
-    <div class="parallax-content">
-      <h2 class="parallax-title reveal">Cinematic Storytelling</h2>
-    </div>
-  </section>
+      <!-- Center Video Container -->
+      <div class="scroll-expand-media-box">
+        <div class="scroll-expand-video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/PIVGEnlq7AA?autoplay=1&mute=1&loop=1&playlist=PIVGEnlq7AA&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="ForeShadow Expand Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+        </div>
+        <div class="scroll-expand-media-overlay"></div>
+      </div>
 
-  <!-- ═══════════════ WILDLY FREE SECTION ═══════════════ -->
-  <section class="wildly-free-section" style="background-image: url('assets/images/drive_photos/folder_2/FS-101.jpg');">
-    <div class="wildly-free-overlay"></div>
-    <div class="wildly-free-content container">
-      <p class="wildly-free-lead reveal">for the</p>
-      <h2 class="wildly-free-heading reveal stagger-1">
-        wildly free<br>
-        <span class="highlight-italic">Deeply present</span><br>
-        Madly in love
-      </h2>
+      <!-- Title Overlay (mix-blend-difference style) -->
+      <div class="scroll-expand-text-container">
+        <h2 class="scroll-expand-title-left">Cinematic</h2>
+        <h2 class="scroll-expand-title-right">Storytelling</h2>
+      </div>
+
+      <!-- Sub-information overlay (fades out with progress) -->
+      <div class="scroll-expand-hint-container">
+        <p class="scroll-expand-hint-text">Scroll to Expand</p>
+      </div>
+
     </div>
-  </section>
+
+    <!-- Content revealed below when fully expanded -->
+    <div class="scroll-expand-reveal-content">
+      <div class="container scroll-reveal-inner">
+        <div class="scroll-reveal-text-block">
+          <span class="scroll-reveal-label">Cinematic Artistry</span>
+          <h3 class="scroll-reveal-heading">We Make Cinema Out Of Reality</h3>
+          <p class="scroll-reveal-desc">
+            At Foreshadow, our visual language is defined by cinematic elegance and raw emotion. We paint stories using light, motion, and sound, turning once-in-a-lifetime moments into visual poetry.
+          </p>
+          <p class="scroll-reveal-desc">
+            Every film we create is guided by authenticity, emotion, and purpose. We don’t just capture how your day looked — we preserve how it felt, crafting timeless films that allow you to relive your story exactly as it unfolded.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══════════════ FEATURED STORIES / CAROUSEL ═══════════════ -->
   <section class="featured-stories-section">
@@ -467,6 +428,37 @@
     </div>
   </section>
 
+  <!-- ═══════════════ ACCORDION GALLERY SECTION (LATEST CREATIONS) ═══════════════ -->
+  <section class="latest-creations-section">
+    <div class="container creations-header text-center reveal">
+      <h2 class="creations-title">Our Latest Creations</h2>
+      <p class="creations-subtitle">
+        A visual collection of our most recent works – each piece crafted with intention, emotion, and style.
+      </p>
+    </div>
+
+    <div class="creations-gallery-container reveal stagger-1" id="creations-gallery">
+      <div class="creations-gallery-item">
+        <img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-20.jpg" alt="Creation 1">
+      </div>
+      <div class="creations-gallery-item">
+        <img loading="lazy" src="assets/images/drive_photos/folder_2/FS-104.jpg" alt="Creation 2">
+      </div>
+      <div class="creations-gallery-item">
+        <img loading="lazy" src="assets/images/drive_photos/folder_3/PKP-16.jpg" alt="Creation 3">
+      </div>
+      <div class="creations-gallery-item">
+        <img loading="lazy" src="assets/images/drive_photos/folder_4/FS-105.jpg" alt="Creation 4">
+      </div>
+      <div class="creations-gallery-item">
+        <img loading="lazy" src="assets/images/drive_photos/folder_1/PKP_-25.jpg" alt="Creation 5">
+      </div>
+      <div class="creations-gallery-item">
+        <img loading="lazy" src="assets/images/drive_photos/folder_2/FS-110.jpg" alt="Creation 6">
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════ FOOTER — 3-Column Sitemap ═══════════════ -->
   <footer class="footer">
     <div class="container">
@@ -566,6 +558,9 @@
   <div class="custom-cursor-dot"></div>
 
   <!-- ═══════════════ Scripts ═══════════════ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="js/preloader-cosmos.js"></script>
   <script src="js/main.js"></script>
 </body>
 
