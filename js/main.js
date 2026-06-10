@@ -21,7 +21,7 @@ const init = () => {
     requestAnimationFrame(raf);
   } catch (e) { console.warn('Lenis not loaded'); }
 
-  // ─────────────── Preloader / Grid Landing Gate ───────────────
+  // ─────────────── Preloader / Cosmos 3D Loading Gate ───────────────
   const preloader = document.getElementById('preloader');
   const enterBtn = document.getElementById('enter-btn');
   const heroVideo = document.querySelector('.hero-video-bg video');
@@ -34,6 +34,23 @@ const init = () => {
     heroVideo.play().catch(err => console.warn('Autoplay initially prevented:', err));
   }
 
+  // ─────────────── YouTube Autoplay for Cinematic Storytelling / Backgrounds ───────────────
+  // Automatically append autoplay and mute parameters to YouTube iframes on page load
+  const ytIframes = document.querySelectorAll('iframe[src*="youtube.com"], iframe[src*="youtu.be"]');
+  ytIframes.forEach(iframe => {
+    let src = iframe.getAttribute('src');
+    if (src && !src.includes('autoplay=1')) {
+      // Modern browsers require video to be muted to autoplay
+      src += (src.includes('?') ? '&' : '?') + 'autoplay=1&mute=1&playsinline=1';
+      // YouTube requires the playlist parameter to loop an embedded video
+      if (src.includes('embed/') && !src.includes('playlist=')) {
+        const videoId = src.split('embed/')[1].split(/[?&]/)[0];
+        src += '&loop=1&playlist=' + videoId;
+      }
+      iframe.setAttribute('src', src);
+    }
+  });
+
   if (preloader) {
     let hasEntered = false;
     try {
@@ -45,26 +62,106 @@ const init = () => {
     if (hasEntered) {
       preloader.style.display = 'none';
       document.body.style.overflow = '';
+      // Cleanup WebGL if it was initialized
+      if (typeof window._destroyPreloaderWave === 'function') {
+        window._destroyPreloaderWave();
+      }
     } else {
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
 
       if (enterBtn) {
-        enterBtn.textContent = 'ENTER';
-        enterBtn.classList.add('ready');
-
         enterBtn.addEventListener('click', function () {
+          // Prevent double-clicks
+          enterBtn.style.pointerEvents = 'none';
+
           try {
             sessionStorage.setItem('fosh_entered', 'true');
           } catch (e) {
             console.warn('sessionStorage is not accessible:', e);
           }
-          preloader.classList.add('loaded');
-          document.body.style.overflow = '';
-          if (lenis) lenis.start();
+
+          // ═══════════════════════════════════════════════
+          // PHASE 1 (T+0ms) — Trigger 3D whirlwind + UI dissolve
+          // ═══════════════════════════════════════════════
+
+          // Trigger accelerating rotation + particle scatter in Three.js
+          if (typeof window._triggerPreloaderExit === 'function') {
+            window._triggerPreloaderExit();
+          }
+
+          // Add 'exiting' class — CSS handles button/text/canvas dissolve
+          preloader.classList.add('exiting');
+
+          // Create radial white flash burst
+          var flash = document.createElement('div');
+          flash.className = 'preloader-flash';
+          preloader.appendChild(flash);
+          setTimeout(function () { flash.remove(); }, 800);
+
+          // ═══════════════════════════════════════════════
+          // PHASE 2 (T+600ms) — Logo flies to navbar position
+          // ═══════════════════════════════════════════════
+
           setTimeout(function () {
-            preloader.style.display = 'none';
-          }, 1500);
+            var logo = document.querySelector('.preloader-logo');
+            var navLogo = document.querySelector('.nav-logo-img');
+
+            if (logo && navLogo) {
+              // Get current and target positions
+              var logoRect = logo.getBoundingClientRect();
+              var navRect = navLogo.getBoundingClientRect();
+
+              // Calculate translation delta (center → center)
+              var dx = (navRect.left + navRect.width / 2) - (logoRect.left + logoRect.width / 2);
+              var dy = (navRect.top + navRect.height / 2) - (logoRect.top + logoRect.height / 2);
+              var scaleRatio = navRect.height / logoRect.height;
+
+              // Freeze the entrance animation and lock current visual state
+              logo.style.animation = 'none';
+              logo.style.opacity = '1';
+              logo.style.transform = 'translateY(0) scale(1)';
+
+              // Double-rAF to ensure browser registers the base state before transitioning
+              requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                  logo.style.transition = 'transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease 0.8s';
+                  logo.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scaleRatio + ')';
+                });
+              });
+            }
+          }, 600);
+
+          // ═══════════════════════════════════════════════
+          // PHASE 3 (T+1400ms) — Logo fades at destination
+          // ═══════════════════════════════════════════════
+
+          setTimeout(function () {
+            var logo = document.querySelector('.preloader-logo');
+            if (logo) {
+              logo.style.transition = 'opacity 0.3s ease';
+              logo.style.opacity = '0';
+            }
+          }, 1400);
+
+          // ═══════════════════════════════════════════════
+          // PHASE 4 (T+1800ms) — Preloader hidden, site revealed
+          // ═══════════════════════════════════════════════
+
+          setTimeout(function () {
+            preloader.classList.add('loaded');
+            document.body.style.overflow = '';
+            if (lenis) lenis.start();
+
+            setTimeout(function () {
+              preloader.style.display = 'none';
+              // Cleanup WebGL resources to free GPU memory
+              if (typeof window._destroyPreloaderWave === 'function') {
+                window._destroyPreloaderWave();
+              }
+            }, 1500);
+          }, 1800);
+
         });
       }
     }
@@ -92,7 +189,7 @@ const init = () => {
     }
     animateCursor();
 
-    const hoverTargets = document.querySelectorAll('a, button, .portfolio-item, .film-card, .blog-card, .service-card, .masonry-item, .nav-hamburger, .btn-vmpf, .carousel-slide');
+    const hoverTargets = document.querySelectorAll('a, button, .portfolio-item, .film-card, .blog-card, .service-card, .masonry-item, .iconic-cell, .creations-gallery-item, .nav-hamburger, .btn-vmpf, .carousel-slide');
     hoverTargets.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
@@ -213,70 +310,7 @@ const init = () => {
     });
   }
 
-  // ─────────────── Hero Scroll Animation (Luca Mori Style) ───────────────
-  const heroWrapper = document.querySelector('.hero-scroll-wrapper');
-  const heroText = document.querySelector('.luca-hero-content');
-  const mosaicItems = document.querySelectorAll('.mosaic-item');
 
-  if (heroWrapper) {
-    // Starting coordinates, angles, and scale for mosaic items when they are deep/scattered
-    const scatteredProps = [
-      { tx: -250, ty: -180, tz: -600, r: -15, scale: 0.3 }, // m-1
-      { tx: 100, ty: -250, tz: -800, r: 12, scale: 0.2 }, // m-2
-      { tx: 300, ty: -150, tz: -500, r: -8, scale: 0.35 }, // m-3
-      { tx: -350, ty: -50, tz: -700, r: 10, scale: 0.25 }, // m-4
-      { tx: 350, ty: 80, tz: -650, r: -12, scale: 0.3 }, // m-5
-      { tx: -300, ty: 200, tz: -750, r: -10, scale: 0.2 }, // m-6
-      { tx: -80, ty: 280, tz: -600, r: 6, scale: 0.3 }, // m-7
-      { tx: 250, ty: 220, tz: -800, r: 14, scale: 0.25 }  // m-8
-    ];
-
-    const scrollHandler = () => {
-      const rect = heroWrapper.getBoundingClientRect();
-      const scrollDistance = rect.height - window.innerHeight;
-      let progress = -rect.top / scrollDistance;
-      progress = Math.max(0, Math.min(1, progress));
-
-      // 1. Text scales up and fades out
-      if (heroText) {
-        const textScale = 1 + (progress * 1.5);
-        let textOpacity = 1;
-        if (progress > 0.1) textOpacity = 1 - ((progress - 0.1) / 0.3);
-        heroText.style.transform = `scale(${textScale})`;
-        heroText.style.opacity = Math.max(0, Math.min(1, textOpacity));
-      }
-
-      // 2. Mosaic images zoom forward from depth and settle into their grid positions
-      mosaicItems.forEach((item, i) => {
-        const props = scatteredProps[i % scatteredProps.length];
-
-        // Interpolate position from scattered state (progress = 0) to grid layout (progress = 1)
-        const tx = props.tx * (1 - progress);
-        const ty = props.ty * (1 - progress);
-        const tz = props.tz * (1 - progress);
-        const r = props.r * (1 - progress);
-        const scale = props.scale + (1 - props.scale) * progress;
-
-        // Fade in as we scroll (fully opaque by 70% of scroll progress)
-        const opacity = Math.min(1, progress / 0.7);
-
-        item.style.transform = `translate3d(${tx}px, ${ty}px, ${tz}px) rotate(${r}deg) scale(${scale})`;
-        item.style.opacity = opacity;
-        item.style.zIndex = i + 1; // Prevent z-fighting during translation
-
-        // Optimize performance by managing will-change dynamic life-cycle
-        if (progress > 0.01 && progress < 0.99) {
-          item.style.willChange = 'transform, opacity';
-        } else {
-          item.style.willChange = 'auto';
-        }
-      });
-    };
-
-    window.addEventListener('scroll', scrollHandler, { passive: true });
-    window.addEventListener('resize', scrollHandler, { passive: true });
-    scrollHandler();
-  }
 
   // ─────────────── Hero Background Slideshow ───────────────
   const heroSlides = document.querySelectorAll('.hero-slide');
@@ -844,6 +878,37 @@ const init = () => {
     });
   }
 
+  // ─────────────── Iconic Grid Lightbox ───────────────
+  const iconicItems = document.querySelectorAll('.iconic-cell:not(.iconic-text-tile)');
+  if (iconicItems.length > 0) {
+    iconicItems.forEach((item, idx) => {
+      item.addEventListener('click', () => {
+        // Collect all iconic grid image URLs
+        const allUrls = [];
+        iconicItems.forEach(ii => {
+          const img = ii.querySelector('img');
+          if (img) allUrls.push(img.src);
+        });
+        openLightbox(idx, allUrls);
+      });
+    });
+  }
+
+  // ─────────────── Creations Gallery Lightbox ───────────────
+  const creationItems = document.querySelectorAll('.creations-gallery-item');
+  if (creationItems.length > 0) {
+    creationItems.forEach((item, idx) => {
+      item.addEventListener('click', () => {
+        const allUrls = [];
+        creationItems.forEach(ii => {
+          const img = ii.querySelector('img');
+          if (img) allUrls.push(img.src);
+        });
+        openLightbox(idx, allUrls);
+      });
+    });
+  }
+
   // ─────────────── Back to Top ───────────────
   const backTop = document.getElementById('back-to-top');
   if (backTop) {
@@ -1185,6 +1250,72 @@ const init = () => {
           if (loadingEl) loadingEl.textContent = 'Failed to load gallery. Please check if the local server is running.';
         }
       });
+  }
+
+  // ─────────────── Scroll Expansion Video Background ───────────────
+  const expandWrapper = document.getElementById('scroll-expand-section');
+  const expandSticky = document.querySelector('.scroll-expand-sticky');
+  const mediaBox = document.querySelector('.scroll-expand-media-box');
+  const bgImg = document.querySelector('.scroll-expand-bg-img');
+  const titleLeft = document.querySelector('.scroll-expand-title-left');
+  const titleRight = document.querySelector('.scroll-expand-title-right');
+  const hintText = document.querySelector('.scroll-expand-hint-text');
+  const revealContent = document.querySelector('.scroll-expand-reveal-content');
+
+  if (expandWrapper && expandSticky && mediaBox) {
+    const handleScrollExpansion = () => {
+      const rect = expandWrapper.getBoundingClientRect();
+      const scrollHeight = expandWrapper.offsetHeight - window.innerHeight;
+
+      // Progress from 0 to 1
+      let progress = -rect.top / scrollHeight;
+      progress = Math.max(0, Math.min(1, progress));
+
+      const isMobile = window.innerWidth < 768;
+
+      // 1. Calculate media box dimensions based on progress
+      const baseW = 300;
+      const baseH = 400;
+      const targetW = window.innerWidth;
+      const targetH = window.innerHeight;
+
+      const currentW = baseW + (targetW - baseW) * progress;
+      const currentH = baseH + (targetH - baseH) * progress;
+      const currentRadius = 16 * (1 - progress);
+
+      mediaBox.style.width = `${currentW}px`;
+      mediaBox.style.height = `${currentH}px`;
+      mediaBox.style.borderRadius = `${currentRadius}px`;
+
+      // Remove shadow at 100% expansion
+      if (progress >= 0.99) {
+        mediaBox.style.boxShadow = 'none';
+      } else {
+        mediaBox.style.boxShadow = '0px 15px 50px rgba(0, 0, 0, 0.4)';
+      }
+
+      // 2. Translate text laterally
+      const maxTranslate = isMobile ? 180 : 150;
+      const currentTranslate = progress * maxTranslate;
+
+      if (titleLeft) titleLeft.style.transform = `translateX(-${currentTranslate}vw)`;
+      if (titleRight) titleRight.style.transform = `translateX(${currentTranslate}vw)`;
+
+      // 3. Fade out background image and hint text
+      if (bgImg) bgImg.style.opacity = 1 - progress;
+      if (hintText) hintText.style.opacity = 1 - progress * 1.5;
+
+      // 4. Reveal content below when progress is high (>= 0.85)
+      if (progress >= 0.85) {
+        revealContent.classList.add('active');
+      } else {
+        revealContent.classList.remove('active');
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollExpansion, { passive: true });
+    window.addEventListener('resize', handleScrollExpansion, { passive: true });
+    handleScrollExpansion();
   }
 
 };
