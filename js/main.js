@@ -189,7 +189,7 @@ const init = () => {
     }
     animateCursor();
 
-    const hoverTargets = document.querySelectorAll('a, button, .portfolio-item, .film-card, .blog-card, .service-card, .masonry-item, .iconic-cell, .creations-gallery-item, .nav-hamburger, .btn-vmpf, .carousel-slide');
+    const hoverTargets = document.querySelectorAll('a, button, .portfolio-item, .portfolio-card, .portfolio-filter-btn, .film-card, .blog-card, .service-card, .masonry-item, .iconic-cell, .creations-gallery-item, .nav-hamburger, .btn-vmpf, .carousel-slide');
     hoverTargets.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
@@ -846,10 +846,141 @@ const init = () => {
       if (e.key === 'Escape') closeVideo();
     }
 
+    // ─────────────── Film Detail View & Suggestions ───────────────
+    const detailSection = document.getElementById('film-detail-section');
+    const pageHero = document.querySelector('.page-hero');
+    const mainFilmsSection = document.querySelector('.films-section');
+    const backBtn = document.getElementById('back-to-grid');
+
+    function showFilmDetail(card) {
+      if (!detailSection) return;
+
+      const url = card.getAttribute('data-video-url');
+      const playerWrapper = document.getElementById('detail-video-wrapper');
+      const detailMeta = document.getElementById('detail-meta');
+      const detailTitle = document.getElementById('detail-title');
+      const detailExcerpt = document.getElementById('detail-excerpt');
+      const suggestionsGrid = document.getElementById('suggestions-grid');
+
+      // 1. Hide main views and show detail view
+      if (pageHero) pageHero.style.display = 'none';
+      if (mainFilmsSection) mainFilmsSection.style.display = 'none';
+      detailSection.style.display = 'block';
+
+      // 2. Set up player iframe
+      let finalUrl = '';
+      if (url.includes('vimeo.com')) {
+        const vimeoId = url.split('/').pop().split('?')[0];
+        finalUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&dnt=1&app_id=122963`;
+      } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        let videoId = '';
+        if (url.includes('youtu.be/')) {
+          videoId = url.split('youtu.be/')[1].split('?')[0];
+        } else if (url.includes('watch?v=')) {
+          videoId = url.split('watch?v=')[1].split('&')[0];
+        } else if (url.includes('/embed/')) {
+          videoId = url.split('/embed/')[1].split('?')[0];
+        }
+        finalUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+      }
+      
+      if (playerWrapper) {
+        playerWrapper.innerHTML = `
+          <iframe src="${finalUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen frameborder="0" style="width:100%;height:100%;"></iframe>
+        `;
+      }
+
+      // 3. Set metadata
+      if (detailMeta) detailMeta.innerHTML = card.querySelector('.film-card-meta').innerHTML;
+      if (detailTitle) detailTitle.textContent = card.querySelector('.film-card-title').textContent;
+      if (detailExcerpt) detailExcerpt.textContent = card.querySelector('.film-card-excerpt').textContent;
+
+      // 4. Generate suggestions (other 4 films)
+      if (suggestionsGrid) {
+        suggestionsGrid.innerHTML = '';
+        const allFilms = Array.from(document.querySelectorAll('.films-section .film-card'));
+        const suggestions = allFilms.filter(item => item.getAttribute('data-video-url') !== url);
+
+        suggestions.forEach((suggFilm, index) => {
+          const suggUrl = suggFilm.getAttribute('data-video-url');
+          const suggCategory = suggFilm.querySelector('.film-category').textContent;
+          const suggCategorySlug = suggFilm.getAttribute('data-category');
+          const suggDate = suggFilm.querySelector('.film-date').textContent;
+          const suggTitle = suggFilm.querySelector('.film-card-title').textContent;
+          const suggExcerpt = suggFilm.querySelector('.film-card-excerpt').textContent;
+          const suggImgSrc = suggFilm.querySelector('img').src;
+
+          const col = document.createElement('div');
+          col.className = 'film-card reveal-scale revealed stagger-' + (index + 1);
+          col.setAttribute('data-video-url', suggUrl);
+          col.setAttribute('data-category', suggCategorySlug);
+          col.setAttribute('tabindex', '0');
+          col.setAttribute('role', 'button');
+          col.setAttribute('aria-label', `Play ${suggTitle} Wedding Film`);
+
+          col.innerHTML = `
+            <div class="film-card-image">
+              <img src="${suggImgSrc}" alt="${suggTitle} Wedding Film">
+              <div class="film-play-btn">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="5,3 19,12 5,21"></polygon>
+                </svg>
+              </div>
+            </div>
+            <div class="film-card-info">
+              <div class="film-card-meta">
+                <span class="film-category">${suggCategory}</span>
+                <span class="meta-dot">&bull;</span>
+                <span class="film-date">${suggDate}</span>
+              </div>
+              <h3 class="film-card-title">${suggTitle}</h3>
+              <p class="film-card-excerpt">${suggExcerpt}</p>
+            </div>
+          `;
+
+          col.addEventListener('click', () => {
+            showFilmDetail(suggFilm);
+          });
+
+          suggestionsGrid.appendChild(col);
+        });
+      }
+
+      // 5. Scroll to top
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0 });
+      }
+    }
+
+    function closeFilmDetail() {
+      if (!detailSection) return;
+      const playerWrapper = document.getElementById('detail-video-wrapper');
+      if (playerWrapper) playerWrapper.innerHTML = '';
+      detailSection.style.display = 'none';
+      if (pageHero) pageHero.style.display = 'block';
+      if (mainFilmsSection) mainFilmsSection.style.display = 'block';
+
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.scrollTo(mainFilmsSection, { offset: -100, immediate: true });
+      } else {
+        mainFilmsSection.scrollIntoView({ behavior: 'auto' });
+      }
+    }
+
+    if (backBtn) {
+      backBtn.addEventListener('click', closeFilmDetail);
+    }
+
     filmCards.forEach(card => {
       card.addEventListener('click', () => {
         const videoUrl = card.getAttribute('data-video-url');
-        if (videoUrl) openVideo(videoUrl);
+        if (detailSection) {
+          showFilmDetail(card);
+        } else {
+          if (videoUrl) openVideo(videoUrl);
+        }
       });
     });
 
@@ -860,6 +991,15 @@ const init = () => {
         closeVideo();
       }
     });
+
+    // Deep link directly to a specific film if passed via query parameter (e.g. films.html?film=0)
+    const urlParams = new URLSearchParams(window.location.search);
+    const filmIndex = urlParams.get('film');
+    if (filmIndex !== null && filmCards[filmIndex]) {
+      setTimeout(() => {
+        showFilmDetail(filmCards[filmIndex]);
+      }, 300);
+    }
   }
 
   // ─────────────── Masonry Grid Lightbox ───────────────
@@ -1085,27 +1225,16 @@ const init = () => {
     }
   }
 
-  // Explore Gallery buttons on the portfolio slider - Open in a new tab/page
-  const portfolioTriggerBtns = document.querySelectorAll('.portfolio-trigger-btn');
-  portfolioTriggerBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const slide = btn.closest('.story-slide');
-      const slideIndex = slide ? slide.getAttribute('data-slide-index') : '0';
-      const title = slide ? slide.querySelector('.story-title-middle').textContent : 'Featured Gallery';
-
-      const folderMap = {
-        '0': 'folder_1',
-        '1': 'folder_2',
-        '2': 'folder_3',
-        '3': 'folder_4',
-        '4': 'folder_1', // Rushi & Suprima (new index)
-        '5': 'folder_2', // Aishwarya & Sankhar (new index)
-        '6': 'folder_3'  // Krishna & Shweta (new index)
-      };
-      const folder = folderMap[slideIndex] || 'folder_1';
+  // Explore Gallery buttons on the new portfolio grid - Open in dynamic gallery page
+  const portfolioCards = document.querySelectorAll('.portfolio-card');
+  portfolioCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const folder = card.getAttribute('data-folder') || 'folder_1';
+      const title = card.getAttribute('data-title') || 'Featured Gallery';
+      const imagesStr = card.getAttribute('data-gallery-images') || '';
 
       // Save images list in sessionStorage as a local fallback
-      const imagesStr = btn.getAttribute('data-gallery-images') || '';
       sessionStorage.setItem('current_gallery_images', imagesStr);
 
       const targetUrl = `gallery.html?folder=${folder}&title=${encodeURIComponent(title)}`;
@@ -1119,14 +1248,107 @@ const init = () => {
         window.location.href = targetUrl;
       }
     });
-
-    // Support for custom cursor if available
-    const cursor = document.querySelector('.custom-cursor');
-    if (cursor) {
-      btn.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-      btn.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-    }
   });
+
+  // Staggered Entrance Reveal for Portfolio Cards on load
+  if (portfolioCards.length > 0) {
+    portfolioCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('revealed');
+      }, index * 150); // Stagger cards by 150ms
+    });
+  }
+
+  // Portfolio Grid Category Filtering (All / International / Indian)
+  const portfolioFilterBtns = document.querySelectorAll('.portfolio-filter-btn');
+  if (portfolioFilterBtns.length > 0 && portfolioCards.length > 0) {
+    portfolioFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        portfolioFilterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        let visibleIndex = 0;
+        portfolioCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+
+          if (filterValue === 'all' || category === filterValue) {
+            card.classList.remove('hidden');
+            card.classList.remove('revealed'); // Reset for re-triggering stagger
+            
+            // Allow CSS transition to take effect
+            requestAnimationFrame(() => {
+              card.style.opacity = '';
+              card.style.transform = '';
+              card.style.pointerEvents = 'auto';
+              
+              // Trigger staggered slide-up animation
+              setTimeout(() => {
+                card.classList.add('revealed');
+              }, visibleIndex * 150);
+              visibleIndex++;
+            });
+          } else {
+            card.classList.remove('revealed');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px) scale(0.95)';
+            card.style.pointerEvents = 'none';
+            // Hide from grid after fade transition completes
+            setTimeout(() => {
+              if (!card.classList.contains('revealed')) {
+                card.classList.add('hidden');
+              }
+            }, 600);
+          }
+        });
+      });
+    });
+  }
+
+  // 3D Tilt & Sheen Reflection Effect on Portfolio Cards Hover
+  if (portfolioCards.length > 0) {
+    portfolioCards.forEach(card => {
+      const wrapper = card.querySelector('.portfolio-card-img-wrapper');
+      const sheen = card.querySelector('.portfolio-card-sheen');
+      if (!wrapper) return;
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Calculate normalized positions (-1 to 1)
+        const px = (x / rect.width) * 2 - 1;
+        const py = (y / rect.height) * 2 - 1;
+
+        // Max rotation rotation (degrees)
+        const maxRotX = 8;
+        const maxRotY = 8;
+
+        const rotateX = -py * maxRotX;
+        const rotateY = px * maxRotY;
+
+        // Apply dynamic transformations
+        wrapper.style.transition = 'transform 0.1s ease-out';
+        wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        // Move the shine reflection position
+        if (sheen) {
+          sheen.style.setProperty('--sheen-x', `${(x / rect.width) * 100}%`);
+          sheen.style.setProperty('--sheen-y', `${(y / rect.height) * 100}%`);
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        // Smooth snapback to original position
+        wrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+        wrapper.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    });
+  }
 
   // ─────────────── Dedicated Gallery Page Dynamic Loading ───────────────
   const galleryPageGrid = document.getElementById('gallery-page-grid');
@@ -1135,18 +1357,96 @@ const init = () => {
     const folder = urlParams.get('folder') || 'folder_1';
     const rawTitle = urlParams.get('title') || 'Featured Gallery';
 
+    const galleryMeta = {
+      'folder_1': {
+        title: 'Sangeeta and Jake',
+        description: 'Sangeeta and Jake were first introduced by a mutual friend, though it took a year and a chance encounter for the acquaintance to turn into a romance. Following a proposal in Tulum in Mexico, they tied the knot last year with guests flying in from all over the world to raise a toast to them. The couple wanted the wedding to be modern but equally steeped in their cultures and customs.'
+      },
+      'folder_2': {
+        title: 'Reva & Zach',
+        description: 'Let’s call this our “Happy New Year Wedding”. We welcomed 2024 partying with Reva and Zach and we couldn’t have asked for a better beginning for the new year. This was quite an experience for us and the 450 American friends of Reva and Zach who flew all the way to Udaipur for this cross cultural union.'
+      },
+      'folder_3': {
+        title: 'Manisha & Christopher',
+        description: 'An evening of love, style and blend of two cultures in the heart of Singapore. The celebration was a beautiful testament to their journey, merging distinct traditions into a seamless and heartfelt union in the stunning city-state.'
+      },
+      'folder_4': {
+        title: 'Alia & Ranbir, Mumbai',
+        description: 'Two of the greatest actors of this generation decided to get married in the simplest possible way - in their balcony surrounded by only 30 of their closest friends and family members. We spent three days in their Apartment and witnessed love in its purest form.'
+      }
+    };
+
+    const meta = galleryMeta[folder] || { title: rawTitle, description: '' };
+
     // Update document title
-    document.title = `${rawTitle} — ForeShadow`;
+    document.title = `${meta.title} — ForeShadow`;
 
     const titleEl = document.getElementById('gallery-page-title');
-    if (titleEl) titleEl.textContent = rawTitle;
+    if (titleEl) titleEl.textContent = meta.title;
+
+    const descEl = document.getElementById('gallery-page-desc');
+    if (descEl) descEl.textContent = meta.description;
 
     const countEl = document.getElementById('gallery-page-count');
     const loadingEl = document.getElementById('gallery-page-loading');
 
-    // Retrieve fallback images from sessionStorage
+    // Static local image fallback list for each folder
+    const staticFallbacks = {
+      'folder_1': [
+        'assets/images/drive_photos/folder_1/PKP_-31.jpg', 'assets/images/drive_photos/folder_1/PKP_-10.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-11.jpg', 'assets/images/drive_photos/folder_1/PKP_-12.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-13.jpg', 'assets/images/drive_photos/folder_1/PKP_-14.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-15.jpg', 'assets/images/drive_photos/folder_1/PKP_-16.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-17.jpg', 'assets/images/drive_photos/folder_1/PKP_-18.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-19.jpg', 'assets/images/drive_photos/folder_1/PKP_-2.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-20.jpg', 'assets/images/drive_photos/folder_1/PKP_-21.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-22.jpg', 'assets/images/drive_photos/folder_1/PKP_-23.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-24.jpg', 'assets/images/drive_photos/folder_1/PKP_-25.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-26.jpg', 'assets/images/drive_photos/folder_1/PKP_-27.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-28.jpg', 'assets/images/drive_photos/folder_1/PKP_-29.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-3.jpg', 'assets/images/drive_photos/folder_1/PKP_-30.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-32.jpg', 'assets/images/drive_photos/folder_1/PKP_-33.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-34.jpg', 'assets/images/drive_photos/folder_1/PKP_-35.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-36.jpg', 'assets/images/drive_photos/folder_1/PKP_-37.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-38.jpg', 'assets/images/drive_photos/folder_1/PKP_-39.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-4.jpg', 'assets/images/drive_photos/folder_1/PKP_-40.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-41.jpg', 'assets/images/drive_photos/folder_1/PKP_-42.jpg',
+        'assets/images/drive_photos/folder_1/PKP_-43.jpg'
+      ],
+      'folder_2': [
+        'assets/images/drive_photos/folder_2/FS-10.jpg', 'assets/images/drive_photos/folder_2/FS-100.jpg',
+        'assets/images/drive_photos/folder_2/FS-101.jpg', 'assets/images/drive_photos/folder_2/FS-102.jpg',
+        'assets/images/drive_photos/folder_2/FS-103.jpg', 'assets/images/drive_photos/folder_2/FS-104.jpg',
+        'assets/images/drive_photos/folder_2/FS-105.jpg', 'assets/images/drive_photos/folder_2/FS-106.jpg',
+        'assets/images/drive_photos/folder_2/FS-107.jpg', 'assets/images/drive_photos/folder_2/FS-108.jpg',
+        'assets/images/drive_photos/folder_2/FS-109.jpg', 'assets/images/drive_photos/folder_2/FS-11.jpg',
+        'assets/images/drive_photos/folder_2/FS-110.jpg', 'assets/images/drive_photos/folder_2/FS-111.jpg',
+        'assets/images/drive_photos/folder_2/FS-112.jpg'
+      ],
+      'folder_3': [
+        'assets/images/drive_photos/folder_3/PKP-14.jpg', 'assets/images/drive_photos/folder_3/PKP-10.jpg',
+        'assets/images/drive_photos/folder_3/PKP-11.jpg', 'assets/images/drive_photos/folder_3/PKP-12.jpg',
+        'assets/images/drive_photos/folder_3/PKP-13.jpg', 'assets/images/drive_photos/folder_3/PKP-15.jpg',
+        'assets/images/drive_photos/folder_3/PKP-16.jpg', 'assets/images/drive_photos/folder_3/PKP-17.jpg',
+        'assets/images/drive_photos/folder_3/PKP-18.jpg', 'assets/images/drive_photos/folder_3/PKP-19.jpg',
+        'assets/images/drive_photos/folder_3/PKP-2.jpg', 'assets/images/drive_photos/folder_3/PKP-20.jpg',
+        'assets/images/drive_photos/folder_3/PKP-21.jpg', 'assets/images/drive_photos/folder_3/PKP-22.jpg',
+        'assets/images/drive_photos/folder_3/PKP-23.jpg'
+      ],
+      'folder_4': [
+        'assets/images/drive_photos/folder_4/FS-100.jpg', 'assets/images/drive_photos/folder_4/FS-10.jpg',
+        'assets/images/drive_photos/folder_4/FS-101.jpg', 'assets/images/drive_photos/folder_4/FS-102.jpg',
+        'assets/images/drive_photos/folder_4/FS-103.jpg', 'assets/images/drive_photos/folder_4/FS-104.jpg',
+        'assets/images/drive_photos/folder_4/FS-105.jpg', 'assets/images/drive_photos/folder_4/FS-106.jpg',
+        'assets/images/drive_photos/folder_4/FS-107.jpg', 'assets/images/drive_photos/folder_4/FS-109.jpg',
+        'assets/images/drive_photos/folder_4/FS-11.jpg', 'assets/images/drive_photos/folder_4/FS-110.jpg',
+        'assets/images/drive_photos/folder_4/FS-111.jpg', 'assets/images/drive_photos/folder_4/FS-112.jpg'
+      ]
+    };
+
+    // Retrieve fallback images from sessionStorage or default to static fallbacks
     const localImagesStr = sessionStorage.getItem('current_gallery_images');
-    const localImages = localImagesStr ? localImagesStr.split(',').map(s => s.trim()).filter(s => s.length > 0) : [];
+    const localImages = localImagesStr ? localImagesStr.split(',').map(s => s.trim()).filter(s => s.length > 0) : (staticFallbacks[folder] || []);
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1154,60 +1454,86 @@ const init = () => {
       if (loadingEl) loadingEl.style.display = 'none';
       if (countEl) countEl.textContent = `${images.length} Photos`;
 
-      const heroImg = document.getElementById('gallery-hero-img');
-      if (heroImg && images.length > 0) {
-        heroImg.src = images[0];
-      }
-
       galleryPageGrid.innerHTML = '';
 
-      images.forEach((imgUrl, index) => {
-        const item = document.createElement('div');
-        item.className = 'gallery-page-item';
-        item.setAttribute('data-index', index);
-        // Z-index stacking: later items get higher z-index to appear in front
-        item.style.zIndex = index + 1;
-        // Stagger delay for animation
-        item.style.animationDelay = `${index * 0.06}s`;
+      let i = 0;
+      let rowIndex = 0;
+      while (i < images.length) {
+        const cycleIndex = rowIndex % 5;
+        let rowCount = 1;
+        let rowClass = 'gallery-row-full';
 
-        const img = document.createElement('img');
-        img.src = imgUrl;
-        img.alt = `${rawTitle} - Photo ${index + 1}`;
-        img.loading = 'lazy';
-        // Reserve aspect-ratio on images to avoid layout shift
-        img.style.aspectRatio = '3 / 4';
-
-        item.appendChild(img);
-        galleryPageGrid.appendChild(item);
-
-        // Open full-screen lightbox slideshow when clicked
-        item.addEventListener('click', () => {
-          openLightbox(index, images);
-        });
-
-        // Support for custom cursor if available
-        const cursor = document.querySelector('.custom-cursor');
-        if (cursor) {
-          item.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-          item.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        if (cycleIndex === 0 || cycleIndex === 2) {
+          rowCount = 1;
+          rowClass = 'gallery-row-full';
+        } else if (cycleIndex === 1 || cycleIndex === 3) {
+          rowCount = 2;
+          rowClass = 'gallery-row-split';
+        } else if (cycleIndex === 4) {
+          rowCount = 3;
+          rowClass = 'gallery-row-triple';
         }
-      });
+
+        const remaining = images.length - i;
+        if (rowCount > remaining) {
+          rowCount = remaining;
+          if (rowCount === 1) rowClass = 'gallery-row-full';
+          else if (rowCount === 2) rowClass = 'gallery-row-split';
+        }
+
+        const rowDiv = document.createElement('div');
+        rowDiv.className = rowClass;
+
+        for (let r = 0; r < rowCount; r++) {
+          const imgUrl = images[i];
+          const index = i;
+
+          const item = document.createElement('div');
+          item.className = 'gallery-page-item-new';
+          item.setAttribute('data-index', index);
+          item.style.zIndex = index + 1;
+          item.style.animationDelay = `${index * 0.08}s`;
+
+          const img = document.createElement('img');
+          img.src = imgUrl;
+          img.alt = `${meta.title} - Photo ${index + 1}`;
+          img.loading = 'lazy';
+
+          item.appendChild(img);
+          rowDiv.appendChild(item);
+
+          // Open full-screen lightbox slideshow when clicked
+          item.addEventListener('click', () => {
+            openLightbox(index, images);
+          });
+
+          // Support for custom cursor if available
+          const cursor = document.querySelector('.custom-cursor');
+          if (cursor) {
+            item.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            item.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+          }
+
+          i++;
+        }
+
+        galleryPageGrid.appendChild(rowDiv);
+        rowIndex++;
+      }
 
       // IntersectionObserver for staggered depth reveal
       if (!prefersReducedMotion) {
-        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item');
+        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item-new');
 
         const galleryObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const el = entry.target;
-              // Set will-change for animation performance
               el.style.willChange = 'transform, opacity';
               el.classList.add('gallery-item-revealed');
               galleryObserver.unobserve(el);
 
-              // Remove will-change after animation completes for performance
-              el.addEventListener('animationend', () => {
+              el.addEventListener('transitionend', () => {
                 el.style.willChange = 'auto';
               }, { once: true });
             }
@@ -1217,7 +1543,7 @@ const init = () => {
         galleryItems.forEach(item => galleryObserver.observe(item));
       } else {
         // Reduced motion: show all items immediately
-        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item');
+        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item-new');
         galleryItems.forEach(item => {
           item.style.opacity = '1';
           item.style.transform = 'none';
@@ -1316,6 +1642,47 @@ const init = () => {
     window.addEventListener('scroll', handleScrollExpansion, { passive: true });
     window.addEventListener('resize', handleScrollExpansion, { passive: true });
     handleScrollExpansion();
+  }
+
+  // ─────────────── Films Category Filter ───────────────
+  const filterBtns = document.querySelectorAll('.films-filter-container .filter-btn');
+  const items = document.querySelectorAll('.films-section .films-grid .film-card');
+
+  if (filterBtns.length > 0 && items.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        items.forEach(item => {
+          const category = item.getAttribute('data-category');
+
+          if (filterValue === 'all' || category === filterValue) {
+            item.style.display = 'flex';
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+                item.style.pointerEvents = 'auto';
+              });
+            });
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            item.style.pointerEvents = 'none';
+            setTimeout(() => {
+              if (item.style.opacity === '0') {
+                item.style.display = 'none';
+              }
+            }, 400); // matches transition time
+          }
+        });
+      });
+    });
   }
 
 };
