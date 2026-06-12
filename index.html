@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=1200">
   <title>HOME — ForeShadow</title>
   <meta name="description"
     content="ForeShadow is a fine art destination wedding photographer & wedding videographer creating cinematic, authentic wedding stories.">
@@ -13,6 +13,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script>
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.documentElement.classList.add('is-mobile');
+    }
+  </script>
 </head>
 
 <body>
@@ -50,7 +55,7 @@
     <!-- Left Menu Links -->
     <ul class="nav-links nav-links--left">
       <li><a href="index.html" class="nav-link active" data-page>Home</a></li>
-      <li><a href="portfolio.html" class="nav-link" data-page>Portfolio</a></li>
+      <li><a href="portfolio.html" class="nav-link" data-page>Stories</a></li>
       <li><a href="films.html" class="nav-link" data-page>Films</a></li>
     </ul>
 
@@ -79,7 +84,7 @@
   <div class="nav-overlay" id="nav-overlay">
     <div class="nav-overlay-links">
       <a href="index.html" class="nav-overlay-link active" data-page>HOME</a>
-      <a href="portfolio.html" class="nav-overlay-link" data-page>PORTFOLIO</a>
+      <a href="portfolio.html" class="nav-overlay-link" data-page>STORIES</a>
       <a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
       <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
       <a href="testimonials.html" class="nav-overlay-link" data-page>REVIEWS</a>
@@ -91,7 +96,7 @@
   <section class="home-hero" id="hometop" style="height: 100vh; position: relative; overflow: hidden;">
     <div class="hero-video-bg">
       <iframe
-        src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+        data-src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
         title="ForeShadow Hero Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
     </div>
 
@@ -422,19 +427,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════ CTA SECTION (Write Us) ═══════════════ -->
-  <section class="cta-section">
-    <div class="container">
-      <h2 class="cta-title reveal">ARE YOU LOOKING FOR A<br>WEDDING PHOTOGRAPHER OR WEDDING VIDEOGRAPHER?</h2>
-      <p class="cta-body reveal stagger-1">
-        YOU LIKE OUR WEDDING REPORTAGES AND WEDDING FILMS?<br>
-        AND YOU FIND US ALSO SYMPATHETIC?
-      </p>
-      <div class="reveal stagger-2">
-        <a href="contact.html" class="btn-primary" data-page>WRITE US</a>
-      </div>
-    </div>
-  </section>
+
 
   <!-- ═══════════════ ACCORDION GALLERY SECTION (LATEST CREATIONS) ═══════════════ -->
   <section class="latest-creations-section">
