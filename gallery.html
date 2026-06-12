@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=1200">
   <title>Gallery — ForeShadow</title>
   <meta name="description" content="Explore beautiful captured moments and wedding story galleries by ForeShadow.">
 
@@ -12,6 +12,11 @@
 
   <!-- Lenis Smooth Scroll -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script>
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.documentElement.classList.add('is-mobile');
+    }
+  </script>
 </head>
 
 <body class="gallery-body">
@@ -22,7 +27,7 @@
     <!-- Left Menu Links -->
     <ul class="nav-links nav-links--left">
       <li><a href="index.html" class="nav-link" data-page>Home</a></li>
-      <li><a href="portfolio.html" class="nav-link active" data-page>Portfolio</a></li>
+      <li><a href="portfolio.html" class="nav-link active" data-page>Stories</a></li>
       <li><a href="films.html" class="nav-link" data-page>Films</a></li>
     </ul>
 
@@ -51,7 +56,7 @@
   <div class="nav-overlay" id="nav-overlay">
     <div class="nav-overlay-links">
       <a href="index.html" class="nav-overlay-link" data-page>HOME</a>
-      <a href="portfolio.html" class="nav-overlay-link active" data-page>PORTFOLIO</a>
+      <a href="portfolio.html" class="nav-overlay-link active" data-page>STORIES</a>
       <a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
       <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
       <a href="testimonials.html" class="nav-overlay-link" data-page>REVIEWS</a>
@@ -59,21 +64,45 @@
     </div>
   </div>
 
-  <div class="gallery-spacer"></div>
+  <!-- ═══════════════ GALLERY HERO BANNER (NAMAN VERMA STYLE) ═══════════════ -->
+  <section class="gallery-page-hero" id="gallery-page-hero">
+    <div class="gallery-hero-img-bg" id="gallery-hero-bg">
+      <img src="" alt="Gallery Cover" id="gallery-hero-image">
+    </div>
+    
+    <div class="gallery-hero-overlay"></div>
+    
+    <div class="gallery-hero-content">
+      <a href="portfolio.html" class="gallery-back-link" data-page>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Stories
+      </a>
+      
+      <div class="gallery-page-hero-text">
+        <span class="gallery-page-label">Wedding Journal</span>
+        <h1 class="gallery-page-title" id="gallery-hero-title">Loading...</h1>
+        <p class="gallery-page-count" id="gallery-hero-count">0 Photos</p>
+      </div>
 
-  <!-- ═══════════════ GALLERY HEADER CONTENT ═══════════════ -->
-  <div class="gallery-header-content-new">
-    <a href="portfolio.html" class="gallery-back-link-new" data-page>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;vertical-align:middle;margin-right:4px;">
-        <line x1="19" y1="12" x2="5" y2="12"></line>
-        <polyline points="12 19 5 12 12 5"></polyline>
-      </svg>
-      Back to Portfolio
-    </a>
-    <h1 class="gallery-title-new" id="gallery-page-title">Loading Gallery</h1>
-    <p class="gallery-desc-new" id="gallery-page-desc"></p>
-    <p class="gallery-count-new" id="gallery-page-count">Preparing Collection...</p>
-  </div>
+      <div class="gallery-hero-scroll-indicator" id="gallery-hero-scroll-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ GALLERY INTRO SECTION ═══════════════ -->
+  <section class="gallery-intro-section" id="gallery-intro-section">
+    <div class="gallery-intro-container">
+      <p class="gallery-desc-new" id="gallery-page-desc"></p>
+      <div class="gallery-intro-divider"></div>
+    </div>
+  </section>
 
   <!-- ═══════════════ DYNAMIC GALLERY GRID SECTION ═══════════════ -->
   <section class="gallery-page-grid-section-new">
@@ -83,6 +112,52 @@
     </div>
     <div class="gallery-page-grid-new" id="gallery-page-grid">
       <!-- Dynamically filled by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════════ GALLERY ENGAGEMENT SECTION ═══════════════ -->
+  <section class="gallery-engagement-section">
+    <div class="gallery-engagement-container">
+      <!-- Likes and Share row -->
+      <div class="story-entry-meta-row">
+        <div class="story-entry-meta-left">
+          <span class="story-entry-comments" id="gallery-comments-count">0 Comments</span>
+          <span class="story-entry-share">Share</span>
+        </div>
+        <div class="story-entry-meta-right">
+          <span class="story-entry-likes" id="gallery-likes-container">
+            <svg viewBox="0 0 24 24" class="heart-icon" width="14" height="14" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            <span class="likes-count" id="gallery-likes-count">0 Likes</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Workable Comments Board -->
+      <div class="gallery-comments-section" id="gallery-comments-board">
+        <h3 class="comments-section-title">Comments</h3>
+        
+        <!-- Comments List -->
+        <div class="comments-list" id="comments-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Add Comment Form -->
+        <form class="comment-form" id="comment-submit-form">
+          <h4 class="comment-form-title">Leave a Reply</h4>
+          <div class="comment-form-row">
+            <div class="comment-form-group">
+              <input type="text" id="comment-author-name" required placeholder="Name *">
+            </div>
+            <div class="comment-form-group">
+              <input type="email" id="comment-author-email" placeholder="Email (won't be published)">
+            </div>
+          </div>
+          <div class="comment-form-group">
+            <textarea id="comment-text" rows="5" required placeholder="Comment *"></textarea>
+          </div>
+          <button type="submit" class="comment-submit-btn">Post Comment</button>
+        </form>
+      </div>
     </div>
   </section>
 
