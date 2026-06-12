@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=1200">
   <title>Wedding Films — ForeShadow</title>
   <meta name="description" content="Watch the cinematic wedding films and reels crafted by ForeShadow.">
   <meta property="og:title" content="Wedding Films — ForeShadow">
@@ -14,6 +14,11 @@
 
   <!-- Lenis Smooth Scroll -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script>
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.documentElement.classList.add('is-mobile');
+    }
+  </script>
 </head>
 
 <body>
@@ -24,7 +29,7 @@
     <!-- Left Menu Links -->
     <ul class="nav-links nav-links--left">
       <li><a href="index.html" class="nav-link" data-page>Home</a></li>
-      <li><a href="portfolio.html" class="nav-link" data-page>Portfolio</a></li>
+      <li><a href="portfolio.html" class="nav-link" data-page>Stories</a></li>
       <li><a href="films.html" class="nav-link active" data-page>Films</a></li>
     </ul>
 
@@ -53,7 +58,7 @@
   <div class="nav-overlay" id="nav-overlay">
     <div class="nav-overlay-links">
       <a href="index.html" class="nav-overlay-link" data-page>HOME</a>
-      <a href="portfolio.html" class="nav-overlay-link" data-page>PORTFOLIO</a>
+      <a href="portfolio.html" class="nav-overlay-link" data-page>STORIES</a>
       <a href="films.html" class="nav-overlay-link active" data-page>FILMS</a>
       <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
       <a href="testimonials.html" class="nav-overlay-link" data-page>REVIEWS</a>
@@ -62,7 +67,7 @@
   </div>
 
   <!-- ═══════════════ PAGE HERO ═══════════════ -->
-  <section class="page-hero" id="pagetop">
+  <section class="page-hero films-hero" id="pagetop">
     <div class="hero-video-bg" style="opacity: 0.5;">
       <iframe
         src="https://player.vimeo.com/video/853395145?autoplay=1&loop=1&muted=1&background=1&controls=0&dnt=1&app_id=122963"
