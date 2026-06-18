@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1200">
+  <meta name="theme-color" content="#EFE9D7">
   <title>Gallery — ForeShadow</title>
   <meta name="description" content="Explore beautiful captured moments and wedding story galleries by ForeShadow.">
 
@@ -41,8 +42,8 @@
     <!-- Right Menu Links -->
     <ul class="nav-links nav-links--right">
       <li><a href="about.html" class="nav-link" data-page>About</a></li>
-      <li><a href="testimonials.html" class="nav-link" data-page>Reviews</a></li>
-      <li><a href="contact.html" class="nav-cta" data-page>Contact</a></li>
+      <li><a href="exclusive.html" class="nav-link" data-page>Exclusive</a></li>
+      <li><a href="contact.html" class="nav-link" data-page>Contact</a></li>
     </ul>
 
     <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
@@ -59,7 +60,7 @@
       <a href="portfolio.html" class="nav-overlay-link active" data-page>STORIES</a>
       <a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
       <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
-      <a href="testimonials.html" class="nav-overlay-link" data-page>REVIEWS</a>
+      <a href="exclusive.html" class="nav-overlay-link" data-page>EXCLUSIVE</a>
       <a href="contact.html" class="nav-overlay-link" data-page>CONTACT</a>
     </div>
   </div>
@@ -69,18 +70,19 @@
     <div class="gallery-hero-img-bg" id="gallery-hero-bg">
       <img src="" alt="Gallery Cover" id="gallery-hero-image">
     </div>
-    
+
     <div class="gallery-hero-overlay"></div>
-    
+
     <div class="gallery-hero-content">
       <a href="portfolio.html" class="gallery-back-link" data-page>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
         Back to Stories
       </a>
-      
+
       <div class="gallery-page-hero-text">
         <span class="gallery-page-label">Wedding Journal</span>
         <h1 class="gallery-page-title" id="gallery-hero-title">Loading...</h1>
@@ -88,7 +90,8 @@
       </div>
 
       <div class="gallery-hero-scroll-indicator" id="gallery-hero-scroll-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
           <line x1="12" y1="5" x2="12" y2="19"></line>
           <polyline points="19 12 12 19 5 12"></polyline>
         </svg>
@@ -106,8 +109,11 @@
 
   <!-- ═══════════════ DYNAMIC GALLERY GRID SECTION ═══════════════ -->
   <section class="gallery-page-grid-section-new">
-    <div class="gallery-loading" id="gallery-page-loading" style="text-align:center; color:#888888; font-family:var(--ff-body);">
-      <div class="gallery-loading-spinner" style="margin: 0 auto 1rem auto; width: 30px; height: 30px; border: 2px solid #ddd; border-top-color: #1a1917; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+    <div class="gallery-loading" id="gallery-page-loading"
+      style="text-align:center; color:#888888; font-family:var(--ff-body);">
+      <div class="gallery-loading-spinner"
+        style="margin: 0 auto 1rem auto; width: 30px; height: 30px; border: 2px solid #ddd; border-top-color: #1a1917; border-radius: 50%; animation: spin 1s linear infinite;">
+      </div>
       <span>Curating visual stories...</span>
     </div>
     <div class="gallery-page-grid-new" id="gallery-page-grid">
@@ -126,7 +132,11 @@
         </div>
         <div class="story-entry-meta-right">
           <span class="story-entry-likes" id="gallery-likes-container">
-            <svg viewBox="0 0 24 24" class="heart-icon" width="14" height="14" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            <svg viewBox="0 0 24 24" class="heart-icon" width="14" height="14" fill="currentColor">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
+              </path>
+            </svg>
             <span class="likes-count" id="gallery-likes-count">0 Likes</span>
           </span>
         </div>
@@ -135,7 +145,7 @@
       <!-- Workable Comments Board -->
       <div class="gallery-comments-section" id="gallery-comments-board">
         <h3 class="comments-section-title">Comments</h3>
-        
+
         <!-- Comments List -->
         <div class="comments-list" id="comments-list">
           <!-- Populated by JS -->
