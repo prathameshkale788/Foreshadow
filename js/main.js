@@ -2,12 +2,15 @@
    FORESHADOW — VMPF-Style Interactions & Animations
    ============================================ */
 
+console.log("main.js: Top-level code executed");
+
 // Detect mobile devices and add class to html element
 if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   document.documentElement.classList.add('is-mobile');
 }
 
 const init = () => {
+  console.log("main.js: init() started");
 
   // One-time localStorage reset for v3 fresh start (clean comments and likes)
   try {
@@ -26,9 +29,7 @@ const init = () => {
     console.warn('Could not reset localStorage:', err);
   }
 
-  const apiBase = window.location.protocol === 'file:' || window.location.port !== '3000'
-    ? 'http://localhost:3000'
-    : '';
+  const apiBase = window.location.port === '3000' ? 'http://localhost:3000' : '';
 
   // ─────────────── Lenis Smooth Scroll ───────────────
   let lenis;
@@ -113,8 +114,14 @@ const init = () => {
       if (lenis) lenis.stop();
 
       if (enterBtn) {
-        enterBtn.addEventListener('click', function () {
-          // Prevent double-clicks
+        var autoEnterTimeout;
+
+        var triggerExit = function () {
+          if (autoEnterTimeout) {
+            clearTimeout(autoEnterTimeout);
+            autoEnterTimeout = null;
+          }
+          // Prevent double-clicks / repeat triggers
           enterBtn.style.pointerEvents = 'none';
 
           try {
@@ -142,44 +149,42 @@ const init = () => {
           setTimeout(function () { flash.remove(); }, 800);
 
           // ═══════════════════════════════════════════════
-          // PHASE 2 (T+600ms) — Logo flies to navbar position
+          // PHASE 1 (T+0ms) — Logo flies to navbar position immediately
           // ═══════════════════════════════════════════════
 
-          setTimeout(function () {
-            var logo = document.querySelector('.preloader-logo');
-            var navLogo = document.querySelector('.nav-logo-img');
+          var logo = document.querySelector('.preloader-logo');
+          var navLogo = document.querySelector('.nav-logo-img');
 
-            if (logo && navLogo) {
-              // Get current and target positions
-              var logoRect = logo.getBoundingClientRect();
-              var navRect = navLogo.getBoundingClientRect();
+          if (logo && navLogo) {
+            // Get current and target positions
+            var logoRect = logo.getBoundingClientRect();
+            var navRect = navLogo.getBoundingClientRect();
 
-              // Calculate translation delta (center → center)
-              var dx = (navRect.left + navRect.width / 2) - (logoRect.left + logoRect.width / 2);
-              var dy = (navRect.top + navRect.height / 2) - (logoRect.top + logoRect.height / 2);
-              var scaleRatio = navRect.height / logoRect.height;
+            // Calculate translation delta (center → center)
+            var dx = (navRect.left + navRect.width / 2) - (logoRect.left + logoRect.width / 2);
+            var dy = (navRect.top + navRect.height / 2) - (logoRect.top + logoRect.height / 2);
+            var scaleRatio = navRect.height / logoRect.height;
 
-              // Freeze the entrance animation and lock current visual state
-              logo.style.animation = 'none';
-              logo.style.opacity = '1';
-              logo.style.transform = 'translateY(0) scale(1)';
+            // Freeze the entrance animation and lock current visual state
+            logo.style.animation = 'none';
+            logo.style.opacity = '1';
+            logo.style.transform = 'translateY(0) scale(1)';
 
-              // Double-rAF to ensure browser registers the base state before transitioning
+            // Double-rAF to ensure browser registers the base state before transitioning
+            requestAnimationFrame(function () {
               requestAnimationFrame(function () {
-                requestAnimationFrame(function () {
-                  logo.style.transition = 'transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease 0.8s';
-                  logo.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scaleRatio + ')';
-                });
+                logo.style.transition = 'transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease 0.8s';
+                logo.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scaleRatio + ')';
               });
-            }
+            });
+          }
 
-            // Start video and text animations as the loading page exits
-            playHeroVideo();
-            startHeroAnimations();
-          }, 600);
+          // Start video and text animations as the loading page exits
+          playHeroVideo();
+          startHeroAnimations();
 
           // ═══════════════════════════════════════════════
-          // PHASE 3 (T+1400ms) — Logo fades at destination
+          // PHASE 2 (T+1000ms) — Logo fades at destination
           // ═══════════════════════════════════════════════
 
           setTimeout(function () {
@@ -188,10 +193,10 @@ const init = () => {
               logo.style.transition = 'opacity 0.3s ease';
               logo.style.opacity = '0';
             }
-          }, 1400);
+          }, 1000);
 
           // ═══════════════════════════════════════════════
-          // PHASE 4 (T+1800ms) — Preloader hidden, site revealed
+          // PHASE 3 (T+1200ms) — Preloader hidden, site revealed
           // ═══════════════════════════════════════════════
 
           setTimeout(function () {
@@ -205,10 +210,14 @@ const init = () => {
               if (typeof window._destroyPreloaderWave === 'function') {
                 window._destroyPreloaderWave();
               }
-            }, 1500);
-          }, 1800);
+            }, 500);
+          }, 1200);
+        };
 
-        });
+        enterBtn.addEventListener('click', triggerExit);
+
+        // Automatically trigger the transition after 6.5s (allowing entrance animations to finish and instructions to be read)
+        autoEnterTimeout = setTimeout(triggerExit, 6500);
       }
     }
   } else {
@@ -283,12 +292,28 @@ const init = () => {
     observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
 
     overlayLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        if (link.id === 'mobile-more-toggle') {
+          e.preventDefault();
+          return;
+        }
         hamburger.classList.remove('open');
         overlay.classList.remove('open');
         document.body.style.overflow = '';
       });
     });
+
+    // Mobile submenu toggle handler
+    const mobileMoreToggle = document.getElementById('mobile-more-toggle');
+    const mobileSubmenu = document.getElementById('mobile-submenu');
+    if (mobileMoreToggle && mobileSubmenu) {
+      mobileMoreToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        mobileSubmenu.classList.toggle('open');
+        mobileMoreToggle.classList.toggle('active');
+      });
+    }
   }
 
   // ─────────────── Page Transition Links ───────────────
@@ -809,7 +834,7 @@ const init = () => {
       item.addEventListener('click', () => {
         const imagesStr = item.getAttribute('data-gallery-images');
         if (imagesStr) {
-          const imageUrls = imagesStr.split(',');
+          const imageUrls = imagesStr.split(',').map(s => s.trim()).reverse();
           openLightbox(0, imageUrls);
         }
       });
@@ -933,7 +958,7 @@ const init = () => {
         }
         finalUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
       }
-      
+
       if (playerWrapper) {
         playerWrapper.innerHTML = `
           <iframe src="${finalUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen frameborder="0" style="width:100%;height:100%;"></iframe>
@@ -1084,17 +1109,21 @@ const init = () => {
     });
   }
 
-  // ─────────────── Creations Gallery Lightbox ───────────────
+  // ─────────────── Creations Gallery Navigation to Stories Page ───────────────
   const creationItems = document.querySelectorAll('.creations-gallery-item');
   if (creationItems.length > 0) {
-    creationItems.forEach((item, idx) => {
+    creationItems.forEach((item) => {
       item.addEventListener('click', () => {
-        const allUrls = [];
-        creationItems.forEach(ii => {
-          const img = ii.querySelector('img');
-          if (img) allUrls.push(img.src);
-        });
-        openLightbox(idx, allUrls);
+        const targetUrl = 'portfolio.html';
+        const pageTransition = document.querySelector('.page-transition');
+        if (pageTransition) {
+          pageTransition.classList.remove('loaded');
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, 750);
+        } else {
+          window.location.href = targetUrl;
+        }
       });
     });
   }
@@ -1151,40 +1180,153 @@ const init = () => {
     }
   }
 
-  // ─────────────── Split Services Menu Hover logic ───────────────
-  const splitServicesSection = document.getElementById('split-services-section');
-  if (splitServicesSection) {
-    const menuItems = splitServicesSection.querySelectorAll('.split-menu-item');
-    const bgImages = splitServicesSection.querySelectorAll('.split-bg-image');
+  // ─────────────── Testimonials Marquee & Modal logic ───────────────
+  const testimonialData = [
+    {
+      name: "Arohi & Animesh",
+      role: "Wedding Couple",
+      content: "Hi Prathamesh,\nFirst of all it was our luck that we found you. From day 1 you put such excellent efforts in the wedding and even planning and coordinating the entries, poses, which we will be cherishing forever.\n\nThank you for all your work, specially your patience & Professionalism during the wedding was top notch. All the Content photos, movies, reels and albums were more than what we expected\n\nThanks for creating life long memories for us.🥂✨",
+      avatar: "assets/images/animesh_arohi.png",
+      rating: 5,
+      bgColor: "#241515" // Deep warm maroon/crimson matching photo
+    },
+    {
+      name: "Harish & Rasika",
+      role: "Wedding Couple",
+      content: "Hi Prathamesh,\nI was in search of a passionate photographer — someone who would truly understand my expectations, meet them, and bring them to life in an amazing way. I was looking for someone who would not just listen to my requirements but also value them, and even suggest ways to enhance the ideas further.\n\nWhile shooting with you, both of us never felt like we were working with a typical photographer — it felt like we were shooting with a good friend. That comfort and connection helped you understand my vision even more clearly and execute it quickly and beautifully.\n\nAnd finally, now that the photos and videos are ready — they are absolutely awesome, man. Truly Loved it!\n\nHarish & Rasika",
+      avatar: "assets/images/harish_rasika.png",
+      rating: 5,
+      bgColor: "#161b13" // Deep olive/sage green matching photo greenery
+    }
+  ];
 
-    const setActiveBg = (serviceName) => {
-      bgImages.forEach(img => {
-        if (img.getAttribute('data-bg') === serviceName) {
-          img.classList.add('active');
-        } else {
-          img.classList.remove('active');
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  const testimonialModal = document.getElementById('testimonial-modal');
+  const modalAvatar = document.getElementById('testimonial-modal-avatar');
+  const modalName = document.getElementById('testimonial-modal-name');
+  const modalRole = document.getElementById('testimonial-modal-role');
+  const modalRating = document.getElementById('testimonial-modal-rating');
+  const modalText = document.getElementById('testimonial-modal-text');
+  const modalClose = document.getElementById('testimonial-modal-close');
+  const modalOverlay = document.getElementById('testimonial-modal-overlay');
+
+  if (testimonialCards.length > 0 && testimonialModal) {
+    const openTestimonial = (index) => {
+      const data = testimonialData[index];
+      if (!data) return;
+
+      modalAvatar.src = data.avatar;
+      modalAvatar.alt = data.name;
+      modalName.textContent = data.name;
+      modalRole.textContent = data.role;
+      modalText.textContent = data.content; // Premium editorial presentation without raw nested quotes
+
+      // Split names for the editorial left/right vertical indicators
+      let nameLeft = '';
+      let nameRight = '';
+      const nameStr = data.name || '';
+
+      if (nameStr.includes('&')) {
+        const parts = nameStr.split('&');
+        nameLeft = parts[0].trim();
+        nameRight = parts[1].trim();
+      } else if (nameStr.toLowerCase().includes(' and ')) {
+        const parts = nameStr.split(/ and /i);
+        nameLeft = parts[0].trim();
+        nameRight = parts[1].trim();
+      } else {
+        const parts = nameStr.split(' ');
+        nameLeft = parts[0] || '';
+        nameRight = parts.slice(1).join(' ') || 'Review';
+      }
+
+      const leftOvalName = document.getElementById('testimonial-oval-name-left');
+      const rightOvalName = document.getElementById('testimonial-oval-name-right');
+      if (leftOvalName) leftOvalName.textContent = nameLeft;
+      if (rightOvalName) rightOvalName.textContent = nameRight;
+
+      // Populate Watermarks dynamically
+      const watermarksContainer = document.getElementById('testimonial-modal-watermarks');
+      if (watermarksContainer) {
+        watermarksContainer.innerHTML = '';
+
+        // Left Watermark (letters of left name repeating)
+        const leftCol = document.createElement('div');
+        leftCol.className = 'watermark-column watermark-left';
+        const leftLetters = nameLeft.toUpperCase().replace(/[^A-Z]/g, '').split('');
+        let leftContent = '';
+        if (leftLetters.length > 0) {
+          for (let i = 0; i < 6; i++) {
+            leftContent += `<span>${leftLetters[i % leftLetters.length]}</span>`;
+          }
         }
-      });
+        leftCol.innerHTML = leftContent;
+
+        // Right Watermark (letters of right name repeating)
+        const rightCol = document.createElement('div');
+        rightCol.className = 'watermark-column watermark-right';
+        const rightLetters = nameRight.toUpperCase().replace(/[^A-Z]/g, '').split('');
+        let rightContent = '';
+        if (rightLetters.length > 0) {
+          for (let i = 0; i < 6; i++) {
+            rightContent += `<span>${rightLetters[i % rightLetters.length]}</span>`;
+          }
+        }
+        rightCol.innerHTML = rightContent;
+
+        watermarksContainer.appendChild(leftCol);
+        watermarksContainer.appendChild(rightCol);
+      }
+
+      // Fill stars
+      modalRating.innerHTML = '';
+      for (let i = 0; i < data.rating; i++) {
+        const star = document.createElement('span');
+        star.className = 'star';
+        star.textContent = '★';
+        modalRating.appendChild(star);
+      }
+
+      testimonialModal.style.backgroundColor = data.bgColor || '#070707';
+      testimonialModal.classList.add('active');
+      testimonialModal.scrollTop = 0;
+      const modalContainer = testimonialModal.querySelector('.testimonial-modal-container');
+      if (modalContainer) {
+        modalContainer.scrollTop = 0;
+      }
+      document.body.style.overflow = 'hidden';
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.stop();
+      }
     };
 
-    menuItems.forEach(item => {
-      const service = item.getAttribute('data-service');
+    const closeTestimonial = () => {
+      testimonialModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (typeof lenis !== 'undefined' && lenis) {
+        lenis.start();
+      }
+      // Reset background color after close transition completes
+      setTimeout(() => {
+        testimonialModal.style.backgroundColor = '';
+      }, 600);
+    };
 
-      item.addEventListener('mouseenter', () => {
-        setActiveBg(service);
+    testimonialCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const index = parseInt(card.getAttribute('data-index'));
+        openTestimonial(index);
       });
 
-      item.addEventListener('mouseleave', () => {
-        setActiveBg('default');
-      });
-
-      // Support for custom cursor if available
-      const cursor = document.querySelector('.custom-cursor');
+      // Hook up custom cursor hover states
       if (cursor) {
-        item.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-        item.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        card.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+        card.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
       }
     });
+
+    if (modalClose) modalClose.addEventListener('click', closeTestimonial);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeTestimonial);
   }
 
   // ─────────────── Featured Stories Slider ───────────────
@@ -1326,8 +1468,8 @@ const init = () => {
 
     const galleryMeta = {
       'folder_1': {
-        title: 'Sangeeta and Jake',
-        description: 'Sangeeta and Jake were first introduced by a mutual friend, though it took a year and a chance encounter for the acquaintance to turn into a romance. Following a proposal in Tulum in Mexico, they tied the knot last year with guests flying in from all over the world to raise a toast to them. The couple wanted the wedding to be modern but equally steeped in their cultures and customs.'
+        title: 'Rushi and Suprima',
+        description: 'Where Himalayan elegance meets Maharashtrian heritage. This wedding felt like a royal fairytale dreamy, graceful, and timeless. The couple carried the aura of celebrities, wrapped in tradition and luxury. A cinematic celebration of love, culture, and unforgettable moments.'
       },
       'folder_2': {
         title: 'Reva & Zach',
@@ -1350,7 +1492,7 @@ const init = () => {
 
     // Dynamic hero background cover painting matching the folder
     const paintings = {
-      'folder_1': 'assets/images/paintings/tulum_painting.png',
+      'folder_1': 'assets/images/paintings/rushi_suprima_painting.jpg',
       'folder_2': 'assets/images/paintings/udaipur_painting.png',
       'folder_3': 'assets/images/paintings/singapore_painting.png',
       'folder_4': 'assets/images/paintings/mumbai_painting.png'
@@ -1358,6 +1500,7 @@ const init = () => {
     const heroImageEl = document.getElementById('gallery-hero-image');
     if (heroImageEl) {
       heroImageEl.src = paintings[folder] || paintings['folder_1'];
+      heroImageEl.setAttribute('fetchpriority', 'high'); // Prioritize hero image loading
     }
 
     const heroTitleEl = document.getElementById('gallery-hero-title');
@@ -1415,9 +1558,9 @@ const init = () => {
         comments.forEach((comment) => {
           const item = document.createElement('div');
           item.className = 'comment-item';
-          
+
           const initial = comment.name ? comment.name.charAt(0) : '?';
-          
+
           item.innerHTML = `
             <div class="comment-avatar">${initial}</div>
             <div class="comment-content">
@@ -1457,7 +1600,7 @@ const init = () => {
           };
 
           comments.push(newComment);
-          
+
           try {
             localStorage.setItem(`comments_${folder}`, JSON.stringify(comments));
           } catch (err) { console.warn(err); }
@@ -1582,7 +1725,43 @@ const init = () => {
         'assets/images/drive_photos/folder_1/PKP_-38.jpg', 'assets/images/drive_photos/folder_1/PKP_-39.jpg',
         'assets/images/drive_photos/folder_1/PKP_-4.jpg', 'assets/images/drive_photos/folder_1/PKP_-40.jpg',
         'assets/images/drive_photos/folder_1/PKP_-41.jpg', 'assets/images/drive_photos/folder_1/PKP_-42.jpg',
-        'assets/images/drive_photos/folder_1/PKP_-43.jpg'
+        'assets/images/drive_photos/folder_1/PKP_-43.jpg',
+        'https://iili.io/CocCVpa.jpg', 'https://iili.io/CocCe4I.jpg', 'https://iili.io/CocCv2t.jpg',
+        'https://iili.io/CocC8YX.jpg', 'https://iili.io/CocnF3P.jpg', 'https://iili.io/CocnwAu.jpg',
+        'https://iili.io/CocoBlS.jpg', 'https://iili.io/Coco3xf.jpg', 'https://iili.io/Coco1Og.jpg',
+        'https://iili.io/CocowgI.jpg', 'https://iili.io/Coco4ql.jpg', 'https://iili.io/Coco612.jpg',
+        'https://iili.io/CocoL79.jpg', 'https://iili.io/Cocx271.jpg', 'https://iili.io/CocxBLv.jpg',
+        'https://iili.io/Cocx5Is.jpg', 'https://iili.io/CocxApn.jpg', 'https://iili.io/Cocxhhb.jpg',
+        'https://iili.io/Cocxe4V.jpg', 'https://iili.io/CocxUyF.jpg', 'https://iili.io/Cocx6ZJ.jpg',
+        'https://iili.io/CocxZ3N.jpg', 'https://iili.io/Coczlta.jpg', 'https://iili.io/CoczEMv.jpg',
+        'https://iili.io/CoczGPR.jpg', 'https://iili.io/Cocz58P.jpg', 'https://iili.io/CoczvVf.jpg',
+        'https://iili.io/CocIag2.jpg', 'https://iili.io/CocIRsf.jpg', 'https://iili.io/CocIoJI.jpg',
+        'https://iili.io/CocI1e9.jpg', 'https://iili.io/CocIwgV.jpg', 'https://iili.io/CocTHrl.jpg',
+        'https://iili.io/CocTd22.jpg', 'https://iili.io/CocIyBf.jpg', 'https://iili.io/CocT27S.jpg',
+        'https://iili.io/CocTnBj.jpg', 'https://iili.io/CocToEx.jpg', 'https://iili.io/CocTxrQ.jpg',
+        'https://iili.io/CocTTYB.jpg', 'https://iili.io/CocT6Zu.jpg', 'https://iili.io/CocTXTX.jpg',
+        'https://iili.io/CocTZ3Q.jpg', 'https://iili.io/Cocuzns.jpg', 'https://iili.io/Cocuml4.jpg',
+        'https://iili.io/CocAzOP.jpg', 'https://iili.io/CocAoJV.jpg', 'https://iili.io/CocAuzF.jpg',
+        'https://iili.io/CocAY0v.jpg', 'https://iili.io/CocAVXn.jpg', 'https://iili.io/CocAOdl.jpg',
+        'https://iili.io/CocRruI.jpg', 'https://iili.io/CocRinn.jpg', 'https://iili.io/CocR4jt.jpg',
+        'https://iili.io/CocRsGs.jpg', 'https://iili.io/Coc5Jne.jpg', 'https://iili.io/Coc5EVn.jpg',
+        'https://iili.io/Coc5Wlf.jpg', 'https://iili.io/Coc5VKG.jpg', 'https://iili.io/Coc5XS4.jpg',
+        'https://iili.io/Coc5glj.jpg', 'https://iili.io/Coc7ldx.jpg', 'https://iili.io/Coc7agj.jpg',
+        'https://iili.io/Coc7Y0b.jpg', 'https://iili.io/Coc705Q.jpg', 'https://iili.io/Coc7hqg.jpg',
+        'https://iili.io/Coc7Odv.jpg', 'https://iili.io/Coc7wrJ.jpg', 'https://iili.io/CocYI3J.jpg',
+        'https://iili.io/CocY04s.jpg', 'https://iili.io/CocYVyl.jpg', 'https://iili.io/CocYjZ7.jpg',
+        'https://iili.io/CocaAKu.jpg', 'https://iili.io/CocaTPe.jpg', 'https://iili.io/CocaRcb.jpg',
+        'https://iili.io/Coca5Sj.jpg', 'https://iili.io/Coca8iX.jpg', 'https://iili.io/CoccFWP.jpg',
+        'https://iili.io/CoccB0g.jpg', 'https://iili.io/Cocc3zB.jpg', 'https://iili.io/CoccqqF.jpg',
+        'https://iili.io/CoccY1n.jpg', 'https://iili.io/CoclXuR.jpg', 'https://iili.io/CoclLP9.jpg',
+        'https://iili.io/Coc1db4.jpg', 'https://iili.io/Coc1O2n.jpg', 'https://iili.io/Coc14BS.jpg',
+        'https://iili.io/Coc16E7.jpg', 'https://iili.io/CocEcn2.jpg', 'https://iili.io/CocEXuj.jpg',
+        'https://iili.io/CocEjZQ.jpg', 'https://iili.io/CocEOMB.jpg', 'https://iili.io/CocGtsV.jpg',
+        'https://iili.io/CocGbqB.jpg', 'https://iili.io/CocGsbj.jpg', 'https://iili.io/CocM9dF.jpg',
+        'https://iili.io/CocMO21.jpg', 'https://iili.io/CocMDTG.jpg', 'https://iili.io/CocMbjf.jpg',
+        'https://iili.io/CocMLYX.jpg', 'https://iili.io/CocV3ve.jpg', 'https://iili.io/CocVI3P.jpg',
+        'https://iili.io/CocV7wJ.jpg', 'https://iili.io/CocVcnR.jpg', 'https://iili.io/CocV06N.jpg',
+        'https://iili.io/CocVhwG.jpg', 'https://iili.io/CocV8c7.jpg', 'https://iili.io/CocVg9e.jpg'
       ],
       'folder_2': [
         'assets/images/drive_photos/folder_2/FS-10.jpg', 'assets/images/drive_photos/folder_2/FS-100.jpg',
@@ -1621,13 +1800,22 @@ const init = () => {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Optimized image dimension check with timeout
     const getImageDimensions = (url) => {
       return new Promise((resolve) => {
         const img = new Image();
+        // Reduced timeout to 1.5s for faster perceived performance
+        const timeout = setTimeout(() => {
+          img.src = ""; // cancel load
+          resolve({ url, isPortrait: false });
+        }, 1500);
+
         img.onload = () => {
+          clearTimeout(timeout);
           resolve({ url, isPortrait: img.naturalHeight > img.naturalWidth });
         };
         img.onerror = () => {
+          clearTimeout(timeout);
           resolve({ url, isPortrait: false });
         };
         img.src = url;
@@ -1635,119 +1823,100 @@ const init = () => {
     };
 
     const renderGallery = async (images) => {
-      if (loadingEl) loadingEl.style.display = 'none';
+      const reversedImages = [...images].reverse();
+      if (reversedImages.length === 0) {
+        if (loadingEl) loadingEl.textContent = 'No photos found in this gallery.';
+        return;
+      }
 
-      // Preload image dimensions to determine layout dynamically
-      const imageDetails = await Promise.all(images.map(url => getImageDimensions(url)));
-
-      if (countEl) countEl.textContent = `${images.length} Photos`;
-      if (heroCountEl) heroCountEl.textContent = `${images.length} Photos`;
+      if (countEl) countEl.textContent = `${reversedImages.length} Photos`;
+      if (heroCountEl) heroCountEl.textContent = `${reversedImages.length} Photos`;
 
       galleryPageGrid.innerHTML = '';
 
-      let i = 0;
-      while (i < imageDetails.length) {
-        const current = imageDetails[i];
+      // Use batching to render images as metadata is resolved
+      // This makes the page interactive much faster without waiting for all 100+ images
+      const batchSize = 10;
+      let processedCount = 0;
 
-        // Group consecutive portrait photos side-by-side
-        if (current.isPortrait && i + 1 < imageDetails.length && imageDetails[i + 1].isPortrait) {
-          const next = imageDetails[i + 1];
+      const processBatch = async () => {
+        const end = Math.min(processedCount + batchSize, reversedImages.length);
+        const batch = reversedImages.slice(processedCount, end);
 
-          const rowDiv = document.createElement('div');
-          rowDiv.className = 'gallery-row-split';
+        const imageDetails = await Promise.all(batch.map(url => getImageDimensions(url)));
 
-          [current, next].forEach((imgDetail, offset) => {
-            const index = i + offset;
-            const item = document.createElement('div');
-            item.className = 'gallery-page-item-new portrait-item';
-            item.setAttribute('data-index', index);
-            item.style.zIndex = index + 1;
-            item.style.animationDelay = `${index * 0.08}s`;
-
-            const img = document.createElement('img');
-            img.src = imgDetail.url;
-            img.alt = `${meta.title} - Photo ${index + 1}`;
-            img.loading = 'lazy';
-
-            item.appendChild(img);
-            rowDiv.appendChild(item);
-
-            item.addEventListener('click', () => {
-              openLightbox(index, images);
-            });
-
-            const cursor = document.querySelector('.custom-cursor');
-            if (cursor) {
-              item.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-              item.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-            }
-          });
-
-          galleryPageGrid.appendChild(rowDiv);
-          i += 2;
-        } else {
-          // Landscape photos or standalone portrait photos
-          const rowDiv = document.createElement('div');
-          rowDiv.className = 'gallery-row-full';
-
-          const index = i;
-          const item = document.createElement('div');
-          item.className = 'gallery-page-item-new' + (current.isPortrait ? ' portrait-single-item' : ' landscape-item');
-          item.setAttribute('data-index', index);
-          item.style.zIndex = index + 1;
-          item.style.animationDelay = `${index * 0.08}s`;
-
-          const img = document.createElement('img');
-          img.src = current.url;
-          img.alt = `${meta.title} - Photo ${index + 1}`;
-          img.loading = 'lazy';
-
-          item.appendChild(img);
-          rowDiv.appendChild(item);
-
-          galleryPageGrid.appendChild(rowDiv);
-
-          item.addEventListener('click', () => {
-            openLightbox(index, images);
-          });
-
-          const cursor = document.querySelector('.custom-cursor');
-          if (cursor) {
-            item.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-            item.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-          }
-
-          i += 1;
+        if (processedCount === 0 && loadingEl) {
+          loadingEl.style.display = 'none';
         }
-      }
 
-      // IntersectionObserver for staggered depth reveal
-      if (!prefersReducedMotion) {
-        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item-new');
+        let j = 0;
+        while (j < imageDetails.length) {
+          const current = imageDetails[j];
+          const globalIndex = processedCount + j;
 
-        const galleryObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const el = entry.target;
-              el.style.willChange = 'transform, opacity';
-              el.classList.add('gallery-item-revealed');
-              galleryObserver.unobserve(el);
+          if (current.isPortrait && j + 1 < imageDetails.length && imageDetails[j + 1].isPortrait) {
+            const next = imageDetails[j + 1];
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'gallery-row-split';
+            rowDiv.appendChild(createGalleryItem(current.url, globalIndex, reversedImages, true));
+            rowDiv.appendChild(createGalleryItem(next.url, globalIndex + 1, reversedImages, true));
+            galleryPageGrid.appendChild(rowDiv);
+            j += 2;
+          } else {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'gallery-row-full';
+            rowDiv.appendChild(createGalleryItem(current.url, globalIndex, reversedImages, false, current.isPortrait));
+            galleryPageGrid.appendChild(rowDiv);
+            j += 1;
+          }
+        }
 
-              el.addEventListener('transitionend', () => {
-                el.style.willChange = 'auto';
-              }, { once: true });
+        processedCount = end;
+        if (processedCount < reversedImages.length) {
+          setTimeout(processBatch, 100); // Small pause to keep UI thread smooth
+        }
+      };
+
+      const createGalleryItem = (url, index, allImages, isSplit, isPortrait = false) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-page-item-new';
+        if (isSplit) item.classList.add('portrait-item');
+        else item.classList.add(isPortrait ? 'portrait-single-item' : 'landscape-item');
+
+        item.setAttribute('data-index', index);
+        item.style.zIndex = index + 1;
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `${meta.title} - Photo ${index + 1}`;
+        img.loading = 'lazy';
+        img.decoding = 'async'; // Fast browser-level decoding hint
+
+        item.appendChild(img);
+        item.addEventListener('click', () => openLightbox(index, allImages));
+
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+          item.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+          item.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        }
+
+        if (!prefersReducedMotion) {
+          const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+              item.classList.add('gallery-item-revealed');
+              observer.unobserve(item);
             }
-          });
-        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+          }, { threshold: 0.1 });
+          observer.observe(item);
+        } else {
+          item.classList.add('gallery-item-revealed');
+        }
 
-        galleryItems.forEach(item => galleryObserver.observe(item));
-      } else {
-        const galleryItems = galleryPageGrid.querySelectorAll('.gallery-page-item-new');
-        galleryItems.forEach(item => {
-          item.style.opacity = '1';
-          item.style.transform = 'none';
-        });
-      }
+        return item;
+      };
+
+      processBatch();
     };
 
     // Fetch with apiBase. Fallback to local images on failure.
@@ -1777,71 +1946,7 @@ const init = () => {
       });
   }
 
-  // ─────────────── Scroll Expansion Video Background ───────────────
-  const expandWrapper = document.getElementById('scroll-expand-section');
-  const expandSticky = document.querySelector('.scroll-expand-sticky');
-  const mediaBox = document.querySelector('.scroll-expand-media-box');
-  const bgImg = document.querySelector('.scroll-expand-bg-img');
-  const titleLeft = document.querySelector('.scroll-expand-title-left');
-  const titleRight = document.querySelector('.scroll-expand-title-right');
-  const hintText = document.querySelector('.scroll-expand-hint-text');
-  const revealContent = document.querySelector('.scroll-expand-reveal-content');
-
-  if (expandWrapper && expandSticky && mediaBox) {
-    const handleScrollExpansion = () => {
-      const rect = expandWrapper.getBoundingClientRect();
-      const scrollHeight = expandWrapper.offsetHeight - window.innerHeight;
-
-      // Progress from 0 to 1
-      let progress = -rect.top / scrollHeight;
-      progress = Math.max(0, Math.min(1, progress));
-
-      const isMobile = window.innerWidth < 768;
-
-      // 1. Calculate media box dimensions based on progress
-      const baseW = 300;
-      const baseH = 400;
-      const targetW = window.innerWidth;
-      const targetH = window.innerHeight;
-
-      const currentW = baseW + (targetW - baseW) * progress;
-      const currentH = baseH + (targetH - baseH) * progress;
-      const currentRadius = 16 * (1 - progress);
-
-      mediaBox.style.width = `${currentW}px`;
-      mediaBox.style.height = `${currentH}px`;
-      mediaBox.style.borderRadius = `${currentRadius}px`;
-
-      // Remove shadow at 100% expansion
-      if (progress >= 0.99) {
-        mediaBox.style.boxShadow = 'none';
-      } else {
-        mediaBox.style.boxShadow = '0px 15px 50px rgba(0, 0, 0, 0.4)';
-      }
-
-      // 2. Translate text laterally
-      const maxTranslate = isMobile ? 180 : 150;
-      const currentTranslate = progress * maxTranslate;
-
-      if (titleLeft) titleLeft.style.transform = `translateX(-${currentTranslate}vw)`;
-      if (titleRight) titleRight.style.transform = `translateX(${currentTranslate}vw)`;
-
-      // 3. Fade out background image and hint text
-      if (bgImg) bgImg.style.opacity = 1 - progress;
-      if (hintText) hintText.style.opacity = 1 - progress * 1.5;
-
-      // 4. Reveal content below when progress is high (>= 0.85)
-      if (progress >= 0.85) {
-        revealContent.classList.add('active');
-      } else {
-        revealContent.classList.remove('active');
-      }
-    };
-
-    window.addEventListener('scroll', handleScrollExpansion, { passive: true });
-    window.addEventListener('resize', handleScrollExpansion, { passive: true });
-    handleScrollExpansion();
-  }
+  // Scroll expansion animation logic removed as requested for static layout
 
   // ─────────────── Films Category Filter ───────────────
   const filterBtns = document.querySelectorAll('.films-filter-container .filter-btn');
