@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1200">
+  <meta name="theme-color" content="#EFE9D7">
   <title>HOME — ForeShadow</title>
   <meta name="description"
     content="ForeShadow is a fine art destination wedding photographer & wedding videographer creating cinematic, authentic wedding stories.">
@@ -23,32 +24,7 @@
 <body>
   <div class="page-transition"></div>
 
-  <script>
-    try {
-      if (sessionStorage.getItem('fosh_entered') === 'true') {
-        document.write('<style>#preloader { display: none !important; }</style>');
-      }
-    } catch (e) {
-      console.warn('sessionStorage is not accessible:', e);
-    }
-  </script>
 
-  <!-- ═══════════════ Loading Screen (Cosmos 3D Orbit Gallery) ═══════════════ -->
-  <div class="preloader" id="preloader">
-    <!-- Three.js Canvas renders here -->
-    <div class="preloader-canvas-container" id="preloader-canvas-container"></div>
-
-    <!-- Overlay: Logo + Enter Button -->
-    <div class="preloader-overlay" id="preloader-overlay">
-      <img src="assets/images/logo.png" alt="ForeShadow Logo" class="preloader-logo">
-      <span class="preloader-brand">ForeShadow</span>
-      <span class="preloader-tagline">Cinematic Wedding Photography</span>
-      <button type="button" class="preloader-enter-btn" id="enter-btn">ENTER</button>
-    </div>
-
-    <!-- Hint at bottom -->
-    <span class="preloader-hint">Drag to orbit · Scroll to zoom</span>
-  </div>
 
 
   <nav class="nav nav--dark" id="nav">
@@ -69,8 +45,8 @@
     <!-- Right Menu Links -->
     <ul class="nav-links nav-links--right">
       <li><a href="about.html" class="nav-link" data-page>About</a></li>
-      <li><a href="testimonials.html" class="nav-link" data-page>Reviews</a></li>
-      <li><a href="contact.html" class="nav-cta" data-page>Contact</a></li>
+      <li><a href="exclusive.html" class="nav-link" data-page>Exclusive</a></li>
+      <li><a href="contact.html" class="nav-link" data-page>Contact</a></li>
     </ul>
 
     <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
@@ -87,7 +63,7 @@
       <a href="portfolio.html" class="nav-overlay-link" data-page>STORIES</a>
       <a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
       <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
-      <a href="testimonials.html" class="nav-overlay-link" data-page>REVIEWS</a>
+      <a href="exclusive.html" class="nav-overlay-link" data-page>EXCLUSIVE</a>
       <a href="contact.html" class="nav-overlay-link" data-page>CONTACT</a>
     </div>
   </div>
@@ -96,14 +72,14 @@
   <section class="home-hero" id="hometop" style="height: 100vh; position: relative; overflow: hidden;">
     <div class="hero-video-bg">
       <iframe
-        data-src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+        src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
         title="ForeShadow Hero Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
     </div>
 
     <!-- Hero Text Overlay -->
-    <div class="home-hero-content luca-hero-content" style="z-index: 3; position: relative;">
+    <div class="home-hero-content luca-hero-content bottom-left-hero-content" style="z-index: 3; position: relative;">
       <h1 class="home-hero-title luca-mori-title">Stories Before<br>the Vows</h1>
-      <p class="home-hero-subtitle black-font" style="color: #000000 !important; font-weight: 600;">We Don't Just Film
+      <p class="home-hero-subtitle" style="color: #ffffff !important; font-weight: 600;">We Don't Just Film
         Weddings, We Make Cinema.</p>
     </div>
   </section>
@@ -114,7 +90,7 @@
   </div>
 
   <!-- ═══════════════ A MODERN APPROACH SECTION ═══════════════ -->
-  <section class="modern-tradition-section" id="modern-approach">
+  <section class="modern-tradition-section section--cream" id="modern-approach">
     <div class="modern-tradition-container">
 
       <!-- Title Area (Row 1, Column 2) -->
@@ -174,7 +150,7 @@
   </div>
 
   <!-- ═══════════════ ETHOS SECTION (Cinema, Art & Documentary — Iconic Grid) ═══════════════ -->
-  <section class="photo-wall-section" id="ethos">
+  <section class="photo-wall-section section--sage" id="ethos">
     <div class="photo-wall-subheading reveal">WE ARE CREATING FICTION OUT OF REALITY.</div>
 
     <div class="iconic-grid-wrapper">
@@ -224,41 +200,17 @@
 
     <h2 class="photo-wall-heading reveal stagger-1">CINEMA, ART & DOCUMENTARY</h2>
   </section>
-  <!-- ═══════════════ SCROLL EXPANSION HERO SECTION ═══════════════ -->
-  <div class="scroll-expand-wrapper" id="scroll-expand-section">
-    <div class="scroll-expand-sticky">
-
-      <!-- Background Image -->
-      <div class="scroll-expand-bg-img">
-        <img src="assets/images/bgvd.jpg" alt="Background">
-        <div class="scroll-expand-bg-overlay"></div>
+  <!-- ═══════════════ CINEMATIC STORYTELLING SECTION ═══════════════ -->
+  <section class="cinematic-section" id="cinematic-storytelling">
+    <div class="cinematic-photo-container">
+      <img src="assets/images/bgvd.jpg" alt="Cinematic Storytelling" class="cinematic-photo">
+      <div class="cinematic-overlay"></div>
+      <div class="cinematic-text-container">
+        <h2 class="cinematic-title">Cinematic Storytelling</h2>
       </div>
-
-      <!-- Center Video Container -->
-      <div class="scroll-expand-media-box">
-        <div class="scroll-expand-video-wrapper">
-          <iframe
-            src="https://www.youtube.com/embed/PIVGEnlq7AA?autoplay=1&mute=1&loop=1&playlist=PIVGEnlq7AA&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
-            title="ForeShadow Expand Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
-        </div>
-        <div class="scroll-expand-media-overlay"></div>
-      </div>
-
-      <!-- Title Overlay (mix-blend-difference style) -->
-      <div class="scroll-expand-text-container">
-        <h2 class="scroll-expand-title-left">Cinematic</h2>
-        <h2 class="scroll-expand-title-right">Storytelling</h2>
-      </div>
-
-      <!-- Sub-information overlay (fades out with progress) -->
-      <div class="scroll-expand-hint-container">
-        <p class="scroll-expand-hint-text">Scroll to Expand</p>
-      </div>
-
     </div>
 
-    <!-- Content revealed below when fully expanded -->
-    <div class="scroll-expand-reveal-content">
+    <div class="cinematic-content section--cream">
       <div class="container scroll-reveal-inner">
         <div class="scroll-reveal-text-block">
           <span class="scroll-reveal-label">Cinematic Artistry</span>
@@ -275,10 +227,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- ═══════════════ FEATURED STORIES / CAROUSEL ═══════════════ -->
-  <section class="featured-stories-section">
+  <section class="featured-stories-section section--dark" id="featured-stories-section">
     <div class="container">
       <div class="stories-header">
         <p class="stories-subtitle reveal">SELECTED LOVE STORIES</p>
@@ -289,11 +241,11 @@
         <!-- Slide 1 -->
         <div class="story-slide active" data-slide-index="0">
           <div class="story-image-side">
-            <img src="https://img.youtube.com/vi/Nd7c--y9vYc/maxresdefault.jpg" alt="Henna & Raunaq Film">
+            <img src="https://img.youtube.com/vi/Nd7c--y9vYc/maxresdefault.jpg" alt="Rushi and Suprima Film">
           </div>
           <div class="story-content-side">
             <p class="story-label reveal">CLASSIC STORY TELLING</p>
-            <h3 class="story-couple-names reveal stagger-1">Henna & Raunaq</h3>
+            <h3 class="story-couple-names reveal stagger-1">Rushi and Suprima</h3>
             <p class="story-description reveal stagger-2">
               A heartwarming destination wedding filled with laughter, vibrant traditions, and a pawsome celebration of
               love.
@@ -360,7 +312,7 @@
   </section>
 
   <!-- ═══════════════ WANT TO KNOW MORE SECTION ═══════════════ -->
-  <section class="heading-section">
+  <section class="heading-section section--crimson">
     <div class="container">
       <p class="section-subtitle reveal"><a href="about.html" data-page
           style="color: inherit; text-decoration: none;">WANT TO KNOW MORE ABOUT US? THEN CLICK HERE</a></p>
@@ -370,67 +322,236 @@
     </div>
   </section>
 
-  <!-- ═══════════════ BROWSE SERVICES SECTION ═══════════════ -->
-  <section class="split-services-section" id="split-services-section">
-    <!-- Left Background Images -->
-    <div class="split-bg split-bg-left">
-      <div class="split-bg-image active"
-        style="background-image: url('assets/images/drive_photos/folder_1/PKP_-12.jpg');" data-bg="default"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-10.jpg');"
-        data-bg="photography"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_2/FS-10.jpg');"
-        data-bg="films"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_4/FS-101.jpg');"
-        data-bg="prewedding"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-14.jpg');"
-        data-bg="experience"></div>
-      <div class="split-overlay"></div>
+  <!-- ═══════════════ TESTIMONIALS SECTION ═══════════════ -->
+  <section class="testimonials-section section--cream" id="testimonials-section">
+    <div class="container testimonials-header text-center reveal">
+      <p class="section-label">Selected Kind Words</p>
+      <h2 class="section-title">Testimonials</h2>
+      <p class="section-subtitle">
+        What our couples say about their experience with ForeShadow. Click any card to read their full story.
+      </p>
     </div>
 
-    <!-- Right Background Images -->
-    <div class="split-bg split-bg-right">
-      <div class="split-bg-image active"
-        style="background-image: url('assets/images/drive_photos/folder_2/FS-101.jpg');" data-bg="default"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_1/PKP_-11.jpg');"
-        data-bg="photography"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_2/FS-100.jpg');"
-        data-bg="films"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_4/FS-102.jpg');"
-        data-bg="prewedding"></div>
-      <div class="split-bg-image" style="background-image: url('assets/images/drive_photos/folder_3/PKP-14.jpg');"
-        data-bg="experience"></div>
-      <div class="split-overlay"></div>
-    </div>
+    <div class="testimonials-marquee-container reveal stagger-1">
+      <div class="testimonials-marquee-row" id="testimonials-marquee">
+        <!-- Track Block 1 -->
+        <div class="marquee-track">
+          <!-- Card 1 -->
+          <div class="testimonial-card" data-index="0">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/animesh_arohi.png" alt="Arohi & Animesh" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Arohi & Animesh</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">First of all it was our luck that we found you. From day 1 you put such
+                excellent efforts in the wedding...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="testimonial-card" data-index="1">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/harish_rasika.png" alt="Harish & Rasika" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Harish & Rasika</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I was in search of a passionate photographer — someone who would truly
+                understand my expectations...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="testimonial-card" data-index="0">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/animesh_arohi.png" alt="Arohi & Animesh" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Arohi & Animesh</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">First of all it was our luck that we found you. From day 1 you put such
+                excellent efforts in the wedding...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="testimonial-card" data-index="1">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/harish_rasika.png" alt="Harish & Rasika" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Harish & Rasika</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I was in search of a passionate photographer — someone who would truly
+                understand my expectations...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Centered Content -->
-    <div class="split-content-container">
-      <p class="split-section-subtitle reveal">EXPLORE OUR SERVICES</p>
-
-      <div class="split-menu-list">
-        <div class="split-menu-item reveal stagger-1" data-service="photography">
-          <span class="split-number">01</span>
-          <a href="portfolio.html" class="split-link" data-page>Wedding Photography</a>
-        </div>
-        <div class="split-menu-item reveal stagger-2" data-service="films">
-          <span class="split-number">02</span>
-          <a href="films.html" class="split-link" data-page>Cinematic Films</a>
-        </div>
-        <div class="split-menu-item reveal stagger-3" data-service="prewedding">
-          <span class="split-number">03</span>
-          <a href="portfolio.html" class="split-link" data-page>Pre-Wedding Shoots</a>
-        </div>
-        <div class="split-menu-item reveal stagger-4" data-service="experience">
-          <span class="split-number">04</span>
-          <a href="services.html" class="split-link" data-page>Complete Experience</a>
+        <!-- Track Block 2 (Repeated for infinite loop) -->
+        <div class="marquee-track">
+          <!-- Card 1 -->
+          <div class="testimonial-card" data-index="0">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/animesh_arohi.png" alt="Arohi & Animesh" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Arohi & Animesh</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">First of all it was our luck that we found you. From day 1 you put such
+                excellent efforts in the wedding...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="testimonial-card" data-index="1">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/harish_rasika.png" alt="Harish & Rasika" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Harish & Rasika</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I was in search of a passionate photographer — someone who would truly
+                understand my expectations...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="testimonial-card" data-index="0">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/animesh_arohi.png" alt="Arohi & Animesh" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Arohi & Animesh</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">First of all it was our luck that we found you. From day 1 you put such
+                excellent efforts in the wedding...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="testimonial-card" data-index="1">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/harish_rasika.png" alt="Harish & Rasika" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Harish & Rasika</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I was in search of a passionate photographer — someone who would truly
+                understand my expectations...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ═══════════════ TESTIMONIAL MODAL FRAME ═══════════════ -->
+  <div class="testimonial-modal" id="testimonial-modal" aria-hidden="true">
+    <div class="testimonial-modal-overlay" id="testimonial-modal-overlay"></div>
+
+    <button class="testimonial-modal-close" id="testimonial-modal-close" aria-label="Close review modal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Background Watermarks -->
+    <div class="testimonial-modal-watermarks" id="testimonial-modal-watermarks"></div>
+
+    <div class="testimonial-modal-container">
+
+      <div class="testimonial-modal-layout">
+        <!-- Left Side: Review Text & Details -->
+        <div class="testimonial-modal-left">
+          <div class="testimonial-modal-text-content">
+            <p class="testimonial-modal-text" id="testimonial-modal-text"></p>
+            <div class="testimonial-modal-author">
+              <span class="testimonial-modal-love">Love</span>
+              <h3 class="testimonial-modal-name" id="testimonial-modal-name"></h3>
+              <p class="testimonial-modal-role" id="testimonial-modal-role"></p>
+              <div class="testimonial-modal-rating" id="testimonial-modal-rating"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Oval Frame & Rotated Names -->
+        <div class="testimonial-modal-right">
+          <div class="testimonial-oval-wrapper">
+            <span class="testimonial-oval-name testimonial-oval-name-left" id="testimonial-oval-name-left"></span>
+            <div class="testimonial-oval-frame">
+              <img src="" alt="" class="testimonial-modal-avatar" id="testimonial-modal-avatar">
+            </div>
+            <span class="testimonial-oval-name testimonial-oval-name-right" id="testimonial-oval-name-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG definitions for the liquid glass filter effect -->
+  <svg class="hidden">
+    <defs>
+      <filter id="container-glass" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02 0.02" numOctaves="1" seed="1" result="turbulence" />
+        <feGaussianBlur in="turbulence" stdDeviation="2" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="120" xChannelSelector="R" yChannelSelector="B"
+          result="displaced" />
+        <feGaussianBlur in="displaced" stdDeviation="4" result="finalBlur" />
+        <feComposite in="finalBlur" in2="finalBlur" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+
 
 
   <!-- ═══════════════ ACCORDION GALLERY SECTION (LATEST CREATIONS) ═══════════════ -->
-  <section class="latest-creations-section">
+  <section class="latest-creations-section section--cream">
     <div class="container creations-header text-center reveal">
       <h2 class="creations-title">Our Latest Creations</h2>
       <p class="creations-subtitle">
@@ -559,9 +680,6 @@
   <div class="custom-cursor-dot"></div>
 
   <!-- ═══════════════ Scripts ═══════════════ -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <script src="js/preloader-cosmos.js"></script>
   <script src="js/main.js"></script>
 </body>
 
