@@ -33,23 +33,23 @@
     PARTICLE_OPACITY: 1,
     IMAGE_SIZE: 1.5,
     images: [
-      'assets/images/drive_photos/folder_1/PKP_-10.jpg',
-      'assets/images/drive_photos/folder_1/PKP_-12.jpg',
-      'assets/images/drive_photos/folder_1/PKP_-14.jpg',
-      'assets/images/drive_photos/folder_1/PKP_-16.jpg',
-      'assets/images/drive_photos/folder_1/PKP_-19.jpg',
-      'assets/images/drive_photos/folder_1/PKP_-22.jpg',
-      'assets/images/drive_photos/folder_1/PKP_-25.jpg',
-      'assets/images/drive_photos/folder_1/PKP_-30.jpg',
-      'assets/images/drive_photos/folder_2/FS-100.jpg',
-      'assets/images/drive_photos/folder_2/FS-104.jpg',
-      'assets/images/drive_photos/folder_2/FS-108.jpg',
-      'assets/images/drive_photos/folder_2/FS-111.jpg',
-      'assets/images/drive_photos/folder_3/PKP-10.jpg',
-      'assets/images/drive_photos/folder_3/PKP-14.jpg',
-      'assets/images/drive_photos/folder_3/PKP-18.jpg',
-      'assets/images/drive_photos/folder_3/PKP-22.jpg',
-    ],
+      'https://iili.io/CoMdRtf.jpg',
+      'https://iili.io/CoMdAwG.jpg',
+      'https://iili.io/CoMduus.jpg',
+      'https://iili.io/CoMdz8X.jpg',
+      'https://iili.io/CoMdqnR.jpg',
+      'https://iili.io/CoMddyg.jpg',
+      'https://iili.io/CoMd93P.jpg',
+      'https://iili.io/CoMJmGV.jpg',
+      'https://iili.io/CoMJtZx.jpg',
+      'https://iili.io/CoMJZjj.jpg',
+      'https://iili.io/CoMJQTb.jpg',
+      'https://iili.io/CoMJsyu.jpg',
+      'https://iili.io/CoMJive.jpg',
+      'https://iili.io/CoMJPa9.jpg',
+      'https://iili.io/CoMJr4S.jpg',
+      'https://iili.io/CoMJgG2.jpg',
+    ].reverse(),
   };
 
   // ─── State ───
@@ -93,7 +93,7 @@
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000);
+    renderer.setClearColor(0xEFE9D7);
     container.appendChild(renderer.domElement);
 
     // Lights
@@ -170,11 +170,14 @@
       dummy.updateMatrix();
       instancedMesh.setMatrixAt(i, dummy.matrix);
 
-      // Yellow-orange hues (matching the React component)
+      // Elegant warm dark tones (deep olive, sage, burgundy — visible on cream)
+      var hue = Math.random() < 0.5
+        ? Math.random() * 0.05 + 0.05   // warm olive
+        : Math.random() * 0.03 + 0.97;  // warm burgundy
       color.setHSL(
-        Math.random() * 0.1 + 0.05,
-        0.8,
-        0.6 + Math.random() * 0.3
+        hue,
+        0.4 + Math.random() * 0.3,
+        0.2 + Math.random() * 0.15
       );
       instancedMesh.setColorAt(i, color);
     }
