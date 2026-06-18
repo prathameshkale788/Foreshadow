@@ -8,7 +8,7 @@
 
   // ─── Configuration (matching the React demo props) ───
   const CONFIG = {
-    imageSrc: 'assets/images/drive_photos/folder_1/PKP_-10.jpg',
+    imageSrc: 'https://iili.io/CoGhLYv.jpg',
     waveSpeed: 0.2,
     waveFrequency: 0.7,
     waveAmplitude: 0.5,
