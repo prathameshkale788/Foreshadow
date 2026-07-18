@@ -1,0 +1,2820 @@
+# Implementation Plan - Visit Team Button & Crew Section
+
+This plan outlines the changes to replace the "Return to home" and "Book our crew" buttons in the "about" section of `about.html` with a single "Visit Team" button. Clicking this button will reveal a premium, responsive "Our Crew" section directly on the page, styled and behaving exactly like the crew page of [The Wedding Filmer](https://www.theweddingfilmer.com/crew).
+
+## Proposed Changes
+
+### 1. Stylesheet Modifications
+
+#### [MODIFY] [style.css](file:///d:/rohit/Foreshadow-main/css/style.css)
+- Append CSS rules for the new `#crew-section` layout, banners, card grids, hover transitions, and animations.
+- Ensure image cards start in grayscale (`filter: saturate(0%)`) and transition to full color (`filter: saturate(100%)`) and scale (`transform: scale(1.08)`) on hover of the crew card.
+- Implement organic minor rotations (e.g. `transform: rotate(-1deg)`) on alternate card frames that straighten on hover.
+- Make it fully responsive, aligning properly on tablet and mobile viewports.
+
+### 2. Markup and Script Updates
+
+#### [MODIFY] [about.html](file:///d:/rohit/Foreshadow-main/about.html)
+- Locate the final section buttons container (approx. line 2262):
+```html
+<div class="buttons"><a href="/" class="button-white w-button">Return to home</a><a href="/crew" class="button-black w-button">Book our crew</a></div>
+```
+Replace it with a single button:
+```html
+<div class="buttons">
+<button id="visit-team-btn" class="button-white w-button">Visit Team</button>
+</div>
+```
+- Append the `#crew-section` container right before the main container closing tags (approx. line 2282), structure matching:
+- Deep dark background theme (`#0c0c0c`).
+- **Meet Our Crew** title header with ForeShadow branding in elegant fonts (`Lobster`).
+- Four crew profile cards (Prathamesh Kale, Arjun Kale, Rohit Thakare, Shantanu Thakare) with:
+- Custom images from existing assets: `assets/images/pratemesh_1.jpeg`, `assets/images/animesh_arohi.png`, `assets/images/drive_photos/folder_2/FS-103.jpg`, and `assets/images/bg3.JPG.jpeg`.
+- Roles and customized visual storytelling descriptions.
+- Subtle hover layout card lifting and title fade transitions.
+- Append a JavaScript handler to hook the button click event:
+- Transitions `#crew-section` to display (`show()`).
+- Coordinates a smooth vertical scroll using Lenis (or standard window scroll fallback) to focus the user directly onto the new crew section.
+
+---
+
+## Verification Plan
+
+### Manual Verification
+1. Load `about.html` in the browser.
+2. Scroll through the horizontal timeline scenes to reach the last scene.
+3. Verify that the "Return to home" and "Book our crew" buttons are removed and replaced by a single "Visit Team" button.
+4. Click the "Visit Team" button.
+5. Verify that the crew section opens smoothly and scrolls the page down to it.
+6. Verify that the crew cards look exactly like the Webflow crew layout:
+- Grayscale images.
+- Rotates/tilts organic layouts.
+- Satures and scales up on hovering anywhere in the card box.
+- Smoothly displays role descriptions on hover.
+
+<!-- Webflow shared stylesheet -->
+<link
+href="https://cdn.prod.website-files.com/652e625ed083f8127673075c/css/theweddingfilmer.webflow.shared.053fd60dc.css"
+rel="stylesheet" type="text/css" integrity="sha384-BT/WDcoDR0UPj4TL32iliwgXYz16mJ+jEUm6W+qEQGFQ9TmIR6WGu660buYoM/RF"
+crossorigin="anonymous" />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+<script type="text/javascript">
+WebFont.load({
+google: {
+families: ["Lobster:300,400,500,600,700"]
+}
+});
+</script>
+
+<script type="text/javascript">
+!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);
+</script>
+
+<!-- Site Stylesheet -->
+<link rel="stylesheet" href="css/style.css?v=1.1">
+<!-- ForeShadow Brand Style Merge Overrides -->
+<!-- ForeShadow Brand Style Merge Overrides -->
+<style>
+/* 1. Global Background Colors */
+body.body.white,
+.dar_page-wrapper,
+.dar_main-wrapper,
+.dar_scenes-wrapper,
+.scenes-wrapper-1,
+.dar_scene-hero,
+.dar_scene1-s2,
+.dar_scene1-s3,
+.dar_scene1-s4,
+.dar_scene1-s5,
+.dar_scene1-s6,
+.dar_scene1-s6-2,
+.dar_scene1-s7,
+.dar_scene-two,
+.dar_scene2-s1,
+.dar_scene2-s2,
+.dar_scene-three,
+.dar_scene3-s1,
+<a href="index.html" class="nav-overlay-link active" data-page>HOME</a>
+<a href="portfolio.html" class="nav-overlay-link" data-page>STORIES</a>
+<a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
+<a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
+<a href="contact.html" class="nav-overlay-link" data-page>CONTACT</a>
+<div class="nav-overlay-dropdown">
+<a href="#" class="nav-overlay-link" id="mobile-more-toggle">MORE</a>
+<div class="nav-overlay-dropdown-menu" id="mobile-submenu">
+<a href="exclusive.html" class="nav-overlay-dropdown-link" data-page>EXCLUSIVE</a>
+<a href="careers.html" class="nav-overlay-dropdown-link" data-page>CAREERS</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════ HERO — Full Viewport ═══════════════ -->
+<section class="home-hero" id="hometop" style="position: relative; overflow: hidden;">
+<div class="hero-video-bg">
+<iframe
+src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&cc_load_policy=3"
+<!-- MISSING LINE 121 -->
+<!-- MISSING LINE 122 -->
+<!-- MISSING LINE 123 -->
+<!-- MISSING LINE 124 -->
+<!-- MISSING LINE 125 -->
+<!-- MISSING LINE 126 -->
+<!-- MISSING LINE 127 -->
+<!-- MISSING LINE 128 -->
+<!-- MISSING LINE 129 -->
+<!-- MISSING LINE 130 -->
+<!-- MISSING LINE 131 -->
+<!-- MISSING LINE 132 -->
+<!-- MISSING LINE 133 -->
+<!-- MISSING LINE 134 -->
+<!-- MISSING LINE 135 -->
+<!-- MISSING LINE 136 -->
+<!-- MISSING LINE 137 -->
+<!-- MISSING LINE 138 -->
+<!-- MISSING LINE 139 -->
+<!-- MISSING LINE 140 -->
+<!-- MISSING LINE 141 -->
+<!-- MISSING LINE 142 -->
+<!-- MISSING LINE 143 -->
+<!-- MISSING LINE 144 -->
+<!-- MISSING LINE 145 -->
+<!-- MISSING LINE 146 -->
+<!-- MISSING LINE 147 -->
+<!-- MISSING LINE 148 -->
+<!-- MISSING LINE 149 -->
+filter: sepia(1) saturate(3) hue-rotate(-50deg) !important;
+/* Make golden arrows match our brand red/gold */
+}
+
+.dar_h1.is-lobster {
+font-family: 'Lobster', var(--ff-display), serif !important;
+color: var(--clr-brand-red) !important;
+}
+
+/* 5. Custom Buttons */
+.w-button,
+.button-white,
+.button-black {
+font-family: var(--ff-body), sans-serif !important;
+border-radius: 4px !important;
+transition: all 0.3s ease !important;
+}
+
+.button-white {
+background-color: var(--clr-brand-cream) !important;
+color: var(--clr-text) !important;
+border: 1px solid var(--clr-border) !important;
+}
+
+.button-white:hover {
+background-color: var(--clr-text) !important;
+color: var(--clr-brand-cream) !important;
+}
+
+.button-black {
+background-color: var(--clr-brand-red) !important;
+color: #ffffff !important;
+}
+
+.button-black:hover {
+background-color: var(--clr-brand-dark) !important;
+color: #ffffff !important;
+}
+
+/* 6. Success Container Profile styling */
+.dar_success-wrap h3.dar_h3 {
+<!-- MISSING LINE 191 -->
+<!-- MISSING LINE 192 -->
+<!-- MISSING LINE 193 -->
+<!-- MISSING LINE 194 -->
+<!-- MISSING LINE 195 -->
+<!-- MISSING LINE 196 -->
+<!-- MISSING LINE 197 -->
+<!-- MISSING LINE 198 -->
+<!-- MISSING LINE 199 -->
+</svg>
+</a>
+<a href="https://youtube.com/@foreshadow-pkp?si=d2lc0o6XlELBHqq-" target="_blank" aria-label="YouTube">
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"
+stroke-linecap="round" stroke-linejoin="round">
+<path
+d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z">
+</path>
+<polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+</svg>
+</a>
+<a href="#" aria-label="Behance">
+<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+<path
+d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 2.211 1.734 3.007 3.189 3.007 1.525 0 2.452-.764 2.852-1.657l1.715.679zM19.862 13c-.11-1.559-.986-2.546-2.443-2.546-1.407 0-2.285.846-2.501 2.546h4.944zM9.076 21.084H1V3.292h7.474c2.548 0 4.578 1.317 4.578 4.123 0 1.76-.834 2.937-2.249 3.604v.063c1.895.453 2.966 2.07 2.966 3.965 0 3.069-2.377 4.037-4.693 4.037zM7.62 9.724c1.325 0 2.292-.471 2.292-1.838 0-1.468-1.005-1.79-2.352-1.79H4.278v3.628H7.62zm.238 7.559c1.54 0 2.613-.63 2.613-2.218 0-1.589-1.03-2.28-2.613-2.28H4.278v4.498h3.58z" />
+</svg>
+</a>
+</div>
+</div>
+
+<!-- Column 2: Logo -->
+<div class="footer-col" style="display: flex; align-items: center; justify-content: center;">
+<a href="index.html">
+<img src="assets/images/logo.png" alt="ForeShadow" class="footer-brand-img"
+style="height: 300px; max-width: 100%; object-fit: contain; margin: 0 auto;">
+</a>
+</div>
+
+<!-- Column 3: Details -->
+<div class="footer-col">
+<h4 class="footer-heading">DETAILS</h4>
+<div class="footer-details">
+<p>#foreshadow</p>
+<p>Cinematic Wedding Photography by ForeShadow</p>
+<p>INDIA — +91 7887334267</p>
+<p>hello@foreshadow.in</p>
+</div>
+</div>
+
+</div>
+
+<!-- Bottom Bar -->
+<div class="footer-bottom">
+<a href="#pagetop" id="back-to-top">To The Top</a>
+<span>© #foreshadow 2026</span>
+</div>
+</div>
+</footer>
+
+<!-- Custom Cursor -->
+<div class="custom-cursor"></div>
+<div class="custom-cursor-dot"></div>
+
+<!-- ═══════════════ Scripts ═══════════════ -->
+<script src="js/main.js"></script>
+</body>
+
+</html>
+<!-- MISSING LINE 258 -->
+<!-- MISSING LINE 259 -->
+<!-- MISSING LINE 260 -->
+<!-- MISSING LINE 261 -->
+<!-- MISSING LINE 262 -->
+<!-- MISSING LINE 263 -->
+<!-- MISSING LINE 264 -->
+<!-- MISSING LINE 265 -->
+<!-- MISSING LINE 266 -->
+<!-- MISSING LINE 267 -->
+<!-- MISSING LINE 268 -->
+<!-- MISSING LINE 269 -->
+<!-- MISSING LINE 270 -->
+<!-- MISSING LINE 271 -->
+<!-- MISSING LINE 272 -->
+<!-- MISSING LINE 273 -->
+<!-- MISSING LINE 274 -->
+<!-- MISSING LINE 275 -->
+<!-- MISSING LINE 276 -->
+<!-- MISSING LINE 277 -->
+<!-- MISSING LINE 278 -->
+<!-- MISSING LINE 279 -->
+/* 13. Scene Entrance Text Glow */
+.dar-small-text {
+letter-spacing: 0.25em !important;
+text-transform: uppercase !important;
+}
+
+/* 14. About Banner Image Object-Fit */
+.about-us-image {
+object-fit: cover !important;
+object-position: center 30% !important;
+}
+
+/* 15. dar_background-image inside scene-1 */
+.dar_scene-one .dar_background-image {
+object-fit: cover !important;
+object-position: center 30% !important;
+}
+
+/* 16. Color-white class override for brand consistency */
+.color-white {
+color: var(--clr-brand-cream) !important;
+}
+
+/* 17. dar-unreveal background to brand cream */
+.dar-unreveal {
+background-color: var(--clr-bg) !important;
+}
+
+.wf-failed .dar-unreveal {
+display: none !important;
+}
+<!-- MISSING LINE 311 -->
+<!-- MISSING LINE 312 -->
+<!-- MISSING LINE 313 -->
+<!-- MISSING LINE 314 -->
+<!-- MISSING LINE 315 -->
+<!-- MISSING LINE 316 -->
+<!-- MISSING LINE 317 -->
+<!-- MISSING LINE 318 -->
+<!-- MISSING LINE 319 -->
+<!-- MISSING LINE 320 -->
+<!-- MISSING LINE 321 -->
+<!-- MISSING LINE 322 -->
+<!-- MISSING LINE 323 -->
+<!-- MISSING LINE 324 -->
+<!-- MISSING LINE 325 -->
+<!-- MISSING LINE 326 -->
+<!-- MISSING LINE 327 -->
+<!-- MISSING LINE 328 -->
+<!-- MISSING LINE 329 -->
+<!-- MISSING LINE 330 -->
+<!-- MISSING LINE 331 -->
+<!-- MISSING LINE 332 -->
+<!-- MISSING LINE 333 -->
+<!-- MISSING LINE 334 -->
+<!-- MISSING LINE 335 -->
+<!-- MISSING LINE 336 -->
+<!-- MISSING LINE 337 -->
+<!-- MISSING LINE 338 -->
+<!-- MISSING LINE 339 -->
+<!-- MISSING LINE 340 -->
+<!-- MISSING LINE 341 -->
+<!-- MISSING LINE 342 -->
+<!-- MISSING LINE 343 -->
+<!-- MISSING LINE 344 -->
+<!-- MISSING LINE 345 -->
+<!-- MISSING LINE 346 -->
+<!-- MISSING LINE 347 -->
+<!-- MISSING LINE 348 -->
+<!-- MISSING LINE 349 -->
+<!-- MISSING LINE 350 -->
+<!-- MISSING LINE 351 -->
+<!-- MISSING LINE 352 -->
+<!-- MISSING LINE 353 -->
+<!-- MISSING LINE 354 -->
+<!-- MISSING LINE 355 -->
+<!-- MISSING LINE 356 -->
+<!-- MISSING LINE 357 -->
+<!-- MISSING LINE 358 -->
+<!-- MISSING LINE 359 -->
+<!-- MISSING LINE 360 -->
+<!-- MISSING LINE 361 -->
+<!-- MISSING LINE 362 -->
+<!-- MISSING LINE 363 -->
+<!-- MISSING LINE 364 -->
+<!-- MISSING LINE 365 -->
+<!-- MISSING LINE 366 -->
+<!-- MISSING LINE 367 -->
+<!-- MISSING LINE 368 -->
+<!-- MISSING LINE 369 -->
+<!-- MISSING LINE 370 -->
+<!-- MISSING LINE 371 -->
+<!-- MISSING LINE 372 -->
+<!-- MISSING LINE 373 -->
+<!-- MISSING LINE 374 -->
+<!-- MISSING LINE 375 -->
+<!-- MISSING LINE 376 -->
+<!-- MISSING LINE 377 -->
+<!-- MISSING LINE 378 -->
+<!-- MISSING LINE 379 -->
+<!-- MISSING LINE 380 -->
+<!-- MISSING LINE 381 -->
+<!-- MISSING LINE 382 -->
+<!-- MISSING LINE 383 -->
+<!-- MISSING LINE 384 -->
+<!-- MISSING LINE 385 -->
+<!-- MISSING LINE 386 -->
+<!-- MISSING LINE 387 -->
+<!-- MISSING LINE 388 -->
+<!-- MISSING LINE 389 -->
+<!-- MISSING LINE 390 -->
+<!-- MISSING LINE 391 -->
+<!-- MISSING LINE 392 -->
+<!-- MISSING LINE 393 -->
+<!-- MISSING LINE 394 -->
+<!-- MISSING LINE 395 -->
+<!-- MISSING LINE 396 -->
+<!-- MISSING LINE 397 -->
+<!-- MISSING LINE 398 -->
+<!-- MISSING LINE 399 -->
+<!-- MISSING LINE 400 -->
+<!-- MISSING LINE 401 -->
+<!-- MISSING LINE 402 -->
+<!-- MISSING LINE 403 -->
+<!-- MISSING LINE 404 -->
+<!-- MISSING LINE 405 -->
+<!-- MISSING LINE 406 -->
+<!-- MISSING LINE 407 -->
+<!-- MISSING LINE 408 -->
+<!-- MISSING LINE 409 -->
+}
+
+.is-mobile .dar-unreveal {
+display: none !important;
+}
+
+/* Reset height, positioning, and transforms for Scene 1 and Scene 2 on mobile/tablet viewports and mobile state to eliminate blank spaces */
+@media screen and (max-width: 991px) {
+
+.dar_scenes-wrapper,
+.scenes-wrapper-1,
+.dar_scene-one,
+.dar_scene-hero,
+.dar_scene1-s2,
+.dar_scene1-s3,
+.dar_scene1-s4,
+.sticky-scene1-s4,
+.dar_scene1-s5,
+.dar_scene1-s7,
+.dar_scene-two,
+.dar_scene2-s1,
+.dar_scene2-s2,
+.dar_container-medium,
+.dar_container-medium-2,
+.dar_padding-global,
+.dar_padding-global-2,
+.dar_padding-vertical,
+.dar_content-wrapper,
+.dar_content-wrapper-2,
+.dar_2-col-grid-2,
+.dar_s3-image-container-2,
+.dar_s3-content-wrapper,
+.dar_profile-content-2,
+.dar-profile-container-2,
+.w-layout-grid,
+.dar-work-grid,
+.dar-work-content-wrapper,
+.dar_work-image-timeline,
+.dar-timeline-col-1,
+.dar-timeline-col-2,
+.dar-timeline-line,
+.dar-timeline-container,
+.dar_padding-medium,
+.dar-newspaper,
+.dar_image-max-width,
+.spark-section,
+.dar-year-horizontal,
+.dar-year-content,
+.dar_year-image-container,
+.dar_crew-hosp,
+.dar_s2-content,
+.dar_success-container,
+.dar_success-content,
+.dar_success-wrap {
+height: auto !important;
+min-height: 0 !important;
+position: relative !important;
+top: auto !important;
+transform: none !important;
+}
+}
+
+.is-mobile .dar_scenes-wrapper,
+.is-mobile .scenes-wrapper-1,
+.is-mobile .dar_scene-one,
+.is-mobile .dar_scene-hero,
+.is-mobile .dar_scene1-s2,
+.is-mobile .dar_scene1-s3,
+.is-mobile .dar_scene1-s4,
+.is-mobile .sticky-scene1-s4,
+.is-mobile .dar_scene1-s5,
+<!-- MISSING LINE 481 -->
+<!-- MISSING LINE 482 -->
+<!-- MISSING LINE 483 -->
+<!-- MISSING LINE 484 -->
+<!-- MISSING LINE 485 -->
+<!-- MISSING LINE 486 -->
+<!-- MISSING LINE 487 -->
+<!-- MISSING LINE 488 -->
+<!-- MISSING LINE 489 -->
+<!-- MISSING LINE 490 -->
+<!-- MISSING LINE 491 -->
+<!-- MISSING LINE 492 -->
+<!-- MISSING LINE 493 -->
+<!-- MISSING LINE 494 -->
+<!-- MISSING LINE 495 -->
+<!-- MISSING LINE 496 -->
+<!-- MISSING LINE 497 -->
+<!-- MISSING LINE 498 -->
+<!-- MISSING LINE 499 -->
+<!-- MISSING LINE 500 -->
+<!-- MISSING LINE 501 -->
+<!-- MISSING LINE 502 -->
+<!-- MISSING LINE 503 -->
+<!-- MISSING LINE 504 -->
+<!-- MISSING LINE 505 -->
+<!-- MISSING LINE 506 -->
+<!-- MISSING LINE 507 -->
+<!-- MISSING LINE 508 -->
+<!-- MISSING LINE 509 -->
+<!-- MISSING LINE 510 -->
+<!-- MISSING LINE 511 -->
+<!-- MISSING LINE 512 -->
+<!-- MISSING LINE 513 -->
+<!-- MISSING LINE 514 -->
+<!-- MISSING LINE 515 -->
+<!-- MISSING LINE 516 -->
+<!-- MISSING LINE 517 -->
+<!-- MISSING LINE 518 -->
+<!-- MISSING LINE 519 -->
+<!-- MISSING LINE 520 -->
+<!-- MISSING LINE 521 -->
+<!-- MISSING LINE 522 -->
+<!-- MISSING LINE 523 -->
+<!-- MISSING LINE 524 -->
+<!-- MISSING LINE 525 -->
+<!-- MISSING LINE 526 -->
+<!-- MISSING LINE 527 -->
+<!-- MISSING LINE 528 -->
+<!-- MISSING LINE 529 -->
+<!-- MISSING LINE 530 -->
+<!-- MISSING LINE 531 -->
+<!-- MISSING LINE 532 -->
+<!-- MISSING LINE 533 -->
+<!-- MISSING LINE 534 -->
+<!-- MISSING LINE 535 -->
+<!-- MISSING LINE 536 -->
+<!-- MISSING LINE 537 -->
+<!-- MISSING LINE 538 -->
+<!-- MISSING LINE 539 -->
+<!-- MISSING LINE 540 -->
+<!-- MISSING LINE 541 -->
+<!-- MISSING LINE 542 -->
+<!-- MISSING LINE 543 -->
+<!-- MISSING LINE 544 -->
+<!-- MISSING LINE 545 -->
+<!-- MISSING LINE 546 -->
+<!-- MISSING LINE 547 -->
+<!-- MISSING LINE 548 -->
+<!-- MISSING LINE 549 -->
+<!-- MISSING LINE 550 -->
+<!-- MISSING LINE 551 -->
+<!-- MISSING LINE 552 -->
+<!-- MISSING LINE 553 -->
+<!-- MISSING LINE 554 -->
+<!-- MISSING LINE 555 -->
+<!-- MISSING LINE 556 -->
+<!-- MISSING LINE 557 -->
+<!-- MISSING LINE 558 -->
+<!-- MISSING LINE 559 -->
+<!-- MISSING LINE 560 -->
+<!-- MISSING LINE 561 -->
+<!-- MISSING LINE 562 -->
+<!-- MISSING LINE 563 -->
+<!-- MISSING LINE 564 -->
+<!-- MISSING LINE 565 -->
+<!-- MISSING LINE 566 -->
+<!-- MISSING LINE 567 -->
+<!-- MISSING LINE 568 -->
+<!-- MISSING LINE 569 -->
+<!-- MISSING LINE 570 -->
+<!-- MISSING LINE 571 -->
+<!-- MISSING LINE 572 -->
+<!-- MISSING LINE 573 -->
+<!-- MISSING LINE 574 -->
+<!-- MISSING LINE 575 -->
+<!-- MISSING LINE 576 -->
+<!-- MISSING LINE 577 -->
+<!-- MISSING LINE 578 -->
+<!-- MISSING LINE 579 -->
+<!-- MISSING LINE 580 -->
+<!-- MISSING LINE 581 -->
+<!-- MISSING LINE 582 -->
+<!-- MISSING LINE 583 -->
+<!-- MISSING LINE 584 -->
+<!-- MISSING LINE 585 -->
+<!-- MISSING LINE 586 -->
+<!-- MISSING LINE 587 -->
+<!-- MISSING LINE 588 -->
+<!-- MISSING LINE 589 -->
+<!-- MISSING LINE 590 -->
+<!-- MISSING LINE 591 -->
+<!-- MISSING LINE 592 -->
+<!-- MISSING LINE 593 -->
+<!-- MISSING LINE 594 -->
+<!-- MISSING LINE 595 -->
+<!-- MISSING LINE 596 -->
+<!-- MISSING LINE 597 -->
+<!-- MISSING LINE 598 -->
+<!-- MISSING LINE 599 -->
+<!-- MISSING LINE 600 -->
+<!-- MISSING LINE 601 -->
+<!-- MISSING LINE 602 -->
+<!-- MISSING LINE 603 -->
+<!-- MISSING LINE 604 -->
+<!-- MISSING LINE 605 -->
+<!-- MISSING LINE 606 -->
+<!-- MISSING LINE 607 -->
+<!-- MISSING LINE 608 -->
+<!-- MISSING LINE 609 -->
+<!-- MISSING LINE 610 -->
+<!-- MISSING LINE 611 -->
+<!-- MISSING LINE 612 -->
+<!-- MISSING LINE 613 -->
+<!-- MISSING LINE 614 -->
+<!-- MISSING LINE 615 -->
+<!-- MISSING LINE 616 -->
+<!-- MISSING LINE 617 -->
+<!-- MISSING LINE 618 -->
+<!-- MISSING LINE 619 -->
+<!-- MISSING LINE 620 -->
+<!-- MISSING LINE 621 -->
+<!-- MISSING LINE 622 -->
+<!-- MISSING LINE 623 -->
+<!-- MISSING LINE 624 -->
+<!-- MISSING LINE 625 -->
+<!-- MISSING LINE 626 -->
+<!-- MISSING LINE 627 -->
+<!-- MISSING LINE 628 -->
+<!-- MISSING LINE 629 -->
+<!-- MISSING LINE 630 -->
+<!-- MISSING LINE 631 -->
+<!-- MISSING LINE 632 -->
+<!-- MISSING LINE 633 -->
+<!-- MISSING LINE 634 -->
+<!-- MISSING LINE 635 -->
+<!-- MISSING LINE 636 -->
+<!-- MISSING LINE 637 -->
+<!-- MISSING LINE 638 -->
+<!-- MISSING LINE 639 -->
+<!-- MISSING LINE 640 -->
+<!-- MISSING LINE 641 -->
+<!-- MISSING LINE 642 -->
+<!-- MISSING LINE 643 -->
+<!-- MISSING LINE 644 -->
+<!-- MISSING LINE 645 -->
+<!-- MISSING LINE 646 -->
+<!-- MISSING LINE 647 -->
+<!-- MISSING LINE 648 -->
+<!-- MISSING LINE 649 -->
+<!-- MISSING LINE 650 -->
+<!-- MISSING LINE 651 -->
+<!-- MISSING LINE 652 -->
+<!-- MISSING LINE 653 -->
+<!-- MISSING LINE 654 -->
+<!-- MISSING LINE 655 -->
+<!-- MISSING LINE 656 -->
+<!-- MISSING LINE 657 -->
+<!-- MISSING LINE 658 -->
+<!-- MISSING LINE 659 -->
+<!-- MISSING LINE 660 -->
+<!-- MISSING LINE 661 -->
+<!-- MISSING LINE 662 -->
+<!-- MISSING LINE 663 -->
+<!-- MISSING LINE 664 -->
+<!-- MISSING LINE 665 -->
+<!-- MISSING LINE 666 -->
+<!-- MISSING LINE 667 -->
+<!-- MISSING LINE 668 -->
+<!-- MISSING LINE 669 -->
+<!-- MISSING LINE 670 -->
+<!-- MISSING LINE 671 -->
+<!-- MISSING LINE 672 -->
+<!-- MISSING LINE 673 -->
+<!-- MISSING LINE 674 -->
+<!-- MISSING LINE 675 -->
+<!-- MISSING LINE 676 -->
+<!-- MISSING LINE 677 -->
+<!-- MISSING LINE 678 -->
+<!-- MISSING LINE 679 -->
+<!-- MISSING LINE 680 -->
+<!-- MISSING LINE 681 -->
+<!-- MISSING LINE 682 -->
+<!-- MISSING LINE 683 -->
+<!-- MISSING LINE 684 -->
+<!-- MISSING LINE 685 -->
+<!-- MISSING LINE 686 -->
+<!-- MISSING LINE 687 -->
+<!-- MISSING LINE 688 -->
+<!-- MISSING LINE 689 -->
+<!-- MISSING LINE 690 -->
+<!-- MISSING LINE 691 -->
+<!-- MISSING LINE 692 -->
+<!-- MISSING LINE 693 -->
+<!-- MISSING LINE 694 -->
+<!-- MISSING LINE 695 -->
+<!-- MISSING LINE 696 -->
+<!-- MISSING LINE 697 -->
+<!-- MISSING LINE 698 -->
+<!-- MISSING LINE 699 -->
+<!-- MISSING LINE 700 -->
+<!-- MISSING LINE 701 -->
+<!-- MISSING LINE 702 -->
+<!-- MISSING LINE 703 -->
+<!-- MISSING LINE 704 -->
+<!-- MISSING LINE 705 -->
+<!-- MISSING LINE 706 -->
+<!-- MISSING LINE 707 -->
+<!-- MISSING LINE 708 -->
+<!-- MISSING LINE 709 -->
+<!-- MISSING LINE 710 -->
+<!-- MISSING LINE 711 -->
+<!-- MISSING LINE 712 -->
+<!-- MISSING LINE 713 -->
+<!-- MISSING LINE 714 -->
+<!-- MISSING LINE 715 -->
+<!-- MISSING LINE 716 -->
+<!-- MISSING LINE 717 -->
+<!-- MISSING LINE 718 -->
+<!-- MISSING LINE 719 -->
+<!-- MISSING LINE 720 -->
+<!-- MISSING LINE 721 -->
+<!-- MISSING LINE 722 -->
+<!-- MISSING LINE 723 -->
+<!-- MISSING LINE 724 -->
+<!-- MISSING LINE 725 -->
+<!-- MISSING LINE 726 -->
+<!-- MISSING LINE 727 -->
+<!-- MISSING LINE 728 -->
+<!-- MISSING LINE 729 -->
+<!-- MISSING LINE 730 -->
+<!-- MISSING LINE 731 -->
+<!-- MISSING LINE 732 -->
+<!-- MISSING LINE 733 -->
+<!-- MISSING LINE 734 -->
+<!-- MISSING LINE 735 -->
+<!-- MISSING LINE 736 -->
+<!-- MISSING LINE 737 -->
+<!-- MISSING LINE 738 -->
+<!-- MISSING LINE 739 -->
+<!-- MISSING LINE 740 -->
+<!-- MISSING LINE 741 -->
+<!-- MISSING LINE 742 -->
+<!-- MISSING LINE 743 -->
+<!-- MISSING LINE 744 -->
+<!-- MISSING LINE 745 -->
+<!-- MISSING LINE 746 -->
+<!-- MISSING LINE 747 -->
+
+--- STEP 224 CONTENT ---
+Created At: 2026-07-09T08:42:48Z
+Completed At: 2026-07-09T08:42:49Z
+{"File":"d:\\rohit\\Foreshadow-main\\about.html","LineNumber":2380,"LineContent":"                      \u003cimg src=\"assets/images/shantanu_khade.jpg\" loading=\"lazy\" alt=\"Shantanu Khade\" class=\"image-82\"/\u003e"}...
+
+--- STEP 226 CONTENT ---
+Created At: 2026-07-09T08:42:51Z
+Completed At: 2026-07-09T08:42:52Z
+{"File":"d:\\rohit\\Foreshadow-main\\css\\style.css","LineNumber":9685,"LineContent":"    background-image: url('../assets/images/crew.jpg') !important;"}
+{"File":"d:\\rohit\\Foreshadow-main\\about_reconstructed.html","LineNumber":19,"LineContent":"  4. **Scene 4: Our Exceptional Crew** (Showcases your uploaded crew photo `assets/images/crew.jpg` as a full-screen background overlay, with a split layout overlaying the crew member directory list)."}
+{"File":"d:\\rohit\\Foreshadow-main\\about_reconstructed.html","LineNumber":40,"LineContent":"- **Crew Photos**: Replaced both crew images (the background and the drop-down frame card in Scene 6) with your uploaded crew photo `assets/images/crew.jpg` and configured matching local `srcset`."}
+{"File":"d:\\rohit\\Foreshadow-main\\about_reconstructed.html","LineNumber":41,"LineContent":"- **Historical Team Images**: Replaced all other generic `StudioTeam.webp` images in earlier ...
+
+--- STEP 233 CONTENT ---
+I will view lines 2050 to 2130 of `about.html` to find all occurrences of `crew.jpg`....
+
+--- STEP 234 CONTENT ---
+Created At: 2026-07-09T08:43:13Z
+Completed At: 2026-0
+<!-- MISSING LINE 768 -->
+<!-- MISSING LINE 769 -->
+<!-- MISSING LINE 770 -->
+<!-- MISSING LINE 771 -->
+<!-- MISSING LINE 772 -->
+<!-- MISSING LINE 773 -->
+<!-- MISSING LINE 774 -->
+<!-- MISSING LINE 775 -->
+<!-- MISSING LINE 776 -->
+<!-- MISSING LINE 777 -->
+<!-- MISSING LINE 778 -->
+<!-- MISSING LINE 779 -->
+<!-- MISSING LINE 780 -->
+<!-- MISSING LINE 781 -->
+<!-- MISSING LINE 782 -->
+<!-- MISSING LINE 783 -->
+<!-- MISSING LINE 784 -->
+<!-- MISSING LINE 785 -->
+<!-- MISSING LINE 786 -->
+<!-- MISSING LINE 787 -->
+<!-- MISSING LINE 788 -->
+<!-- MISSING LINE 789 -->
+<!-- MISSING LINE 790 -->
+<!-- MISSING LINE 791 -->
+<!-- MISSING LINE 792 -->
+<!-- MISSING LINE 793 -->
+<!-- MISSING LINE 794 -->
+<!-- MISSING LINE 795 -->
+<!-- MISSING LINE 796 -->
+<!-- MISSING LINE 797 -->
+<!-- MISSING LINE 798 -->
+<!-- MISSING LINE 799 -->
+height: auto;
+}
+
+.lenis.lenis-smooth {
+scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+overflow: hidden;
+}
+
+/* Center container layouts */
+.container-medium,
+.container-small,
+.container-large {
+margin-right: auto !important;
+margin-left: auto !important;
+}
+
+/* Fallback for Webflow loading failure */
+.wf-failed *[data-w-id],
+.wf-failed .dar_scenes-wrapper {
+opacity: 1 !important;
+visibility: visible !important;
+}
+
+/* Mobile Overrides for Scene 5 and Crew Sections */
+@media screen and (max-width: 991px) {
+/* Scene 5 Heroes Aspect Ratio and Height overrides */
+.dar_scene-five .dar_scene-hero,
+.dar_scene-six .dar_scene-hero {
+height: auto !important;
+min-height: auto !important;
+aspect-ratio: auto !important;
+}
+.dar_scene-five .dar_scene-hero .dar_padding-vertical.dar_padding-large,
+.dar_scene-six .dar_scene-hero .dar_padding-vertical.dar_padding-large {
+padding-top: 5rem !important;
+padding-bottom: 5rem !important;
+}
+.dar_scene-five .dar_scene-hero .dar_background-image,
+.dar_scene-six .dar_scene-hero .dar_background-image {
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+inset: 0 !important;
+}
+
+/* Scene 5 Video Section Overlay & Layout on mobile */
+.dar_scene6-s1 {
+height: 60vh !important;
+min-height: auto !important;
+position: relative !important;
+top: auto !important;
+transform: none !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+overflow: hidden !important;
+}
+.dar_scene6-s1::after {
+content: '' !important;
+position: absolute !important;
+inset: 0 !important;
+background: rgba(0, 0, 0, 0.45) !important;
+z-index: 2 !important;
+pointer-events: none !important;
+}
+.dar_scene6-s1 .dar_container-medium {
+position: relative !important;
+z-index: 10 !important;
+width: 100% !important;
+padding: 1.5rem !important;
+}
+.dar_scene6-s1 .dar-h2-center {
+color: #ffffff !important;
+text-align: center !important;
+font-size: 1.4rem !important;
+line-height: 1.4 !important;
+text-shadow: 0 2px 8px rgba(0,0,0,0.8) !important;
+margin: 0 auto !important;
+max-width: 90% !important;
+}
+.dar_scene6-s1 .bollywood-img {
+position: absolute !important;
+inset: 0 !important;
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+z-index: 1 !important;
+}
+
+/* Crew Section 50/50 Side-by-Side Mobile Layout */
+.dar_scene6-s2 {
+display: flex !important;
+flex-direction: row !important;
+width: 100% !important;
+height: 60vh !important;
+min-height: 400px !important;
+position: relative !important;
+background-color: var(--clr-bg) !important;
+overflow: hidden !important;
+top: auto !important;
+transform: none !important;
+}
+.dar_scene6-s2 .dar_container-medium {
+width: 50% !important;
+max-width: 50% !important;
+height: 100% !important;
+margin-left: auto !important;
+margin-right: 0 !important;
+padding: 1.5rem !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+z-index: 2 !important;
+position: relative !important;
+}
+.dar_scene6-s2 .dar_padding-global,
+.dar_scene6-s2 .dar_padding-vertical,
+.dar_scene6-s2 .dar_success-container,
+.dar_scene6-s2 .dar_success-content,
+.dar_scene6-s2 .dar_max-width-small,
+.dar_scene6-s2 .dar_success-wrap {
+width: 100% !important;
+max-width: 100% !important;
+margin: 0 !important;
+height: auto !important;
+display: flex !important;
+flex-direction: column !important;
+justify-content: center !important;
+align-items: flex-start !important;
+}
+.dar_scene6-s2 .dar_success-wrap h3.dar_h3 {
+font-size: 1.1rem !important;
+line-height: 1.4 !important;
+text-align: left !important;
+margin-bottom: 1.5rem !important;
+color: var(--clr-text) !important;
+}
+.dar_scene6-s2 .dar_success-wrap .buttons {
+display: flex !important;
+flex-direction: column !important;
+gap: 0.8rem !important;
+width: 100% !important;
+}
+.dar_scene6-s2 .dar_success-wrap .buttons a {
+width: 100% !important;
+max-width: 160px !important;
+padding: 0.6rem 1rem !important;
+font-size: 10px !important;
+text-align: center !important;
+}
+.dar_scene6-s2 .success-absolute-image {
+position: relative !important;
+width: 100% !important;
+height: auto !important;
+aspect-ratio: 5 / 4 !important;
+z-index: 1 !important;
+}
+.dar_scene6-s2 .dar-success-img {
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+}
+}
+
+/* .is-mobile Overrides */
+.is-mobile .dar_scene-five .dar_scene-hero,
+.is-mobile .dar_scene-six .dar_scene-hero {
+height: auto !important;
+min-height: auto !important;
+<!-- MISSING LINE 976 -->
+<!-- MISSING LINE 977 -->
+<!-- MISSING LINE 978 -->
+<!-- MISSING LINE 979 -->
+<!-- MISSING LINE 980 -->
+<!-- MISSING LINE 981 -->
+<!-- MISSING LINE 982 -->
+<!-- MISSING LINE 983 -->
+<!-- MISSING LINE 984 -->
+<!-- MISSING LINE 985 -->
+<!-- MISSING LINE 986 -->
+<!-- MISSING LINE 987 -->
+<!-- MISSING LINE 988 -->
+<!-- MISSING LINE 989 -->
+<!-- MISSING LINE 990 -->
+<!-- MISSING LINE 991 -->
+<!-- MISSING LINE 992 -->
+<!-- MISSING LINE 993 -->
+<!-- MISSING LINE 994 -->
+<!-- MISSING LINE 995 -->
+<!-- MISSING LINE 996 -->
+<!-- MISSING LINE 997 -->
+<!-- MISSING LINE 998 -->
+<!-- MISSING LINE 999 -->
+<!-- MISSING LINE 1000 -->
+<!-- MISSING LINE 1001 -->
+<!-- MISSING LINE 1002 -->
+<!-- MISSING LINE 1003 -->
+<!-- MISSING LINE 1004 -->
+<!-- MISSING LINE 1005 -->
+<!-- MISSING LINE 1006 -->
+<!-- MISSING LINE 1007 -->
+<!-- MISSING LINE 1008 -->
+<!-- MISSING LINE 1009 -->
+<!-- MISSING LINE 1010 -->
+<!-- MISSING LINE 1011 -->
+<!-- MISSING LINE 1012 -->
+<!-- MISSING LINE 1013 -->
+<!-- MISSING LINE 1014 -->
+<!-- MISSING LINE 1015 -->
+<!-- MISSING LINE 1016 -->
+<!-- MISSING LINE 1017 -->
+<!-- MISSING LINE 1018 -->
+<!-- MISSING LINE 1019 -->
+color: #ffffff !important;
+text-align: center !important;
+font-size: 1.4rem !important;
+line-height: 1.4 !important;
+text-shadow: 0 2px 8px rgba(0,0,0,0.8) !important;
+margin: 0 auto !important;
+max-width: 90% !important;
+}
+.is-mobile .dar_scene6-s1 .bollywood-img {
+position: absolute !important;
+inset: 0 !important;
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+z-index: 1 !important;
+}
+
+.is-mobile .dar_scene6-s2 {
+display: flex !important;
+flex-direction: row !important;
+width: 100% !important;
+height: 60vh !important;
+min-height: 400px !important;
+position: relative !important;
+background-color: var(--clr-bg) !important;
+overflow: hidden !important;
+top: auto !important;
+transform: none !important;
+}
+.is-mobile .dar_scene6-s2 .dar_container-medium {
+width: 50% !important;
+max-width: 50% !important;
+height: 100% !important;
+margin-left: auto !important;
+margin-right: 0 !important;
+padding: 1.5rem !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+z-index: 2 !important;
+position: relative !important;
+}
+.is-mobile .dar_scene6-s2 .dar_padding-global,
+.is-mobile .dar_scene6-s2 .dar_padding-vertical,
+.is-mobile .dar_scene6-s2 .dar_success-container,
+.is-mobile .dar_scene6-s2 .dar_success-content,
+.is-mobile .dar_scene6-s2 .dar_max-width-small,
+.is-mobile .dar_scene6-s2 .dar_success-wrap {
+width: 100% !important;
+max-width: 100% !important;
+flex-direction: column !important;
+justify-content: center !important;
+align-items: flex-start !important;
+}
+.is-mobile .dar_scene6-s2 .dar_success-wrap h3.dar_h3 {
+font-size: 1.1rem !important;
+line-height: 1.4 !important;
+text-align: left !important;
+margin-bottom: 1.5rem !important;
+color: var(--clr-text) !important;
+}
+.is-mobile .dar_scene6-s2 .dar_success-wrap .buttons {
+display: flex !important;
+flex-direction: column !important;
+gap: 0.8rem !important;
+width: 100% !important;
+}
+.is-mobile .dar_scene6-s2 .dar_success-wrap .buttons a {
+width: 100% !important;
+max-width: 160px !important;
+padding: 0.6rem 1rem !important;
+font-size: 10px !important;
+text-align: center !important;
+}
+.is-mobile .dar_scene6-s2 .success-absolute-image {
+position: relative !important;
+width: 100% !important;
+height: auto !important;
+aspect-ratio: 5 / 4 !important;
+z-index: 1 !important;
+}
+.is-mobile .dar_scene6-s2 .dar-success-img {
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+}
+}
+.is-mobile .dar_scene6-s2 .dar-success-img {
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+}
+
+/* Make Scene 4 banner white like Scene 5 */
+.dar_scene-five .dar_scene-hero {
+background-color: #ffffff !important;
+color: #000000 !important;
+}
+.dar_scene-five .dar_scene-hero .dar_background-image {
+opacity: 0.15 !important;
+filter: grayscale(100%) !important;
+}
+.dar_scene-five .dar_scene-hero .dar_paragrapgh-large {
+color: var(--clr-text-muted) !important;
+}
+filter: grayscale(100%) !important;
+}
+.dar_scene-five .dar_scene-hero .dar_paragrapgh-large {
+color: var(--clr-text-muted) !important;
+}
+
+/* Ensure timeline content is below the nav bar */
+.dar_scenes-wrapper {
+position: relative;
+z-index: 1;
+}
+
+/* ====================================================
+CREW SECTION MOBILE OVERRIDES (via .is-mobile class)
+These do NOT rely on media queries, so they work
+even with viewport width=1200.
+==================================================== */
+.is-mobile #crew-section .team-banner.dekstop {
+display: block !important;
+}
+.is-mobile #crew-section .team-banner,
+.is-mobile #crew-section .team-banner.dekstop,
+.is-mobile #crew-section .team-banner.mobile {
+height: auto !important;
+min-height: auto !important;
+padding: 0 !important;
+margin: 0 !important;
+}
+.is-mobile #crew-section .team-banner-wrapper {
+width: 100% !important;
+height: auto !important;
+aspect-ratio: 16 / 9 !important;
+min-height: auto !important;
+border-radius: 12px !important;
+margin-bottom: 20px !important;
+}
+.is-mobile #crew-section .crew-list {
+display: grid !important;
+grid-template-columns: repeat(3, 1fr) !important;
+column-gap: 8px !important;
+row-gap: 12px !important;
+padding: 0 5px !important;
+width: 100% !important;
+}
+.is-mobile #crew-section .crew-item {
+}
+.is-mobile #crew-section .crew-item {
+display: block !important;
+width: 100% !important;
+max-width: 100% !important;
+min-width: 0 !important;
+height: auto !important;
+visibility: visible !important;
+opacity: 1 !important;
+}
+.is-mobile #crew-section .crew-box {
+width: 100% !important;
+max-width: 100% !important;
+min-width: 0 !important;
+height: auto !important;
+aspect-ratio: 2 / 3 !important;
+border-radius: 12px !important;
+}
+/* Mobile Crew Popup Modal */
+.crew-popup-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(10, 10, 10, 0.95);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+z-index: 200000;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+opacity: 0;
+transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+padding: 20px;
+box-sizing: border-box;
+}
+.crew-popup-overlay.show {
+opacity: 1;
+}
+.crew-popup-container {
+max-width: 90%;
+max-height: 85%;
+display: flex;
+flex-direction: column;
+align-items: center;
+transform: scale(0.9);
+transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.crew-popup-overlay.show .crew-popup-container {
+transform: scale(1);
+}
+.crew-popup-img-frame {
+position: relative;
+padding: 14px;
+background: rgba(255, 255, 255, 0.12);
+border: 4px solid rgba(255, 255, 255, 0.25);
+border-radius: 22px;
+box-shadow: 
+inset 0 0 20px rgba(255, 255, 255, 0.2),
+0 25px 50px rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+max-width: 100%;
+box-sizing: border-box;
+overflow: hidden;
+}
+.crew-popup-img {
+display: block;
+width: 100%;
+max-height: 48vh;
+object-fit: contain;
+border-radius: 12px;
+filter: grayscale(0%) brightness(1) !important;
+}
+.crew-popup-linear-grad {
+position: absolute;
+bottom: 14px;
+left: 14px;
+right: 14px;
+height: 45%;
+background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+border-bottom-left-radius: 12px;
+border-bottom-right-radius: 12px;
+pointer-events: none;
+z-index: 2;
+}
+.crew-popup-info-overlay {
+position: absolute;
+bottom: 25px;
+left: 25px;
+right: 25px;
+text-align: center;
+color: #ffffff;
+z-index: 3;
+pointer-events: none;
+}
+.crew-popup-name {
+font-family: inherit;
+font-size: 2.6rem;
+font-weight: 700;
+margin: 0;
+letter-spacing: 1px;
+line-height: 1.2;
+text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.crew-popup-title {
+font-family: inherit;
+font-size: 1.3rem;
+color: #e4dcd3;
+margin: 6px 0 0 0;
+text-transform: uppercase;
+letter-spacing: 1.5px;
+font-weight: 500;
+text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+.is-mobile #crew-section .member-name {
+font-size: 0.7rem !important;
+letter-spacing: 0.5px !important;
+}
+.is-mobile #crew-section .job-titel {
+/* These classes are never overwritten */
+.hide {
+display: none !important;
+}
+
+@media screen and (max-width: 991px) {
+
+.hide,
+.hide-tablet {
+display: none !important;
+}
+}
+
+@media screen and (max-width: 767px) {
+.hide-mobile-landscape {
+display: none !important;
+}
+}
+
+@media screen and (max-width: 479px) {
+.hide-mobile {
+display: none !important;
+}
+}
+
+.margin-0 {
+margin: 0rem !important;
+}
+
+.padding-0 {
+<!-- MISSING LINE 1321 -->
+<!-- MISSING LINE 1322 -->
+<!-- MISSING LINE 1323 -->
+<!-- MISSING LINE 1324 -->
+<!-- MISSING LINE 1325 -->
+<!-- MISSING LINE 1326 -->
+<!-- MISSING LINE 1327 -->
+<!-- MISSING LINE 1328 -->
+<!-- MISSING LINE 1329 -->
+<!-- MISSING LINE 1330 -->
+<!-- MISSING LINE 1331 -->
+<!-- MISSING LINE 1332 -->
+<!-- MISSING LINE 1333 -->
+<!-- MISSING LINE 1334 -->
+<!-- MISSING LINE 1335 -->
+<!-- MISSING LINE 1336 -->
+<!-- MISSING LINE 1337 -->
+<!-- MISSING LINE 1338 -->
+<!-- MISSING LINE 1339 -->
+<!-- MISSING LINE 1340 -->
+<!-- MISSING LINE 1341 -->
+<!-- MISSING LINE 1342 -->
+<!-- MISSING LINE 1343 -->
+<!-- MISSING LINE 1344 -->
+<!-- MISSING LINE 1345 -->
+<!-- MISSING LINE 1346 -->
+<!-- MISSING LINE 1347 -->
+<!-- MISSING LINE 1348 -->
+<!-- MISSING LINE 1349 -->
+<!-- MISSING LINE 1350 -->
+<!-- MISSING LINE 1351 -->
+<!-- MISSING LINE 1352 -->
+<!-- MISSING LINE 1353 -->
+<!-- MISSING LINE 1354 -->
+<!-- MISSING LINE 1355 -->
+<!-- MISSING LINE 1356 -->
+<!-- MISSING LINE 1357 -->
+<!-- MISSING LINE 1358 -->
+<!-- MISSING LINE 1359 -->
+<!-- MISSING LINE 1360 -->
+<!-- MISSING LINE 1361 -->
+<!-- MISSING LINE 1362 -->
+<!-- MISSING LINE 1363 -->
+<!-- MISSING LINE 1364 -->
+<!-- MISSING LINE 1365 -->
+<!-- MISSING LINE 1366 -->
+<!-- MISSING LINE 1367 -->
+<!-- MISSING LINE 1368 -->
+<!-- MISSING LINE 1369 -->
+<!-- MISSING LINE 1370 -->
+<!-- MISSING LINE 1371 -->
+<!-- MISSING LINE 1372 -->
+<!-- MISSING LINE 1373 -->
+<!-- MISSING LINE 1374 -->
+<!-- MISSING LINE 1375 -->
+<!-- MISSING LINE 1376 -->
+<!-- MISSING LINE 1377 -->
+<!-- MISSING LINE 1378 -->
+<!-- MISSING LINE 1379 -->
+<!-- MISSING LINE 1380 -->
+<!-- MISSING LINE 1381 -->
+<!-- MISSING LINE 1382 -->
+<!-- MISSING LINE 1383 -->
+<!-- MISSING LINE 1384 -->
+<!-- MISSING LINE 1385 -->
+<!-- MISSING LINE 1386 -->
+<!-- MISSING LINE 1387 -->
+<!-- MISSING LINE 1388 -->
+<!-- MISSING LINE 1389 -->
+<!-- MISSING LINE 1390 -->
+<!-- MISSING LINE 1391 -->
+<!-- MISSING LINE 1392 -->
+<!-- MISSING LINE 1393 -->
+<!-- MISSING LINE 1394 -->
+<!-- MISSING LINE 1395 -->
+<!-- MISSING LINE 1396 -->
+<!-- MISSING LINE 1397 -->
+<!-- MISSING LINE 1398 -->
+<!-- MISSING LINE 1399 -->
+<!-- MISSING LINE 1400 -->
+<!-- MISSING LINE 1401 -->
+<!-- MISSING LINE 1402 -->
+<!-- MISSING LINE 1403 -->
+<!-- MISSING LINE 1404 -->
+<!-- MISSING LINE 1405 -->
+<!-- MISSING LINE 1406 -->
+<!-- MISSING LINE 1407 -->
+<!-- MISSING LINE 1408 -->
+<!-- MISSING LINE 1409 -->
+<!-- MISSING LINE 1410 -->
+<!-- MISSING LINE 1411 -->
+<!-- MISSING LINE 1412 -->
+<!-- MISSING LINE 1413 -->
+<!-- MISSING LINE 1414 -->
+<!-- MISSING LINE 1415 -->
+<!-- MISSING LINE 1416 -->
+<!-- MISSING LINE 1417 -->
+<!-- MISSING LINE 1418 -->
+<!-- MISSING LINE 1419 -->
+<!-- MISSING LINE 1420 -->
+<!-- MISSING LINE 1421 -->
+<!-- MISSING LINE 1422 -->
+<!-- MISSING LINE 1423 -->
+<!-- MISSING LINE 1424 -->
+<!-- MISSING LINE 1425 -->
+<!-- MISSING LINE 1426 -->
+<!-- MISSING LINE 1427 -->
+<!-- MISSING LINE 1428 -->
+<!-- MISSING LINE 1429 -->
+<!-- MISSING LINE 1430 -->
+<!-- MISSING LINE 1431 -->
+<!-- MISSING LINE 1432 -->
+<!-- MISSING LINE 1433 -->
+<!-- MISSING LINE 1434 -->
+<!-- MISSING LINE 1435 -->
+<!-- MISSING LINE 1436 -->
+<!-- MISSING LINE 1437 -->
+<!-- MISSING LINE 1438 -->
+<!-- MISSING LINE 1439 -->
+<!-- MISSING LINE 1440 -->
+<!-- MISSING LINE 1441 -->
+<!-- MISSING LINE 1442 -->
+<!-- MISSING LINE 1443 -->
+<!-- MISSING LINE 1444 -->
+<!-- MISSING LINE 1445 -->
+<!-- MISSING LINE 1446 -->
+<!-- MISSING LINE 1447 -->
+<!-- MISSING LINE 1448 -->
+<!-- MISSING LINE 1449 -->
+<!-- MISSING LINE 1450 -->
+<!-- MISSING LINE 1451 -->
+<!-- MISSING LINE 1452 -->
+<!-- MISSING LINE 1453 -->
+<!-- MISSING LINE 1454 -->
+<!-- MISSING LINE 1455 -->
+<!-- MISSING LINE 1456 -->
+<!-- MISSING LINE 1457 -->
+<!-- MISSING LINE 1458 -->
+<!-- MISSING LINE 1459 -->
+<!-- MISSING LINE 1460 -->
+<!-- MISSING LINE 1461 -->
+<!-- MISSING LINE 1462 -->
+<!-- MISSING LINE 1463 -->
+<!-- MISSING LINE 1464 -->
+<!-- MISSING LINE 1465 -->
+<!-- MISSING LINE 1466 -->
+<!-- MISSING LINE 1467 -->
+<!-- MISSING LINE 1468 -->
+<!-- MISSING LINE 1469 -->
+<!-- MISSING LINE 1470 -->
+<!-- MISSING LINE 1471 -->
+<!-- MISSING LINE 1472 -->
+<!-- MISSING LINE 1473 -->
+<!-- MISSING LINE 1474 -->
+<!-- MISSING LINE 1475 -->
+<!-- MISSING LINE 1476 -->
+<!-- MISSING LINE 1477 -->
+<!-- MISSING LINE 1478 -->
+<!-- MISSING LINE 1479 -->
+<!-- MISSING LINE 1480 -->
+<!-- MISSING LINE 1481 -->
+<!-- MISSING LINE 1482 -->
+<!-- MISSING LINE 1483 -->
+<!-- MISSING LINE 1484 -->
+<!-- MISSING LINE 1485 -->
+<!-- MISSING LINE 1486 -->
+<!-- MISSING LINE 1487 -->
+<!-- MISSING LINE 1488 -->
+<!-- MISSING LINE 1489 -->
+<!-- MISSING LINE 1490 -->
+<!-- MISSING LINE 1491 -->
+<!-- MISSING LINE 1492 -->
+<!-- MISSING LINE 1493 -->
+<!-- MISSING LINE 1494 -->
+<!-- MISSING LINE 1495 -->
+<!-- MISSING LINE 1496 -->
+<!-- MISSING LINE 1497 -->
+<!-- MISSING LINE 1498 -->
+<!-- MISSING LINE 1499 -->
+<!-- MISSING LINE 1500 -->
+<!-- MISSING LINE 1501 -->
+<!-- MISSING LINE 1502 -->
+<!-- MISSING LINE 1503 -->
+<!-- MISSING LINE 1504 -->
+<!-- MISSING LINE 1505 -->
+<!-- MISSING LINE 1506 -->
+<!-- MISSING LINE 1507 -->
+<!-- MISSING LINE 1508 -->
+<!-- MISSING LINE 1509 -->
+<!-- MISSING LINE 1510 -->
+<!-- MISSING LINE 1511 -->
+<!-- MISSING LINE 1512 -->
+<!-- MISSING LINE 1513 -->
+<!-- MISSING LINE 1514 -->
+<!-- MISSING LINE 1515 -->
+<!-- MISSING LINE 1516 -->
+<!-- MISSING LINE 1517 -->
+<!-- MISSING LINE 1518 -->
+<!-- MISSING LINE 1519 -->
+<!-- MISSING LINE 1520 -->
+<!-- MISSING LINE 1521 -->
+<!-- MISSING LINE 1522 -->
+<!-- MISSING LINE 1523 -->
+<!-- MISSING LINE 1524 -->
+<!-- MISSING LINE 1525 -->
+<!-- MISSING LINE 1526 -->
+<!-- MISSING LINE 1527 -->
+<!-- MISSING LINE 1528 -->
+<!-- MISSING LINE 1529 -->
+<!-- MISSING LINE 1530 -->
+<!-- MISSING LINE 1531 -->
+<!-- MISSING LINE 1532 -->
+<!-- MISSING LINE 1533 -->
+<!-- MISSING LINE 1534 -->
+<!-- MISSING LINE 1535 -->
+<!-- MISSING LINE 1536 -->
+<!-- MISSING LINE 1537 -->
+<!-- MISSING LINE 1538 -->
+<!-- MISSING LINE 1539 -->
+<!-- MISSING LINE 1540 -->
+<!-- MISSING LINE 1541 -->
+<!-- MISSING LINE 1542 -->
+<!-- MISSING LINE 1543 -->
+<!-- MISSING LINE 1544 -->
+<!-- MISSING LINE 1545 -->
+<!-- MISSING LINE 1546 -->
+<!-- MISSING LINE 1547 -->
+<!-- MISSING LINE 1548 -->
+<!-- MISSING LINE 1549 -->
+<!-- MISSING LINE 1550 -->
+<!-- MISSING LINE 1551 -->
+<!-- MISSING LINE 1552 -->
+<!-- MISSING LINE 1553 -->
+<!-- MISSING LINE 1554 -->
+<!-- MISSING LINE 1555 -->
+<!-- MISSING LINE 1556 -->
+<!-- MISSING LINE 1557 -->
+<!-- MISSING LINE 1558 -->
+<!-- MISSING LINE 1559 -->
+<!-- MISSING LINE 1560 -->
+<!-- MISSING LINE 1561 -->
+<!-- MISSING LINE 1562 -->
+<!-- MISSING LINE 1563 -->
+<!-- MISSING LINE 1564 -->
+<!-- MISSING LINE 1565 -->
+<!-- MISSING LINE 1566 -->
+<!-- MISSING LINE 1567 -->
+<!-- MISSING LINE 1568 -->
+<!-- MISSING LINE 1569 -->
+<!-- MISSING LINE 1570 -->
+<!-- MISSING LINE 1571 -->
+<!-- MISSING LINE 1572 -->
+<!-- MISSING LINE 1573 -->
+<!-- MISSING LINE 1574 -->
+<!-- MISSING LINE 1575 -->
+<!-- MISSING LINE 1576 -->
+<!-- MISSING LINE 1577 -->
+<!-- MISSING LINE 1578 -->
+<!-- MISSING LINE 1579 -->
+<!-- MISSING LINE 1580 -->
+<!-- MISSING LINE 1581 -->
+<!-- MISSING LINE 1582 -->
+<!-- MISSING LINE 1583 -->
+<!-- MISSING LINE 1584 -->
+<!-- MISSING LINE 1585 -->
+<!-- MISSING LINE 1586 -->
+<!-- MISSING LINE 1587 -->
+<!-- MISSING LINE 1588 -->
+<!-- MISSING LINE 1589 -->
+<!-- MISSING LINE 1590 -->
+<!-- MISSING LINE 1591 -->
+<!-- MISSING LINE 1592 -->
+<!-- MISSING LINE 1593 -->
+<!-- MISSING LINE 1594 -->
+<!-- MISSING LINE 1595 -->
+<!-- MISSING LINE 1596 -->
+<!-- MISSING LINE 1597 -->
+<!-- MISSING LINE 1598 -->
+<!-- MISSING LINE 1599 -->
+<!-- MISSING LINE 1600 -->
+<!-- MISSING LINE 1601 -->
+<!-- MISSING LINE 1602 -->
+<!-- MISSING LINE 1603 -->
+<!-- MISSING LINE 1604 -->
+<!-- MISSING LINE 1605 -->
+<!-- MISSING LINE 1606 -->
+<!-- MISSING LINE 1607 -->
+<!-- MISSING LINE 1608 -->
+<!-- MISSING LINE 1609 -->
+<!-- MISSING LINE 1610 -->
+<!-- MISSING LINE 1611 -->
+<!-- MISSING LINE 1612 -->
+<!-- MISSING LINE 1613 -->
+<!-- MISSING LINE 1614 -->
+<!-- MISSING LINE 1615 -->
+<!-- MISSING LINE 1616 -->
+<!-- MISSING LINE 1617 -->
+<!-- MISSING LINE 1618 -->
+<!-- MISSING LINE 1619 -->
+<!-- MISSING LINE 1620 -->
+<!-- MISSING LINE 1621 -->
+<!-- MISSING LINE 1622 -->
+<!-- MISSING LINE 1623 -->
+<!-- MISSING LINE 1624 -->
+<!-- MISSING LINE 1625 -->
+<!-- MISSING LINE 1626 -->
+<!-- MISSING LINE 1627 -->
+<!-- MISSING LINE 1628 -->
+<!-- MISSING LINE 1629 -->
+<div data-video-urls="" data-autoplay="true" data-loop="false" data-wf-ignore="true"
+class="about-us-video hidden w-background-video w-background-video-atom"><video
+id="abf91488-65df-d27f-13ee-9ae5db26f57f-video" autoplay="" muted="" playsinline="" data-wf-ignore="true"
+data-object-fit="cover"></video></div>
+<div class="dar-grid-text-wrapper">
+<div class="dar-text-content">
+<div class="dar-small-text is-hidde">journey</div>
+<h3 class="dar_h3">ForeShadow<br />based on a true story.</h3>
+</div>
+</div><img src="assets/images/pratemesh_bg.jpeg" loading="lazy" sizes="100vw" srcset="" alt=""
+class="about-us-image" />
+</div>
+</div>
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d161" class="dar_scenes-wrapper">
+<section id="scene-1" data-w-id="0983370e-ed59-f207-8991-e19cbf04d1a5" class="dar_scene-one">
+<div class="scenes-wrapper-1">
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d1a7" class="dar_scene-hero">
+<div class="dar_container-medium">
+<div class="dar_padding-global">
+<div class="dar_padding-vertical dar_padding-large sc">
+<div class="dar_content-wrapper">
+<p class="dar_paragrapgh-large">Scene 1</p>
+<h1 class="dar_h1 is-lobster">Where it all began</h1>
+</div>
+</div>
+</div>
+</div><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp"
+loading="lazy" sizes="(max-width: 5790px) 100vw, 5790px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2000w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 3200w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 5790w"
+alt="" class="dar_background-image" />
+</div>
+<div class="dar_scene1-s2">
+<div class="dar_container-medium">
+<div class="dar_padding-global">
+<div class="dar_padding-vertical dar_padding-medium dar-newspaper">
+<div class="dar-menu-mobile">Scene 3</div>
+</a><a href="#scene-6" class="dar-mobile-menu w-inline-block"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605ac65baf12fc3fd47f31_arrow%20white.svg"
+loading="lazy" alt="" />
+<div class="dar-menu-mobile">Scene 4</div>
+</a></div>
+</div>
+</div>
+<div class="dar-arrow"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a5c453260e6815c622c_arrow-gold.webp"
+loading="lazy" alt="" class="golden-arrow" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a5c453260e6815c6225_down-arrow.webp"
+loading="lazy" alt="" class="black-arrow" /></div><a href="/" class="dar_exit w-inline-block"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605ad1affd4d47bf867065_arrow.svg"
+loading="lazy" alt="" class="exit-arrow" />
+loading="lazy" sizes="100vw"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a69453260e6815c69ec_NEWSPAPER%20QUOTE.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a69453260e6815c69ec_NEWSPAPER%20QUOTE.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a69453260e6815c69ec_NEWSPAPER%20QUOTE.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a69453260e6815c69ec_NEWSPAPER%20QUOTE.webp 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a69453260e6815c69ec_NEWSPAPER%20QUOTE.webp 1936w"
+alt="" class="dar_background-image" />
+</div>
+</div>
+<div data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aeab" class="dar_scene1-s3">
+<div class="dar_container-medium-2">
+<div class="dar_padding-global-2">
+<div class="dar_padding-vertical dar_padding-medium">
+<div class="dar_content-wrapper-2">
+<div class="dar_2-col-grid-2">
+<div class="dar_s3-image-container-2">
+<div class="dar_max-width-large"><img sizes="(max-width: 1919px) 100vw, 1587.998046875px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/6662c49022df5e37c9d228c4_lakda-p
+<!-- MISSING LINE 1695 -->
+<!-- MISSING LINE 1696 -->
+<!-- MISSING LINE 1697 -->
+<!-- MISSING LINE 1698 -->
+<!-- MISSING LINE 1699 -->
+<!-- MISSING LINE 1700 -->
+<!-- MISSING LINE 1701 -->
+<!-- MISSING LINE 1702 -->
+<!-- MISSING LINE 1703 -->
+<!-- MISSING LINE 1704 -->
+<!-- MISSING LINE 1705 -->
+<!-- MISSING LINE 1706 -->
+<!-- MISSING LINE 1707 -->
+<!-- MISSING LINE 1708 -->
+<!-- MISSING LINE 1709 -->
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9e7b286e33fa3f4fd72a2_2.avif"
+alt="" class="image-105" /></div>
+<div class="dar_profile-divider-2"></div>
+<div data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aebf"
+style="-webkit-transform:translate3d(0, -50px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -50px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -50px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -50px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+class="dar_profile-frame dar_rotate-1"><img loading="lazy"
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9e82dab0241ae79b489bf_Polaroid%20Grid.avif"
+alt="" class="image-106" /></div>
+<div data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aec1"
+style="-webkit-transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+class="dar_profile-divider-2"></div>
+<div data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aec2"
+style="-webkit-transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+class="dar_profile-frame dar_rotate-2"><img loading="lazy"
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f36b56b67fa6085061fb0_2.avif"
+alt="" class="image-113" /></div>
+</div>
+</div>
+<div class="dar-profile-col-2">
+<div data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aec5" style="opacity:0"
+class="dar_chain-container-2"><img loading="lazy"
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a1b453260e6815c39a8_chain-2.webp"
+alt="" class="dar_chain-2-2" /></div>
+<div class="dar_profiles-2">
+
+<!-- MISSING LINE 1735 -->
+<!-- MISSING LINE 1736 -->
+<!-- MISSING LINE 1737 -->
+<!-- MISSING LINE 1738 -->
+<!-- MISSING LINE 1739 -->
+<!-- MISSING LINE 1740 -->
+<!-- MISSING LINE 1741 -->
+<!-- MISSING LINE 1742 -->
+<!-- MISSING LINE 1743 -->
+<!-- MISSING LINE 1744 -->
+<!-- MISSING LINE 1745 -->
+<!-- MISSING LINE 1746 -->
+<!-- MISSING LINE 1747 -->
+<!-- MISSING LINE 1748 -->
+<!-- MISSING LINE 1749 -->
+<!-- MISSING LINE 1750 -->
+<!-- MISSING LINE 1751 -->
+<!-- MISSING LINE 1752 -->
+<!-- MISSING LINE 1753 -->
+<!-- MISSING LINE 1754 -->
+<!-- MISSING LINE 1755 -->
+<!-- MISSING LINE 1756 -->
+<!-- MISSING LINE 1757 -->
+<!-- MISSING LINE 1758 -->
+<!-- MISSING LINE 1759 -->
+<!-- MISSING LINE 1760 -->
+<!-- MISSING LINE 1761 -->
+<!-- MISSING LINE 1762 -->
+<!-- MISSING LINE 1763 -->
+<!-- MISSING LINE 1764 -->
+alt="" class="image-109" /></div>
+<div data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aed9"
+style="-webkit-transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -100px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+class="dar_profile-divider-2"></div>
+<div data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aeda"
+style="-webkit-transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -150px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
+class="dar_profile-frame dar_rotate-9"><img loading="lazy"
+src="assets/images/pratemesh_1.jpeg" alt="Prathamesh Kale" class="image-110" />
+</div>
+</div>
+</div>
+</div><img style="height:40rem" data-w-id="7fd938d0-3224-7bd3-0c86-756c7e04aedc" alt=""
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a1a453260e6815c3946_red-aero.webp"
+loading="lazy" class="dar_red-aero-2" />
+</div>
+</div>
+</div>
+<div class="dar_s3-content-wrapper">
+<div class="dar_max-width-small">
+<div class="dar_profile-content-2">
+<div class="dar-profile-container-2">
+<!-- MISSING LINE 1786 -->
+<!-- MISSING LINE 1787 -->
+<!-- MISSING LINE 1788 -->
+<!-- MISSING LINE 1789 -->
+<!-- MISSING LINE 1790 -->
+<!-- MISSING LINE 1791 -->
+<!-- MISSING LINE 1792 -->
+<!-- MISSING LINE 1793 -->
+<!-- MISSING LINE 1794 -->
+<!-- MISSING LINE 1795 -->
+<!-- MISSING LINE 1796 -->
+<!-- MISSING LINE 1797 -->
+<!-- MISSING LINE 1798 -->
+<!-- MISSING LINE 1799 -->
+<!-- MISSING LINE 1800 -->
+<!-- MISSING LINE 1801 -->
+<!-- MISSING LINE 1802 -->
+<!-- MISSING LINE 1803 -->
+<!-- MISSING LINE 1804 -->
+<!-- MISSING LINE 1805 -->
+<!-- MISSING LINE 1806 -->
+<!-- MISSING LINE 1807 -->
+<!-- MISSING LINE 1808 -->
+<!-- MISSING LINE 1809 -->
+<!-- MISSING LINE 1810 -->
+<!-- MISSING LINE 1811 -->
+<!-- MISSING LINE 1812 -->
+<!-- MISSING LINE 1813 -->
+<!-- MISSING LINE 1814 -->
+<!-- MISSING LINE 1815 -->
+<!-- MISSING LINE 1816 -->
+<!-- MISSING LINE 1817 -->
+<!-- MISSING LINE 1818 -->
+<!-- MISSING LINE 1819 -->
+<!-- MISSING LINE 1820 -->
+<!-- MISSING LINE 1821 -->
+<!-- MISSING LINE 1822 -->
+<!-- MISSING LINE 1823 -->
+<!-- MISSING LINE 1824 -->
+<!-- MISSING LINE 1825 -->
+<!-- MISSING LINE 1826 -->
+<!-- MISSING LINE 1827 -->
+<!-- MISSING LINE 1828 -->
+<!-- MISSING LINE 1829 -->
+<!-- MISSING LINE 1830 -->
+<!-- MISSING LINE 1831 -->
+<!-- MISSING LINE 1832 -->
+<!-- MISSING LINE 1833 -->
+<!-- MISSING LINE 1834 -->
+<!-- MISSING LINE 1835 -->
+<!-- MISSING LINE 1836 -->
+<!-- MISSING LINE 1837 -->
+<!-- MISSING LINE 1838 -->
+<!-- MISSING LINE 1839 -->
+<!-- MISSING LINE 1840 -->
+<!-- MISSING LINE 1841 -->
+<!-- MISSING LINE 1842 -->
+<!-- MISSING LINE 1843 -->
+<!-- MISSING LINE 1844 -->
+<!-- MISSING LINE 1845 -->
+<!-- MISSING LINE 1846 -->
+<!-- MISSING LINE 1847 -->
+<!-- MISSING LINE 1848 -->
+<!-- MISSING LINE 1849 -->
+<!-- MISSING LINE 1850 -->
+<!-- MISSING LINE 1851 -->
+<!-- MISSING LINE 1852 -->
+<!-- MISSING LINE 1853 -->
+<!-- MISSING LINE 1854 -->
+<!-- MISSING LINE 1855 -->
+<!-- MISSING LINE 1856 -->
+<!-- MISSING LINE 1857 -->
+<!-- MISSING LINE 1858 -->
+<!-- MISSING LINE 1859 -->
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d22f" class="dar_work-point"></div>
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d230" class="dar_work-point"></div>
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d231" class="dar_work-point"></div><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605adf3b7764e8bdcbbb32_line.png"
+loading="lazy" data-w-id="0983370e-ed59-f207-8991-e19cbf04d232" alt=""
+class="dar_work-divider" />
+</div>
+<div class="dar-timeline-col-2">
+<div class="dar-timeline-container">
+<p class="dar-timeline-year">2001</p><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9e917e4eb73b8488ec174_1.avif"
+loading="lazy" alt="" />
+</div>
+<div class="dar-timeline-container">
+<p class="dar-timeline-year">2005</p><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9e91786e33fa3f4fef5aa_2.avif"
+loading="lazy" alt="" />
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d23c" class="dar-unreveal"
+<!-- MISSING LINE 1878 -->
+<!-- MISSING LINE 1879 -->
+<!-- MISSING LINE 1880 -->
+<!-- MISSING LINE 1881 -->
+<!-- MISSING LINE 1882 -->
+<!-- MISSING LINE 1883 -->
+<!-- MISSING LINE 1884 -->
+<!-- MISSING LINE 1885 -->
+<!-- MISSING LINE 1886 -->
+<!-- MISSING LINE 1887 -->
+<!-- MISSING LINE 1888 -->
+<!-- MISSING LINE 1889 -->
+<!-- MISSING LINE 1890 -->
+<!-- MISSING LINE 1891 -->
+<!-- MISSING LINE 1892 -->
+<!-- MISSING LINE 1893 -->
+<!-- MISSING LINE 1894 -->
+<!-- MISSING LINE 1895 -->
+<!-- MISSING LINE 1896 -->
+<!-- MISSING LINE 1897 -->
+<!-- MISSING LINE 1898 -->
+<!-- MISSING LINE 1899 -->
+<!-- MISSING LINE 1900 -->
+<!-- MISSING LINE 1901 -->
+<!-- MISSING LINE 1902 -->
+<!-- MISSING LINE 1903 -->
+<!-- MISSING LINE 1904 -->
+<!-- MISSING LINE 1905 -->
+<!-- MISSING LINE 1906 -->
+<!-- MISSING LINE 1907 -->
+<!-- MISSING LINE 1908 -->
+<!-- MISSING LINE 1909 -->
+<!-- MISSING LINE 1910 -->
+<!-- MISSING LINE 1911 -->
+<!-- MISSING LINE 1912 -->
+<!-- MISSING LINE 1913 -->
+<!-- MISSING LINE 1914 -->
+<!-- MISSING LINE 1915 -->
+<!-- MISSING LINE 1916 -->
+<!-- MISSING LINE 1917 -->
+<!-- MISSING LINE 1918 -->
+<!-- MISSING LINE 1919 -->
+<!-- MISSING LINE 1920 -->
+<!-- MISSING LINE 1921 -->
+<!-- MISSING LINE 1922 -->
+<!-- MISSING LINE 1923 -->
+<!-- MISSING LINE 1924 -->
+<p class="dar_paragrapgh-large">Scene 2</p>
+<h1 class="dar_h1 is-lobster">The Birth</h1>
+</div>
+</div>
+</div>
+</div><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp"
+loading="lazy" sizes="(max-width: 5790px) 100vw, 5790px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2000w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 3200w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 5790w"
+alt="" class="dar_background-image" />
+</div>
+<div class="dar_scene2-s1">
+<div class="dar_container-medium">
+<div class="dar_padding-global">
+<div class="dar_padding-vertical dar_padding-top">
+<div class="dar_content-wrapper">
+<!-- MISSING LINE 1941 -->
+<!-- MISSING LINE 1942 -->
+<!-- MISSING LINE 1943 -->
+<!-- MISSING LINE 1944 -->
+<!-- MISSING LINE 1945 -->
+<!-- MISSING LINE 1946 -->
+<!-- MISSING LINE 1947 -->
+<!-- MISSING LINE 1948 -->
+<!-- MISSING LINE 1949 -->
+<!-- MISSING LINE 1950 -->
+<!-- MISSING LINE 1951 -->
+<!-- MISSING LINE 1952 -->
+<!-- MISSING LINE 1953 -->
+<!-- MISSING LINE 1954 -->
+<!-- MISSING LINE 1955 -->
+<!-- MISSING LINE 1956 -->
+<!-- MISSING LINE 1957 -->
+<!-- MISSING LINE 1958 -->
+<!-- MISSING LINE 1959 -->
+<!-- MISSING LINE 1960 -->
+<!-- MISSING LINE 1961 -->
+<!-- MISSING LINE 1962 -->
+<!-- MISSING LINE 1963 -->
+<!-- MISSING LINE 1964 -->
+<!-- MISSING LINE 1965 -->
+<!-- MISSING LINE 1966 -->
+<!-- MISSING LINE 1967 -->
+<!-- MISSING LINE 1968 -->
+<!-- MISSING LINE 1969 -->
+<!-- MISSING LINE 1970 -->
+<!-- MISSING LINE 1971 -->
+<!-- MISSING LINE 1972 -->
+<!-- MISSING LINE 1973 -->
+<!-- MISSING LINE 1974 -->
+<!-- MISSING LINE 1975 -->
+<!-- MISSING LINE 1976 -->
+<!-- MISSING LINE 1977 -->
+<!-- MISSING LINE 1978 -->
+<!-- MISSING LINE 1979 -->
+<!-- MISSING LINE 1980 -->
+<!-- MISSING LINE 1981 -->
+<!-- MISSING LINE 1982 -->
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 1189w"
+class="dar-img-2" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605aed3b7764e8bdcbcd60_sufi.webp"
+loading="lazy" sizes="(max-width: 991px) 100vw, 935.99609375px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605aed3b7764e8bdcbcd60_sufi.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605aed3b7764e8bdcbcd60_sufi.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605aed3b7764e8bdcbcd60_sufi.webp 936w"
+alt="" class="dar-img-4" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a1e453260e6815c3c07_Vector.webp"
+loading="lazy" alt="" class="dar-img-3" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a6f5e65176e9b47e10a_SUFII%201.webp"
+loading="lazy" alt="" class="dar-img-1" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="scene-3" data-w-id="0983370e-ed59-f207-8991-e19cbf04d2c7" class="dar_scene-three">
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d2c8" class="dar_scene-hero no-margin">
+<div class="dar_container-medium">
+<div class="dar_padding-global">
+<div class="dar_padding-vertical dar_padding-large">
+<div class="dar_content-wrapper">
+<p class="dar_paragrapgh-large">Scene 3</p>
+<h1 class="dar_h1 is-lobster">Exploring New Horizons</h1>
+</div>
+</div>
+</div>
+</div><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp"
+loading="lazy" sizes="(max-width: 5790px) 100vw, 5790px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2000w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 3200w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 5790w"
+alt="" class="dar_background-image" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/6664208e5efd4629c0e0ac6f_TWF%20HOT%20AIR%20BALOON%2011234567.webp"
+loading="lazy" alt="" class="parachute-1" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/6664208e5efd4629c0e0ac6f_TWF%20HOT%20AIR%20BALOON%2011234567.webp"
+loading="lazy" data-w-id="0983370e-ed59-f207-8991-e19cbf04d2d3" alt="" class="parachute-2" />
+</div>
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d2d4" class="dar_scene3-s1">
+<!-- MISSING LINE 2023 -->
+<!-- MISSING LINE 2024 -->
+<!-- MISSING LINE 2025 -->
+<!-- MISSING LINE 2026 -->
+<!-- MISSING LINE 2027 -->
+<!-- MISSING LINE 2028 -->
+<!-- MISSING LINE 2029 -->
+<!-- MISSING LINE 2030 -->
+<!-- MISSING LINE 2031 -->
+<!-- MISSING LINE 2032 -->
+<!-- MISSING LINE 2033 -->
+<!-- MISSING LINE 2034 -->
+<!-- MISSING LINE 2035 -->
+<!-- MISSING LINE 2036 -->
+<!-- MISSING LINE 2037 -->
+<!-- MISSING LINE 2038 -->
+<!-- MISSING LINE 2039 -->
+<!-- MISSING LINE 2040 -->
+<!-- MISSING LINE 2041 -->
+<!-- MISSING LINE 2042 -->
+<!-- MISSING LINE 2043 -->
+<!-- MISSING LINE 2044 -->
+<!-- MISSING LINE 2045 -->
+<!-- MISSING LINE 2046 -->
+<!-- MISSING LINE 2047 -->
+<!-- MISSING LINE 2048 -->
+<!-- MISSING LINE 2049 -->
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1.webp"
+alt="" sizes="(max-width: 1050px) 100vw, 1050px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1-p-800.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1.webp 1050w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1.webp"
+alt="" sizes="(max-width: 767px) 100vw, 692.998046875px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1.webp 693w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2.webp"
+alt="" sizes="(max-width: 1050px) 100vw, 1050px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116
+<!-- MISSING LINE 2063 -->
+<!-- MISSING LINE 2064 -->
+<!-- MISSING LINE 2065 -->
+<!-- MISSING LINE 2066 -->
+<!-- MISSING LINE 2067 -->
+<!-- MISSING LINE 2068 -->
+<!-- MISSING LINE 2069 -->
+<!-- MISSING LINE 2070 -->
+<!-- MISSING LINE 2071 -->
+<!-- MISSING LINE 2072 -->
+<!-- MISSING LINE 2073 -->
+<!-- MISSING LINE 2074 -->
+<!-- MISSING LINE 2075 -->
+<!-- MISSING LINE 2076 -->
+<!-- MISSING LINE 2077 -->
+<!-- MISSING LINE 2078 -->
+<!-- MISSING LINE 2079 -->
+<!-- MISSING LINE 2080 -->
+<!-- MISSING LINE 2081 -->
+<!-- MISSING LINE 2082 -->
+<!-- MISSING LINE 2083 -->
+<!-- MISSING LINE 2084 -->
+<!-- MISSING LINE 2085 -->
+<!-- MISSING LINE 2086 -->
+<!-- MISSING LINE 2087 -->
+<!-- MISSING LINE 2088 -->
+<!-- MISSING LINE 2089 -->
+<!-- MISSING LINE 2090 -->
+<!-- MISSING LINE 2091 -->
+<!-- MISSING LINE 2092 -->
+<!-- MISSING LINE 2093 -->
+<!-- MISSING LINE 2094 -->
+<!-- MISSING LINE 2095 -->
+<!-- MISSING LINE 2096 -->
+<!-- MISSING LINE 2097 -->
+<!-- MISSING LINE 2098 -->
+<!-- MISSING LINE 2099 -->
+<!-- MISSING LINE 2100 -->
+<!-- MISSING LINE 2101 -->
+<!-- MISSING LINE 2102 -->
+<!-- MISSING LINE 2103 -->
+<!-- MISSING LINE 2104 -->
+<!-- MISSING LINE 2105 -->
+<!-- MISSING LINE 2106 -->
+<!-- MISSING LINE 2107 -->
+<!-- MISSING LINE 2108 -->
+<!-- MISSING LINE 2109 -->
+<!-- MISSING LINE 2110 -->
+<!-- MISSING LINE 2111 -->
+<!-- MISSING LINE 2112 -->
+<!-- MISSING LINE 2113 -->
+<!-- MISSING LINE 2114 -->
+<!-- MISSING LINE 2115 -->
+<!-- MISSING LINE 2116 -->
+<!-- MISSING LINE 2117 -->
+<!-- MISSING LINE 2118 -->
+<!-- MISSING LINE 2119 -->
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf31ee7c1c72c2047d9feb_4.webp"
+alt="" sizes="(max-width: 767px) 100vw, 639.00390625px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf31ee7c1c72c2047d9feb_4-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf31ee7c1c72c2047d9feb_4.webp 639w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9acb362c97bff1dd12bc7_3.avif"
+alt="" class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9acb362c97bff1dd12bc4_4.avif"
+<!-- MISSING LINE 2131 -->
+<!-- MISSING LINE 2132 -->
+<!-- MISSING LINE 2133 -->
+<!-- MISSING LINE 2134 -->
+<!-- MISSING LINE 2135 -->
+<!-- MISSING LINE 2136 -->
+<!-- MISSING LINE 2137 -->
+<!-- MISSING LINE 2138 -->
+<!-- MISSING LINE 2139 -->
+<!-- MISSING LINE 2140 -->
+<!-- MISSING LINE 2141 -->
+<!-- MISSING LINE 2142 -->
+<!-- MISSING LINE 2143 -->
+<!-- MISSING LINE 2144 -->
+<!-- MISSING LINE 2145 -->
+<!-- MISSING LINE 2146 -->
+<!-- MISSING LINE 2147 -->
+<!-- MISSING LINE 2148 -->
+<!-- MISSING LINE 2149 -->
+<!-- MISSING LINE 2150 -->
+<!-- MISSING LINE 2151 -->
+<!-- MISSING LINE 2152 -->
+<!-- MISSING LINE 2153 -->
+<!-- MISSING LINE 2154 -->
+<!-- MISSING LINE 2155 -->
+<!-- MISSING LINE 2156 -->
+<!-- MISSING LINE 2157 -->
+<!-- MISSING LINE 2158 -->
+<!-- MISSING LINE 2159 -->
+<!-- MISSING LINE 2160 -->
+<!-- MISSING LINE 2161 -->
+<!-- MISSING LINE 2162 -->
+<!-- MISSING LINE 2163 -->
+<!-- MISSING LINE 2164 -->
+<!-- MISSING LINE 2165 -->
+<!-- MISSING LINE 2166 -->
+<!-- MISSING LINE 2167 -->
+<!-- MISSING LINE 2168 -->
+<!-- MISSING LINE 2169 -->
+</div>
+<div class="dar-content-header dar-width-sufi-content">
+<p class="dar-paragraph-small">A couple&#x27;s delicate dance morphs into a whirling dervish
+revealing ForeShadow logo, symbolising <span class="color-red">eternal love and artistry,
+</span></p>
+</div>
+</div>
+</div>
+<div class="dar_sufi-image-wrapper">
+<div class="dar_sufi-image-container"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp"
+loading="lazy" data-w-id="0983370e-ed59-f207-8991-e19cbf04d2c2"
+sizes="(max-width: 1919px) 100vw, 1189.00390625px" alt=""
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a7a5e65176e9b47e569_SUFII%202.webp 1189w"
+class="dar-img-2" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a1e453260e6815c3c07_Vector.webp"
+loading="lazy" alt="" class="dar-img-3" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a6f5e65176e9b47e10a_SUFII%201.webp"
+loading="lazy" alt="" class="dar-img-1" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div id="scene-6" data-w-id="0983370e-ed59-f207-8991-e19cbf04d599" class="dar_scene-six">
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d59a" class="dar_scene-hero text-color-black">
+<div class="dar_container-medium">
+<div class="dar_padding-global">
+<div class="dar_padding-vertical dar_padding-large vs">
+<div class="dar_content-wrapper">
+<p class="dar_paragrapgh-large">Scene 3</p>
+<h1 class="dar_h1"><span class="dar_h1 is-lobster is-red">Becoming Pop Culture</span></h1>
+<div id="scene-6" data-w-id="0983370e-ed59-f207-8991-e19cbf04d599" class="dar_scene-six">
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d59a" class="dar_scene-hero text-color-black">
+<div class="dar_container-medium">
+<div class="dar
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp"
+loading="lazy" sizes="(max-width: 5790px) 100vw, 5790px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2000w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 2600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 3200w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a68453260e6815c6967_the%20birth.webp 5790w"
+alt="" class="dar_background-image" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/6664208e5efd4629c0e0ac6f_TWF%20HOT%20AIR%20BALOON%2011234567.webp"
+loading="lazy" alt="" class="parachute-1" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/6664208e5efd4629c0e0ac6f_TWF%20HOT%20AIR%20BALOON%2011234567.webp"
+alt="" class="dar_background-image" />
+</div>
+<div class="dar_scene6-s1">
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 2000w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 2600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 3200w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 3840w"
+alt="" class="dar_background-image" />
+</div>
+<div class="dar_scene6-s1">
+<div class="dar_container-medium">
+<div class="dar_padding-global padding">
+<div class="dar_padding-vertical dar_padding-small dar-small">
+<div class="dar_content-wrapper">
+<div class="dar-content-header">
+<p class="dar-paragraph-small is-hidden"><span>BOLLYWOOD</span></p>
+<div class="dar_max-width-huge">
+<h2 class="dar-h2 dar-h2-center">Revolutionizing wedding trends, our crew has become synonymous
+with pop culture. this is the crew you want at your wedding!</h2>
+</div>
+</div>
+</div>
+</div>
+data-poster-url="https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-poster-00001.jpg"
+data-video-urls="https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-transcode.mp4,https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-transcode.webm"
+data-autoplay="true" data-loop="true" data-wf-ignore="true"
+class="bollywood-img w-background-video w-background-video-atom"><video
+id="0983370e-ed59-f207-8991-e19cbf04d5b2-video" autoplay="" loop=""
+style="background-image:url(&quot;https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-poster-00001.jpg&quot;)"
+muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
+
+<!-- MISSING LINE 2244 -->
+<!-- MISSING LINE 2245 -->
+<!-- MISSING LINE 2246 -->
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e77029043651a780b2_3-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e77029043651a780b2_3.webp 693w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1.webp"
+alt="" sizes="(max-width: 1050px) 100vw, 1050px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1-p-800.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e22ef1e02141490070_1.webp 1050w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1.webp"
+alt="" sizes="(max-width: 767px) 100vw, 692.998046875px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1.webp 693w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2.webp"
+alt="" sizes="(max-width: 1050px) 100vw, 1050px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2-p-800.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2.webp 1050w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e732fd54e7c1005168_2.webp"
+alt="" sizes="(max-width: 767px) 100vw, 692.998046875px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e732fd54e7c1005168_2-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e732fd54e7c1005168_2.webp 693w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img src="assets/images/crew/crew.jpg" alt="ForeShadow Crew"
+sizes="(max-width: 1050px) 100vw, 1050px" class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b5cbefa7f59044d1530092_2.avif"
+alt="" class="dar_full-image" /></div>
+<div class="
+<div class="dar-arrow"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a5c453260e6815c622c_arrow-gold.webp"
+loading="lazy" alt="" class="golden-arrow" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a5c453260e6815c6225_down-arrow.webp"
+loading="lazy" alt="" class="black-arrow" /></div>
+</div>
+
+<!-- ============================================
+OUR CREW SECTION (Visit Team Expansion)
+============================================ -->
+<div id="crew-section" data-lenis-prevent>
+
+<!-- Banner -->
+<div class="team-banner dekstop">
+<div class="team-banner-wrapper" style="background-image: url('assets/images/crew/crew.jpg');">
+<div class="overlay"></div>
+<div class="our--workshop-wrapper">
+<h1 class="heading-6 lorem blog">ForeShadow</h1>
+<h1 class="title-heading r-font-w line-hight color-white">MEET OUR CREW</h1>
+<p class="paragraph b-p white">If our crew in a studio group shot looks this good,<br/>imagine what your wedding photos & films will look like.</p>
+</div>
+</div>
+</div>
+<div class="team-banner mobile">
+<div class="team-banner-wrapper" style="background-image: url('assets/images/crew/crew.jpg');">
+<div class="overlay"></div>
+</div>
+<div class="crew-banner-content">
+<h1 class="heading-6 lorem blog">ForeShadow</h1>
+<h1 class="heading-6 blog-press white">MEET OUR CREW</h1>
+<p class="paragraph b-p white">If our crew in a studio group shot looks this good,<br/>imagine what your wedding photos & films will look like.</p>
+</div>
+</div>
+
+<!-- Grid of Crew Members -->
+class="bollywood-img w-background-video w-background-video-atom"><video
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img src="assets/images/crew/crew.jpg" alt="ForeShadow Crew"
+sizes="(max-width: 767px) 100vw, 639.00390625px" class="dar_full-image" /></div>
+<div class="dar_img-2"><img src="assets/images/crew/crew.jpg" alt="ForeShadow Crew"
+sizes="(max-width: 767px) 100vw, 639.00390625px" class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2).jpeg"
+alt="" sizes="100vw"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2)-p-500.jpeg 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2)-p-800.jpeg 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2)-p-1080.jpeg 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2)-p-1600.jpeg 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2)-p-2000.jpeg 2000w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2)-p-2600.jpeg 2600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2)-p-3200.jpeg 3200w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/687f4a0edaf061d96704fe93_2%20(2).jpeg 5616w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf31ee7c1c72c2047d9feb_4.webp"
+alt="" sizes="(max-width: 767px) 100vw, 639.00390625px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf31ee7c1c72c2047d9feb_4-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf31ee7c1c72c2047d9feb_4.webp 639w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9acb362c97bff1dd12bc7_3.avif"
+alt="" class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b9acb362c97bff1dd12bc4_4.avif"
+alt="" class="dar_full-image" /></div>
+</div>
+</div>
+<div class="dar_container-medium">
+<div class="dar_padding-global padding padding-40">
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d317" class="dar_content-wrapper">
+<div class="dar-max-width-medium">
+<h3 class="dar_h3 dar_text-align-center">the <span class="color-red">first Fo
+<p class="job-dis">Assembling narratives and pacing transitions to make every frame sing.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Sagar Khandare -->
+<div role="listitem" class="crew-item w-dyn-item">
+<div class="crew-box _2">
+<div class="crew-image-item">
+<img src="assets/images/crew/sagar_khandare.jpg" loading="lazy" alt="Sagar Khandare" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Sagar Khandare</h4>
+<h4 class="job-titel">( Editor )</h4>
+<p class="job-dis">Crafting seamless cuts and pacing scenes to build engaging stories.</
+<!-- MISSING LINE 2355 -->
+<!-- MISSING LINE 2356 -->
+<!-- MISSING LINE 2357 -->
+</div>
+
+<!-- Rohit Thakare -->
+<div role="listitem" class="crew-item w-dyn-item">
+<div class="crew-box _2">
+<div class="crew-image-item _2">
+<img src="assets/images/crew/rohit_thakare.jpg" loading="lazy" alt="Rohit Thakare" class="image-82"/>
+<div class="linear-grad"></div>
+alt="" class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bdda33bc956c610c854_2.webp"
+alt="" sizes="(max-width: 1050px) 100vw, 1050px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bdda33bc956c610c854_2-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bdda33bc956c610c854_2-p-800.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bdda33bc956c610c854_2.webp 1050w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bddc2e1936cd3aea814_5.webp"
+alt="" sizes="(max-width: 1050px) 100vw, 1050px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bddc2e1936cd3aea814_5-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bddc2e1936cd3aea814_5-p-800.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf2bddc2e1936cd3aea814_5.webp 1050w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b5d7595fd9e34f789777de_TravelsTUDIO.avif"
+alt="" class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66b5d627916610a45f88f36d_5.avif"
+alt="" class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/67222a73982a0879049577ec_3B8A1519.......%20(1).webp"
+alt="" sizes="(max-width: 1500px) 100vw, 1500px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/67222a73982a0879049577ec_3B8A1519.......%20(1)-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/67222a73982a0879049577ec_3B8A1519.......%20(1)-p-800.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/67222a73982a0879049577ec_3B8A1519.......%20(1)-p-1080.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/67222a73982a0879049577ec_3B8A1519.......%20(1).webp 1500w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/67222c6cd405f413aa68bd3e__DSC0869.webp"
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div id="scene-6" data-w-id="0983370e-ed59-f207-8991-e19cbf04d599" class="dar_scene-six">
+<div data-w-id="0983370e-ed59-f207-8991-e19cbf04d59a" class="dar_scene-hero text-color-black">
+<div class="dar_container-medium">
+<div class="dar_padding-global">
+<div class="dar_padding-vertical dar_padding-large vs">
+<div class="dar_content-wrapper">
+<p class="dar_paragrapgh-large">Scene 4</p>
+<h1 class="dar_h1"><span class="dar_h1 is-lobster is-red">Becoming Pop Culture</span></h1>
+</div>
+</div>
+</div>
+</div><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp"
+loading="lazy" sizes="(max-width: 3840px) 100vw, 3840px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 1600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 2000w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 2600w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 3200w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a785e65176e9b47e541_scene-6.webp 3840w"
+alt="" class="dar_background-image" />
+</div>
+<div class="dar_scene6-s1">
+<div class="dar_container-medium">
+<!-- Sagar Khandare -->
+</div>
+<div class="dar_scene6-s1">
+<div class="dar_container-medium">
+<div class="dar_padding-global padding">
+<div class="dar_padding-vertical dar_padding-small dar-small">
+<div class="dar_content-wrapper">
+<div class="dar-content-header">
+<p class="dar-paragraph-small is-hidden"><span>BOLLYWOOD</span></p>
+<div class="dar_max-width-huge">
+<h2 class="dar-h2 dar-h2-center">Revolutionizing wedding trends, our crew has become synonymous
+with pop culture. this is the crew you want at your wedding!</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><img src="assets/images/crew/crew.jpg" loading="eager" sizes="(max-width: 1500px) 100vw, 1500px"
+alt="ForeShadow Crew" class="bollywood-img" />
+<div
+data-poster-url="https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-poster-00001.jpg"
+data-video-urls="https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-transcode.mp4,https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-transcode.webm"
+data-autoplay="true" data-loop="true" data-wf-ignore="true"
+class="bollywood-img w-background-video w-background-video-atom"><video
+id="0983370e-ed59-f207-8991-e19cbf04d5b2-video" autoplay="" loop=""
+<!-- MISSING LINE 2441 -->
+<!-- MISSING LINE 2442 -->
+<!-- MISSING LINE 2443 -->
+<!-- MISSING LINE 2444 -->
+<!-- MISSING LINE 2445 -->
+<!-- MISSING LINE 2446 -->
+<!-- MISSING LINE 2447 -->
+<!-- MISSING LINE 2448 -->
+<!-- MISSING LINE 2449 -->
+<div class="crew-image-item">
+<img src="assets/images/crew/shantanu_khade.jpg" loading="lazy" alt="Shantanu Khade" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Shantanu Khade</h4>
+<h4 class="job-titel">( Cinematographer )</h4>
+<p class="job-dis">Capturing cinematic movements and raw emotions through light and motion.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Arjun Kale -->
+<div role="listitem" class="crew-item">
+<div class="crew-box _2">
+<div class="crew-image-item _2">
+<img src="assets/images/crew/arjun_kale.png" loading="lazy" alt="Arjun Kale" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Arjun Kale</h4>
+<h4 class="job-titel">( Co-Founder & Creative Director )</h4>
+<p class="job-dis">Bringing vision to life through visual symmetry and elegant compositions.</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Close Button (outside transformed container to prevent scrolling) -->
+<div class="crew-close-btn" id="crew-close-btn">
+<span>← exit</span>
+</div>
+<img src="assets/images/crew/siddharth_more.jpg" loading="lazy" alt="Siddharth More" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Siddharth More</h4>
+<h4 class="job-titel">( Sound Designer )</h4>
+<p class="job-dis">Weaving ambient soundscapes that elevate every cinematic moment.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Row 4 -->
+<!-- Kavya Bhosle -->
+<div role="listitem" class="crew-item">
+<div class="crew-box _2">
+<div class="crew-image-item">
+<img src="assets/images/crew/kavya_bhosle.jpg" loading="lazy" alt="Kavya Bhosle" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Kavya Bhosle</h4>
+<h4 class="job-titel">( Second Shooter )</h4>
+<p class="job-dis">Seizing candid reactions and parallel stories from a different perspective.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Aditya Wagh -->
+<div role="listitem" class="crew-item">
+<div class="crew-box _2">
+<div class="crew-image-item _2">
+<img src="assets/images/crew/aditya_wagh.jpg" loading="lazy" alt="Aditya Wagh" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Aditya Wagh</h4>
+<h4 class="job-titel">( Assistant Editor )</h4>
+<p class="job-dis">Refining cuts, syncing audio and delivering polished final deliverables.</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Close Button (outside transformed container to prevent scrolling) -->
+<div class="crew-close-btn" id="crew-close-btn">
+<span>← exit</span>
+<!-- MISSING LINE 2536 -->
+<!-- MISSING LINE 2537 -->
+<!-- MISSING LINE 2538 -->
+<!-- MISSING LINE 2539 -->
+<!-- MISSING LINE 2540 -->
+<!-- MISSING LINE 2541 -->
+<!-- MISSING LINE 2542 -->
+<!-- MISSING LINE 2543 -->
+<!-- MISSING LINE 2544 -->
+<!-- MISSING LINE 2545 -->
+<!-- MISSING LINE 2546 -->
+<!-- MISSING LINE 2547 -->
+<!-- jQuery -->
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=652e625ed083f8127673075c"
+type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"></script>
+
+<!-- Webflow engine chunks -->
+<script src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/js/webflow.schunk.36b8fb49256177c8.js"
+type="text/javascript" integrity="sha384-4abIlA5/v7XaW1HMXKBgnUuhnjBYJ/Z9C1OSg4OhmVw9O3QeHJ/qJqFBERCDPv7G"
+crossorigin="anonymous"></script>
+<script src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/js/webflow.schunk.9dfc9fed772a1569.js"
+type="text/javascript" integrity="sha384-sdet+UDEXic8MbK/kuKT1dwSzT9rDpDXk1osfpbEHCKRlrrWYIok4g+WSr792VF1"
+crossorigin="anonymous"></script>
+<script src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/js/webflow.ed1ad3a8.a5b30f1d73daf875.js"
+type="text/javascript" integrity="sha384-QEOgcT5Lbc2xybaUwVC/peI0PCG+J08iHwamf10cHZhDJ9FAmyJJZiSHHiK2l/2h"
+crossorigin="anonymous"></script>
+
+<!-- Lenis Scroll -->
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+<script>
+let lenis;
+if (Webflow.env("editor") === undefined) {
+lenis = new Lenis({
+lerp: 0.1,
+wheelMultiplier: 1.5,
+gestureOrientation: "vertical",
+normalizeWheel: false,
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Kavya Bhosle</h4>
+<h4 class="job-titel">( Second Shooter )</h4>
+<p class="job-dis">Seizing candid reactions and parallel stories from a different perspective.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Aditya Wagh -->
+<div role="listitem" class="crew-item">
+<div class="crew-box _2">
+<div class="crew-image-item _2">
+<img src="assets/images/crew/aditya_wagh.jpg" loading="lazy" alt="Aditya Wagh" class="image-82"/>
+<div class="linear-grad"></div>
+});
+}
+
+// Also allow ESC key to close
+document.addEventListener("keydown", function (e) {
+if (e.key === "Escape" && crewSection && crewSection.classList.contains("show")) {
+crewSection.classList.remove("show");
+document.body.style.overflow = "";
+if (lenis) {
+lenis.start();
+}
+}
+});
+})();
+</script>
+
+<!-- Site Scripts (Hamburger, Mobile Menu overlays, Page Transitions) -->
+<script src="js/main.js"></script>
+
+<!-- Standalone Fail-safe Scripts for Transitions and Webflow Loaders -->
+<script>
+// 1. Force Page Transition slide-out after 1.2s in case main.js fails
+setTimeout(function () {
+var transition = document.querySelector('.page-transition');
+if (transition && !transition.classList.contains('loaded')) {
+transition.classList.add('loaded');
+console.warn("Failsafe: Forced page transition slide-out due to script timeout.");
+}
+}, 1200);
+
+// 2. Webflow Initialization Check & Opacity Fallback after 2.5s
+setTimeout(function () {
+// Check if webflow initialized
+var webflowLoaded = false;
+try {
+if (window.Webflow && typeof window.Webflow.require === 'function') {
+// If we can verify webflow runs or elements have opacity
+webflowLoaded = true;
+}
+} catch (e) {
+console.error("Error checking Webflow status:", e);
+}
+
+// If Webflow has not loaded or is throwing errors, force elements to show up
+if (!webflowLoaded) {
+document.documentElement.classList.add('wf-failed');
+console.warn("Failsafe: Webflow engine failed to load or run. Forcing animation opacity overrides.");
+}
+}, 2500);
+</script>
+
+<!-- Crew Visibility Enforcer: runs AFTER Webflow JS to force all crew items visible -->
+<script>
+(function forceCrewVisible() {
+function showAllCrewItems() {
+var items = document.querySelectorAll('#crew-section .crew-item');
+for (var i = 0; i < items.length; i++) {
+items[i].style.setProperty('display', 'block', 'important');
+items[i].style.setProperty('visibility', 'visible', 'important');
+items[i].style.setProperty('opacity', '1', 'important');
+}
+}
+
+// Run immediately
+showAllCrewItems();
+
+// Run again after short delays to catch Webflow deferred mutations
+setTimeout(showAllCrewItems, 100);
+setTimeout(showAllCrewItems, 500);
+setTimeout(showAllCrewItems, 1500);
+setTimeout(showAllCrewItems, 3000);
+
+// Watch for any dynamic changes Webflow makes and re-apply
+var crewSection = document.getElementById('crew-section');
+if (crewSection && typeof MutationObserver !== 'undefined') {
+var observer = new MutationObserver(function () {
+showAllCrewItems();
+});
+observer.observe(crewSection, {
+attributes: true,
+childList: true,
+subtree: true,
+attributeFilter: ['style', 'class']
+});
+// Stop observing after 10 seconds to avoid performance cost
+setTimeout(function () { observer.disconnect(); }, 10000);
+}
+})();
+</script>
+</body>
+
+</html>
+if (!webflowLoaded) {
+document.documentElement.classList.add('wf-failed');
+console.warn("Failsafe: Webflow engine failed to load or run. Forcing animation opacity overrides.");
+}
+}, 2500);
+</script>
+</body>
+
+</html>
+<!-- MISSING LINE 2691 -->
+<!-- MISSING LINE 2692 -->
+<!-- MISSING LINE 2693 -->
+<!-- MISSING LINE 2694 -->
+<!-- MISSING LINE 2695 -->
+<!-- MISSING LINE 2696 -->
+<!-- MISSING LINE 2697 -->
+<!-- MISSING LINE 2698 -->
+<!-- MISSING LINE 2699 -->
+// If we can verify webflow runs or elements have opacity
+webflowLoaded = true;
+}
+} catch (e) {
+console.error("Error checking Webflow status:", e);
+}
+
+// If Webflow has not loaded or is throwing errors, force elements to show up
+if (!webflowLoaded) {
+document.documentElement.classList.add('wf-failed');
+console.warn("Failsafe: Webflow engine failed to load or run. Forcing animation opacity overrides.");
+}
+}, 2500);
+</script>
+
+<!-- Crew Visibility Enforcer & Mobile Interactivity: runs AFTER Webflow JS -->
+<script>
+(function forceCrewVisible() {
+function showAllCrewItems() {
+var items = document.querySelectorAll('#crew-section .crew-item');
+for (var i = 0; i < items.length; i++) {
+items[i].style.setProperty('display', 'block', 'important');
+items[i].style.setProperty('visibility', 'visible', 'important');
+items[i].style.setProperty('opacity', '1', 'important');
+}
+}
+
+// Click-to-color interactive handler for mobile crew cards
+function setupMobileClickColor() {
+var crewCards = document.querySelectorAll('#crew-section .crew-image-item');
+if (!webflowLoaded) {
+document.documentElement.classList.add('wf-failed');
+console.warn("Failsafe: Webflow engine failed to load or run. Forcing animation opacity overrides.");
+}
+}, 2500);
+</script>
+
+<!-- Crew Visibility Enforcer & Mobile Interactivity: runs AFTER Webflow JS -->
+<script>
+(function forceCrewVisible() {
+function showAllCrewItems() {
+var items = document.querySelectorAll('#crew-section .crew-item');
+for (var i = 0; i < items.length; i++) {
+items[i].style.setProperty('display', 'block', 'important');
+items[i].style.setProperty('visibility', 'visible', 'important');
+items[i].style.setProperty('opacity', '1', 'important');
+}
+}
+
+// Popup handler for mobile crew cards showing the full-color image
+function setupMobileClickPopup() {
+var crewCards = document.querySelectorAll('#crew-section .crew-image-item');
+crewCards.forEach(function (card) {
+if (card.dataset.popupBound) return;
+card.dataset.popupBound = "true";
+
+card.addEventListener('click', function (e) {
+// Only execute on mobile
+if (!document.documentElement.classList.contains('is-mobile')) return;
+
+
+// Get image details
+var imgEl = card.querySelector('.image-82');
+var imgUrl = imgEl ? imgEl.getAttribute('src') : '';
+
+// Get name, job title, and description (info)
+var nameEl = card.querySelector('.member-name');
+var titleEl = card.querySelector('.job-titel');
+var descEl = card.closest('.crew-item') ? card.closest('.crew-item').querySelector('.job-dis') : null;
+var nameText = nameEl ? nameEl.textContent : '';
+if (card.dataset.popupBound) return;
+card.dataset.popupBound = "true";
+
+card.addEventListener('click', function (e) {
+// Only execute on mobile
+if (!document.documentElement.classList.contains('is-mobile')) return;
+
+e.preventDefault();
+e.stopPropagation();
+
+// Get image details
+var imgEl = card.querySelector('.image-82');
+var imgUrl = imgEl ? imgEl.getAttribute('src') : '';
+
+// Get name and job title
+var nameEl = card.querySelector('.member-name');
+var titleEl = card.querySelector('.job-titel');
+var nameText = nameEl ? nameEl.textContent : '';
+var titleText = titleEl ? titleEl.textContent : '';
+
+// Create popup overlay
+var overlay = document.createElement('div');
+overlay.className = 'crew-popup-overlay';
+
+overlay.innerHTML = 
+'<div class="crew-popup-container">' +
+'<div class="crew-popup-img-frame">' +
+'<img src="' + imgUrl + '" class="crew-popup-img" alt="' + nameText + '">' +
+'</div>' +
+'<div class="crew-popup-info">' +
+'<h3 class="crew-popup-name">' + nameText + '</h3>' +
+'<p class="crew-popup-title">' + titleText + '</p>' +
+'</div>' +
+'</div>' +
+'<div class="crew-popup-close">tap to close</div>';
+
+document.body.appendChild(overlay);
+
+// Trigger animation frame for transition
+requestAnimationFrame(function () {
+overlay.classList.add('show');
+});
+
+// Lock body scroll
+document.body.style.overflow = 'hidden';
+
+// Dismiss function
+function dismissPopup() {
+overlay.classList.remove('show');
+document.body.style.overflow = '';
+setTimeout(function () {

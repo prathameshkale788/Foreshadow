@@ -1,0 +1,2530 @@
+- `[x]` Append crew section CSS styles to css/style.css
+- `[x]` Replace buttons with "Visit Team" in about.html
+- `[x]` Append crew section HTML markup to about.html
+- `[x]` Implement JS event handler for Visit Team button click and scroll in about.html
+- `[x]` Verify layout, responsiveness, grayscale filters, and hover transitions in browser
+
+<script>
+window.addEventListener('error', function (e) {
+console.error("DEBUG CATCHER:", e.message, "at", e.filename, ":", e.lineno);
+var errorDiv = document.getElementById('debug-error-overlay');
+if (!errorDiv) {
+errorDiv = document.createElement('div');
+errorDiv.id = 'debug-error-overlay';
+errorDiv.style.position = 'fixed';
+errorDiv.style.bottom = '20px';
+errorDiv.style.left = '20px';
+errorDiv.style.right = '20px';
+errorDiv.style.background = 'rgba(220, 53, 69, 0.95)';
+errorDiv.style.color = '#fff';
+errorDiv.style.padding = '20px';
+errorDiv.style.zIndex = '999999';
+errorDiv.style.fontFamily = 'monospace';
+errorDiv.style.fontSize = '13px';
+errorDiv.style.maxHeight = '250px';
+errorDiv.style.overflowY = 'auto';
+errorDiv.style.borderRadius = '8px';
+errorDiv.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+errorDiv.style.border = '2px solid #fff';
+
+var header = document.createElement('div');
+header.style.fontWeight = 'bold';
+header.style.marginBottom = '10px';
+header.style.fontSize = '14px';
+header.style.textDecoration = 'underline';
+header.innerText =
+<!-- MISSING LINE 36 -->
+<!-- MISSING LINE 37 -->
+<!-- MISSING LINE 38 -->
+<!-- MISSING LINE 39 -->
+<!-- MISSING LINE 40 -->
+<!-- MISSING LINE 41 -->
+<!-- MISSING LINE 42 -->
+<!-- MISSING LINE 43 -->
+<!-- MISSING LINE 44 -->
+<!-- MISSING LINE 45 -->
+<!-- MISSING LINE 46 -->
+<!-- MISSING LINE 47 -->
+<!-- MISSING LINE 48 -->
+<!-- MISSING LINE 49 -->
+<!-- MISSING LINE 50 -->
+<!-- MISSING LINE 51 -->
+<!-- MISSING LINE 52 -->
+<meta name="viewport" content="width=1200">
+
+<!-- Webflow shared stylesheet -->
+<link
+href="https://cdn.prod.website-files.com/652e625ed083f8127673075c/css/theweddingfilmer.webflow.shared.053fd60dc.css"
+rel="stylesheet" type="text/css" integrity="sha384-BT/WDcoDR0UPj4TL32iliwgXYz16mJ+jEUm6W+qEQGFQ9TmIR6WGu660buYoM/RF"
+crossorigin="anonymous" />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+<script type="text/javascript">
+WebFont.load({
+google: {
+families: ["Lobster:300,400,500,600,700"]
+}
+});
+</script>
+
+<script type="text/javascript">
+!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);
+</script>
+
+<!-- Site Stylesheet -->
+<link rel="stylesheet" href="css/style.css">
+<!-- ForeShadow Brand Style Merge Overrides -->
+<!-- ForeShadow Brand Style Merge Overrides -->
+<style>
+/* 1. Global Background Colors */
+body.body.white,
+.dar_page-wrapper,
+.dar_main-wrapper,
+.dar_scenes-wrapper,
+.scenes-wrapper-1,
+.dar_scene-hero,
+.dar_scene1-s2,
+.dar_scene1-s3,
+.dar_scene1-s4,
+.dar_scene1-s5,
+.dar_scene1-s6,
+.dar_scene1-s6-2,
+.dar_scene1-s7,
+.dar_scene-two,
+.dar_scene2-s1,
+.dar_scene2-s2,
+.dar_scene-three,
+.dar_scene3-s1,
+.dar_scene-four,
+.dar_scene-five,
+.dar_scene-six,
+.dar_scene6-s2 {
+background-color: var(--clr-bg) !important;
+}
+
+/* 2. Sticky Scene / Entrance Overrides */
+.dar_scene-entrance {
+background-color: var(--clr-brand-dark) !important;
+/* Dark olive charcoal for the entrance */
+}
+
+.dar-text-content h3.dar_h3 {
+color: var(--clr-brand-cream) !important;
+}
+
+/* 3. Typography & Text Colors */
+.dar_h1,
+.dar-h2,
+.dar_h3,
+.exit-text,
+.dar-menu-mobile,
+.dar_success-wrap h3.dar_h3 {
+font-family: var(--ff-display), 'Paragone', 'Georgia', serif !important;
+color: var(--clr-text) !important;
+}
+
+.dar-paragraph-small,
+.dar-paragraph-large,
+.dar_paragrapgh-large,
+.exit-text,
+.dar-menu-mobile,
+.dar-text-small,
+.dar-text-large,
+.exit-text,
+.exit-arrow {
+font-family: var(--ff-body), 'Montserrat', sans-serif !important;
+color: var(--clr-text-muted) !important;
+}
+
+/* 4. Brand Color Accents */
+.color-red,
+.dar-h2 a,
+.dar-small-text {
+color: var(--clr-brand-red) !important;
+}
+
+.dar-arrow img.golden-arrow {
+filter: sepia(1) saturate(3) hue-rotate(-50deg) !important;
+/* Make golden arrows match our brand red/gold */
+}
+
+.dar_h1.is-lobster {
+font-family: 'Lobster', var(--ff-display), serif !important;
+color: var(--clr-brand-red) !important;
+}
+
+/* 5. Custom Buttons */
+.w-button,
+.button-white,
+.button-black {
+font-family: var(--ff-body), sans-serif !important;
+border-radius: 4px !important;
+transition: all 0.3s ease !important;
+}
+
+.button-white {
+background-color: var(--clr-brand-cream) !important;
+color: var(--clr-text) !important;
+border: 1px solid var(--clr-border) !important;
+}
+
+.button-white:hover {
+background-color: var(--clr-text) !important;
+color: var(--clr-brand-cream) !important;
+}
+
+.button-black {
+background-color: var(--clr-brand-red) !important;
+color: #ffffff !important;
+}
+
+.button-black:hover {
+background-color: var(--clr-brand-dark) !important;
+color: #ffffff !important;
+}
+
+/* 6. Success Container Profile styling */
+.dar_success-wrap h3.dar_h3 {
+font-family: var(--ff-display), serif !import
+<!-- MISSING LINE 192 -->
+<!-- MISSING LINE 193 -->
+<!-- MISSING LINE 194 -->
+<!-- MISSING LINE 195 -->
+<!-- MISSING LINE 196 -->
+<!-- MISSING LINE 197 -->
+<!-- MISSING LINE 198 -->
+<!-- MISSING LINE 199 -->
+<!-- MISSING LINE 200 -->
+<!-- MISSING LINE 201 -->
+<!-- MISSING LINE 202 -->
+<!-- MISSING LINE 203 -->
+<!-- MISSING LINE 204 -->
+<!-- MISSING LINE 205 -->
+<!-- MISSING LINE 206 -->
+<!-- MISSING LINE 207 -->
+<!-- MISSING LINE 208 -->
+<!-- MISSING LINE 209 -->
+<!-- MISSING LINE 210 -->
+<!-- MISSING LINE 211 -->
+<!-- MISSING LINE 212 -->
+<!-- MISSING LINE 213 -->
+<!-- MISSING LINE 214 -->
+<!-- MISSING LINE 215 -->
+<!-- MISSING LINE 216 -->
+<!-- MISSING LINE 217 -->
+<!-- MISSING LINE 218 -->
+<!-- MISSING LINE 219 -->
+<!-- MISSING LINE 220 -->
+<!-- MISSING LINE 221 -->
+<!-- MISSING LINE 222 -->
+<!-- MISSING LINE 223 -->
+<!-- MISSING LINE 224 -->
+<!-- MISSING LINE 225 -->
+<!-- MISSING LINE 226 -->
+<!-- MISSING LINE 227 -->
+<!-- MISSING LINE 228 -->
+<!-- MISSING LINE 229 -->
+<!-- MISSING LINE 230 -->
+<!-- MISSING LINE 231 -->
+<!-- MISSING LINE 232 -->
+<!-- MISSING LINE 233 -->
+<!-- MISSING LINE 234 -->
+<!-- MISSING LINE 235 -->
+<!-- MISSING LINE 236 -->
+<!-- MISSING LINE 237 -->
+<!-- MISSING LINE 238 -->
+<!-- MISSING LINE 239 -->
+<!-- MISSING LINE 240 -->
+.dar-success-img,
+.bollywood-img,
+.image-110,
+.image-105,
+.image-106,
+.image-113,
+.image-107,
+.image-112,
+.image-111,
+.image-108,
+.image-109 {
+transition: filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.dar-success-img:hover,
+.bollywood-img:hover,
+.image-110:hover,
+.image-105:hover,
+.image-106:hover,
+.image-113:hover,
+.image-107:hover,
+.image-112:hover,
+.image-111:hover,
+.image-108:hover,
+.image-109:hover {
+filter: grayscale(0%) contrast(1) brightness(1) !important;
+transform: scale(1.03) !important;
+}
+
+/* 11. Custom Footer Merge */
+.custom-footer {
+background: var(--clr-bg) !important;
+}
+
+/* 12. Scrollbar Brand Tint */
+::-webkit-scrollbar-thumb {
+background: var(--clr-brand-sage) !important;
+}
+
+/* 13. Scene Entrance Text Glow */
+.dar-small-text {
+letter-spacing: 0.25em !important;
+text-transform: uppercase !important;
+}
+
+/* 14. About Banner Image Object-Fit */
+.about-us-image {
+object-fit: cover !important;
+object-position: center 30% !important;
+}
+
+/* 15. dar_background-image inside scene-1 */
+.dar_scene-one .dar_background-image {
+object-fit: cover !important;
+object-position: center 30% !important;
+}
+
+/* 16. Color-white class override for brand consistency */
+.color-white {
+color: var(--clr-brand-cream) !important;
+}
+
+/* 17. dar-unreveal background to brand cream */
+.dar-unreveal {
+background-color: var(--clr-bg) !important;
+}
+
+.wf-failed .dar-unreveal {
+display: none !important;
+}
+
+/* 18. Chat / conversation text styling */
+.dar-chat {
+color: var(--clr-text) !important;
+}
+
+/* 19. Year text styling */
+.dar-text-year,
+.dar-year-text-2 {
+font-family: var(--ff-display), serif !important;
+color: var(--clr-brand-red) !important;
+opacity: 0.15 !important;
+}
+
+/* 20. Ad content text */
+.dar-ad-content .dar-paragraph-small {
+color: var(--clr-text-muted) !important;
+}
+
+/* 21. Custom Footer Bottom Bar explicit fixes to override Webflow styling */
+.custom-footer-bottom-bar {
+display: flex !important;
+visibility: visible !important;
+opacity: 1 !important;
+background: var(--clr-brand-cream) !important;
+color: var(--clr-brand-dark) !important;
+}
+
+.custom-footer-copyright {
+color: var(--clr-brand-dark) !important;
+}
+
+.custom-footer-copyright a {
+color: var(--clr-brand-red) !important;
+text-decoration: none !important;
+font-weight: 600 !important;
+display: inline !important;
+}
+
+.custom-footer-socials {
+display: flex !important;
+}
+
+.custom-footer-
+<!-- MISSING LINE 355 -->
+<!-- MISSING LINE 356 -->
+<!-- MISSING LINE 357 -->
+<!-- MISSING LINE 358 -->
+<!-- MISSING LINE 359 -->
+<!-- MISSING LINE 360 -->
+<!-- MISSING LINE 361 -->
+<!-- MISSING LINE 362 -->
+<!-- MISSING LINE 363 -->
+<!-- MISSING LINE 364 -->
+<!-- MISSING LINE 365 -->
+<!-- MISSING LINE 366 -->
+<!-- MISSING LINE 367 -->
+<!-- MISSING LINE 368 -->
+<!-- MISSING LINE 369 -->
+<!-- MISSING LINE 370 -->
+<!-- MISSING LINE 371 -->
+<!-- MISSING LINE 372 -->
+<!-- MISSING LINE 373 -->
+<!-- MISSING LINE 374 -->
+<!-- MISSING LINE 375 -->
+<!-- MISSING LINE 376 -->
+<!-- MISSING LINE 377 -->
+<!-- MISSING LINE 378 -->
+<!-- MISSING LINE 379 -->
+<!-- MISSING LINE 380 -->
+<!-- MISSING LINE 381 -->
+<!-- MISSING LINE 382 -->
+<!-- MISSING LINE 383 -->
+<!-- MISSING LINE 384 -->
+<!-- MISSING LINE 385 -->
+<!-- MISSING LINE 386 -->
+<!-- MISSING LINE 387 -->
+<!-- MISSING LINE 388 -->
+<!-- MISSING LINE 389 -->
+<!-- MISSING LINE 390 -->
+<!-- MISSING LINE 391 -->
+<!-- MISSING LINE 392 -->
+<!-- MISSING LINE 393 -->
+}
+}
+
+/* Mobile fallback for Webflow disabled scroll animations */
+.is-mobile .dar_scene1-s3,
+.is-mobile .dar_s3-content-wrapper,
+.is-mobile .dar_profile-content-2,
+.is-mobile .dar-profile-container-2 {
+display: block !important;
+opacity: 1 !important;
+visibility: visible !important;
+}
+
+.is-mobile *[data-w-id] {
+opacity: 1 !important;
+visibility: visible !important;
+}
+
+.is-mobile .dar-unreveal {
+display: none !important;
+}
+
+/* Reset height, positioning, and transforms for Scene 1 and Scene 2 on mobile/tablet viewports and mobile state to eliminate blank spaces */
+@media screen and (max-width: 991px) {
+
+.dar_scenes-wrapper,
+.scenes-wrapper-1,
+.dar_scene-one,
+.dar_scene-hero,
+.dar_scene1-s2,
+.dar_scene1-s3,
+.dar_scene1-s4,
+.sticky-scene1-s4,
+.dar_scene1-s5,
+.dar_scene1-s7,
+.dar_scene-two,
+.dar_scene2-s1,
+.dar_scene2-s2,
+.dar_container-medium,
+.dar_container-medium-2,
+.dar_padding-global,
+.dar_padding-global-2,
+.dar_padding-vertical,
+.dar_content-wrapper,
+.dar_content-wrapper-2,
+.dar_2-col-grid-2,
+.dar_s3-image-container-2,
+.dar_s3-content-wrapper,
+.dar_profile-content-2,
+.dar-profile-container-2,
+.w-layout-grid,
+.dar-work-grid,
+.dar-work-content-wrapper,
+.dar_work-image-timeline,
+.dar-timeline-col-1,
+.dar-timeline-col-2,
+.dar-timeline-line,
+.dar-timeline-container,
+.dar_padding-medium,
+.dar-newspaper,
+.dar_image-max-width,
+.spark-section,
+.dar-year-horizontal,
+.dar-year-content,
+.dar_year-image-container,
+.dar_crew-hosp,
+.dar_s2-content,
+.dar_success-container,
+.dar_success-content,
+.dar_success-wrap {
+height: auto !important;
+min-height: 0 !important;
+position: relative !important;
+top: auto !important;
+transform: none !important;
+}
+}
+
+.is-mobile .dar_scenes-wrapper,
+.is-mobile .scenes-wrapper-1,
+.is-mobile .dar_scene-one,
+.is-mobile .dar_scene-hero,
+.is-mobile .dar_scene1-s2,
+.is-mobile .dar_scene1-s3,
+.is-mobile .dar_scene1-s4,
+.is-mobile .sticky-scene1-s4,
+.is-mobile .dar_scene1-s5,
+.is-mobile .dar_scene1-s7,
+.is-mobile .dar_scene-two,
+.is-mobile .dar_scene2-s1,
+.is-mobile .dar_scene2-s2,
+.is-mobile .dar_container-medium,
+.is-mobile .dar_container-medium-2,
+.is-mobile .dar_padding-global,
+.is-mobile .dar_padding-global-2,
+.is-mobile .dar_padding-vertical,
+.is-mobile .dar_content-wrapper,
+.is-mobile .dar_content-wrapper-2,
+.is-mobile .dar_2-col-grid-2,
+.is-mobile .dar_s3-image-container-2,
+.is-mobile .dar_s3-content-wrapper,
+.is-mobile .dar_profile-content-2,
+.is-mobile .dar-
+<!-- MISSING LINE 497 -->
+<!-- MISSING LINE 498 -->
+<!-- MISSING LINE 499 -->
+<!-- MISSING LINE 500 -->
+<!-- MISSING LINE 501 -->
+<!-- MISSING LINE 502 -->
+<!-- MISSING LINE 503 -->
+<!-- MISSING LINE 504 -->
+.is-mobile .dar_padding-medium,
+.is-mobile .dar-newspaper,
+.is-mobile .dar_image-max-width,
+.is-mobile .spark-section,
+.is-mobile .dar-year-horizontal,
+.is-mobile .dar-year-content,
+.is-mobile .dar_year-image-container,
+.is-mobile .dar_crew-hosp,
+.is-mobile .dar_s2-content,
+.is-mobile .dar_success-container,
+.is-mobile .dar_success-content,
+.is-mobile .dar_success-wrap,
+.wf-failed .dar_scenes-wrapper,
+.wf-failed .scenes-wrapper-1,
+.wf-failed .dar_scene-one,
+.wf-failed .dar_scene-hero,
+.wf-failed .dar_scene1-s2,
+.wf-failed .dar_scene1-s3,
+.wf-failed .dar_scene1-s4,
+.wf-failed .sticky-scene1-s4,
+.wf-failed .dar_scene1-s5,
+.wf-failed .dar_scene1-s7,
+.wf-failed .dar_scene-two,
+.wf-failed .dar_scene2-s1,
+.wf-failed .dar_scene2-s2,
+.wf-failed .dar_container-medium,
+.wf-failed .dar_container-medium-2,
+.wf-failed .dar_padding-global,
+.wf-failed .dar_padding-global-2,
+.wf-failed .dar_padding-vertical,
+.wf-failed .dar_content-wrapper,
+.wf-failed .dar_content-wrapper-2,
+.wf-failed .dar_2-col-grid-2,
+.wf-failed .dar_s3-image-container-2,
+.wf-failed .dar_s3-content-wrapper,
+.wf-failed .dar_profile-content-2,
+.wf-failed .dar-profile-container-2,
+.wf-failed .w-layout-grid,
+.wf-failed .dar-work-grid,
+.wf-failed .dar-work-content-wrapper,
+.wf-failed .dar_work-image-timeline,
+.wf-failed .dar-timeline-col-1,
+.wf-failed .dar-timeline-col-2,
+.wf-failed .dar-timeline-line,
+.wf-failed .dar-timeline-container,
+.wf-failed .dar_padding-medium,
+.wf-failed .dar-newspaper,
+.wf-failed .dar_image-max-width,
+.wf-failed .spark-section,
+.wf-failed .dar-year-horizontal,
+.wf-failed .dar-year-content,
+.wf-failed .dar_year-image-container,
+.wf-failed .dar_crew-hosp,
+.wf-failed .dar_s2-content,
+.wf-failed .dar_success-container,
+.wf-failed .dar_success-content,
+.wf-failed .dar_success-wrap {
+height: auto !important;
+min-height: 0 !important;
+position: relative !important;
+top: auto !important;
+transform: none !important;
+}
+
+/* Smooth transition for timeline fixed buttons */
+.dar_exit,
+.dar-arrow {
+transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Clean Modern Film Strip overrides (replacing driftwood branch, chains, wires, and toy planes) */
+.dar_branch-2,
+.dar_chain-container-2,
+.dar_profile-divider-2,
+.dar-aero-blue-2,
+.dar_red-aero-2,
+.dar_red-aero-2-copy,
+.dar-aero-blue-2-copy {
+display: none !important;
+}
+
+.dar_pictures-wrap-2 {
+margin-top: 0 !important;
+padding-left: 0 !important;
+display: flex !important;
+align-items: center !important;
+justify-content: center !important;
+overflow: visible !important;
+width: 100% !important;
+}
+
+.dar_pictures-container-2 {
+display: flex !important;
+
+<!-- MISSING LINE 599 -->
+<!-- MISSING LINE 600 -->
+<!-- MISSING LINE 601 -->
+<!-- MISSING LINE 602 -->
+<!-- MISSING LINE 603 -->
+<!-- MISSING LINE 604 -->
+<!-- MISSING LINE 605 -->
+<!-- MISSING LINE 606 -->
+<!-- MISSING LINE 607 -->
+<!-- MISSING LINE 608 -->
+<!-- MISSING LINE 609 -->
+<!-- MISSING LINE 610 -->
+<!-- MISSING LINE 611 -->
+<!-- MISSING LINE 612 -->
+<!-- MISSING LINE 613 -->
+<!-- MISSING LINE 614 -->
+<!-- MISSING LINE 615 -->
+<!-- MISSING LINE 616 -->
+<!-- MISSING LINE 617 -->
+<!-- MISSING LINE 618 -->
+<!-- MISSING LINE 619 -->
+<!-- MISSING LINE 620 -->
+<!-- MISSING LINE 621 -->
+<!-- MISSING LINE 622 -->
+<!-- MISSING LINE 623 -->
+<!-- MISSING LINE 624 -->
+<!-- MISSING LINE 625 -->
+<!-- MISSING LINE 626 -->
+<!-- MISSING LINE 627 -->
+<!-- MISSING LINE 628 -->
+<!-- MISSING LINE 629 -->
+<!-- MISSING LINE 630 -->
+<!-- MISSING LINE 631 -->
+<!-- MISSING LINE 632 -->
+<!-- MISSING LINE 633 -->
+<!-- MISSING LINE 634 -->
+<!-- MISSING LINE 635 -->
+<!-- MISSING LINE 636 -->
+<!-- MISSING LINE 637 -->
+<!-- MISSING LINE 638 -->
+<!-- MISSING LINE 639 -->
+<!-- MISSING LINE 640 -->
+<!-- MISSING LINE 641 -->
+<!-- MISSING LINE 642 -->
+<!-- MISSING LINE 643 -->
+<!-- MISSING LINE 644 -->
+<!-- MISSING LINE 645 -->
+<!-- MISSING LINE 646 -->
+<!-- MISSING LINE 647 -->
+<!-- MISSING LINE 648 -->
+<!-- MISSING LINE 649 -->
+<!-- MISSING LINE 650 -->
+<!-- MISSING LINE 651 -->
+<!-- MISSING LINE 652 -->
+<!-- MISSING LINE 653 -->
+<!-- MISSING LINE 654 -->
+<!-- MISSING LINE 655 -->
+<!-- MISSING LINE 656 -->
+<!-- MISSING LINE 657 -->
+<!-- MISSING LINE 658 -->
+<!-- MISSING LINE 659 -->
+<!-- MISSING LINE 660 -->
+<!-- MISSING LINE 661 -->
+/* Vertical space for top & bottom sprockets */
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+width: 9.6rem !important;
+min-width: 9.6rem !important;
+aspect-ratio: 1 / 1.12 !important;
+display: flex !important;
+flex-direction: column !important;
+justify-content: center !important;
+align-items: center !important;
+margin: 0 -6px !important;
+/* Overlap slightly to connect negative strip borders */
+position: relative !important;
+
+/* Repeating sprocket holes matching the page's cream background */
+background-image:
+repeating-linear-gradient(90deg, var(--clr-bg) 0px, var(--clr-bg) 7px, transparent 7px, transparent 15px),
+repeating-linear-gradient(90deg, var(--clr-bg) 0px, var(--clr-bg) 7px, transparent 7px, transparent 15px) !important;
+background-position: top 8px center, bottom 8px center !important;
+background-size: 100% 6px !important;
+background-repeat: repeat-x !important;
+}
+
+.dar_profile-frame img {
+border: 1px solid rgba(255, 255, 255, 0.15) !important;
+border-radius: 0px !important;
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+display: block !important;
+filter: grayscale(100%) contrast(1.15) brightness(0.9);
+/* Vintage high-contrast look */
+transition: filter 0.4s ease, border-color 0.4s ease !important;
+}
+
+/* Staggered offsets forming a continuous wavy curve pattern */
+.dar_profile-frame:nth-child(9n+1) {
+transform: translateY(-20px) rotate(-3.5deg) !important;
+z-index: 1 !important;
+}
+<!-- MISSING LINE 701 -->
+<!-- MISSING LINE 702 -->
+<!-- MISSING LINE 703 -->
+<!-- MISSING LINE 704 -->
+<!-- MISSING LINE 705 -->
+<!-- MISSING LINE 706 -->
+<!-- MISSING LINE 707 -->
+<!-- MISSING LINE 708 -->
+<!-- MISSING LINE 709 -->
+<!-- MISSING LINE 710 -->
+<!-- MISSING LINE 711 -->
+<!-- MISSING LINE 712 -->
+<!-- MISSING LINE 713 -->
+<!-- MISSING LINE 714 -->
+<!-- MISSING LINE 715 -->
+<!-- MISSING LINE 716 -->
+<!-- MISSING LINE 717 -->
+<!-- MISSING LINE 718 -->
+<!-- MISSING LINE 719 -->
+<!-- MISSING LINE 720 -->
+<!-- MISSING LINE 721 -->
+<!-- MISSING LINE 722 -->
+<!-- MISSING LINE 723 -->
+<!-- MISSING LINE 724 -->
+<!-- MISSING LINE 725 -->
+<!-- MISSING LINE 726 -->
+<!-- MISSING LINE 727 -->
+<!-- MISSING LINE 728 -->
+<!-- MISSING LINE 729 -->
+<!-- MISSING LINE 730 -->
+<!-- MISSING LINE 731 -->
+<!-- MISSING LINE 732 -->
+<!-- MISSING LINE 733 -->
+<!-- MISSING LINE 734 -->
+<!-- MISSING LINE 735 -->
+<!-- MISSING LINE 736 -->
+<!-- MISSING LINE 737 -->
+<!-- MISSING LINE 738 -->
+<!-- MISSING LINE 739 -->
+<!-- MISSING LINE 740 -->
+<!-- MISSING LINE 741 -->
+<!-- MISSING LINE 742 -->
+<!-- MISSING LINE 743 -->
+<!-- MISSING LINE 744 -->
+<!-- MISSING LINE 745 -->
+<!-- MISSING LINE 746 -->
+<!-- MISSING LINE 747 -->
+<!-- MISSING LINE 748 -->
+<!-- MISSING LINE 749 -->
+<!-- MISSING LINE 750 -->
+<!-- MISSING LINE 751 -->
+<!-- MISSING LINE 752 -->
+<!-- MISSING LINE 753 -->
+<!-- MISSING LINE 754 -->
+<!-- MISSING LINE 755 -->
+<!-- MISSING LINE 756 -->
+<!-- MISSING LINE 757 -->
+<!-- MISSING LINE 758 -->
+<!-- MISSING LINE 759 -->
+<!-- MISSING LINE 760 -->
+<!-- MISSING LINE 761 -->
+<!-- MISSING LINE 762 -->
+<!-- MISSING LINE 763 -->
+<!-- MISSING LINE 764 -->
+<!-- MISSING LINE 765 -->
+<!-- MISSING LINE 766 -->
+<!-- MISSING LINE 767 -->
+<!-- MISSING LINE 768 -->
+<!-- MISSING LINE 769 -->
+<!-- MISSING LINE 770 -->
+<!-- MISSING LINE 771 -->
+<!-- MISSING LINE 772 -->
+<!-- MISSING LINE 773 -->
+<!-- MISSING LINE 774 -->
+<!-- MISSING LINE 775 -->
+<!-- MISSING LINE 776 -->
+<!-- MISSING LINE 777 -->
+<!-- MISSING LINE 778 -->
+<!-- MISSING LINE 779 -->
+<!-- MISSING LINE 780 -->
+<!-- MISSING LINE 781 -->
+<!-- MISSING LINE 782 -->
+<!-- MISSING LINE 783 -->
+<!-- MISSING LINE 784 -->
+<!-- MISSING LINE 785 -->
+<!-- MISSING LINE 786 -->
+<!-- MISSING LINE 787 -->
+<!-- MISSING LINE 788 -->
+<!-- MISSING LINE 789 -->
+<!-- MISSING LINE 790 -->
+<!-- MISSING LINE 791 -->
+<!-- MISSING LINE 792 -->
+<!-- MISSING LINE 793 -->
+<!-- MISSING LINE 794 -->
+<!-- MISSING LINE 795 -->
+<!-- MISSING LINE 796 -->
+<!-- MISSING LINE 797 -->
+<!-- MISSING LINE 798 -->
+<!-- MISSING LINE 799 -->
+<!-- MISSING LINE 800 -->
+<!-- MISSING LINE 801 -->
+<!-- MISSING LINE 802 -->
+<!-- MISSING LINE 803 -->
+<!-- MISSING LINE 804 -->
+<!-- MISSING LINE 805 -->
+<!-- MISSING LINE 806 -->
+<!-- MISSING LINE 807 -->
+<!-- MISSING LINE 808 -->
+<!-- MISSING LINE 809 -->
+<!-- MISSING LINE 810 -->
+<!-- MISSING LINE 811 -->
+<!-- MISSING LINE 812 -->
+<!-- MISSING LINE 813 -->
+<!-- MISSING LINE 814 -->
+<!-- MISSING LINE 815 -->
+<!-- MISSING LINE 816 -->
+<!-- MISSING LINE 817 -->
+<!-- MISSING LINE 818 -->
+<!-- MISSING LINE 819 -->
+<!-- MISSING LINE 820 -->
+<!-- MISSING LINE 821 -->
+<!-- MISSING LINE 822 -->
+<!-- MISSING LINE 823 -->
+<!-- MISSING LINE 824 -->
+<!-- MISSING LINE 825 -->
+<!-- MISSING LINE 826 -->
+<!-- MISSING LINE 827 -->
+<!-- MISSING LINE 828 -->
+<!-- MISSING LINE 829 -->
+<!-- MISSING LINE 830 -->
+<!-- MISSING LINE 831 -->
+<!-- MISSING LINE 832 -->
+<!-- MISSING LINE 833 -->
+<!-- MISSING LINE 834 -->
+<!-- MISSING LINE 835 -->
+<!-- MISSING LINE 836 -->
+<!-- MISSING LINE 837 -->
+<!-- MISSING LINE 838 -->
+<!-- MISSING LINE 839 -->
+<!-- MISSING LINE 840 -->
+<!-- MISSING LINE 841 -->
+<!-- MISSING LINE 842 -->
+<!-- MISSING LINE 843 -->
+<!-- MISSING LINE 844 -->
+<!-- MISSING LINE 845 -->
+<!-- MISSING LINE 846 -->
+<!-- MISSING LINE 847 -->
+<!-- MISSING LINE 848 -->
+<!-- MISSING LINE 849 -->
+<!-- MISSING LINE 850 -->
+<!-- MISSING LINE 851 -->
+<!-- MISSING LINE 852 -->
+<!-- MISSING LINE 853 -->
+<!-- MISSING LINE 854 -->
+<!-- MISSING LINE 855 -->
+<!-- MISSING LINE 856 -->
+<!-- MISSING LINE 857 -->
+<!-- MISSING LINE 858 -->
+<!-- MISSING LINE 859 -->
+<!-- MISSING LINE 860 -->
+<!-- MISSING LINE 861 -->
+<!-- MISSING LINE 862 -->
+<!-- MISSING LINE 863 -->
+<!-- MISSING LINE 864 -->
+<!-- MISSING LINE 865 -->
+<!-- MISSING LINE 866 -->
+<!-- MISSING LINE 867 -->
+<!-- MISSING LINE 868 -->
+<!-- MISSING LINE 869 -->
+<!-- MISSING LINE 870 -->
+<!-- MISSING LINE 871 -->
+<!-- MISSING LINE 872 -->
+<!-- MISSING LINE 873 -->
+<!-- MISSING LINE 874 -->
+<!-- MISSING LINE 875 -->
+<!-- MISSING LINE 876 -->
+<!-- MISSING LINE 877 -->
+<!-- MISSING LINE 878 -->
+<!-- MISSING LINE 879 -->
+<!-- MISSING LINE 880 -->
+<!-- MISSING LINE 881 -->
+<!-- MISSING LINE 882 -->
+<!-- MISSING LINE 883 -->
+<!-- MISSING LINE 884 -->
+<!-- MISSING LINE 885 -->
+<!-- MISSING LINE 886 -->
+<!-- MISSING LINE 887 -->
+<!-- MISSING LINE 888 -->
+<!-- MISSING LINE 889 -->
+<!-- MISSING LINE 890 -->
+<!-- MISSING LINE 891 -->
+<!-- MISSING LINE 892 -->
+<!-- MISSING LINE 893 -->
+<!-- MISSING LINE 894 -->
+<!-- MISSING LINE 895 -->
+<!-- MISSING LINE 896 -->
+<!-- MISSING LINE 897 -->
+<!-- MISSING LINE 898 -->
+<!-- MISSING LINE 899 -->
+<!-- MISSING LINE 900 -->
+<!-- MISSING LINE 901 -->
+<!-- MISSING LINE 902 -->
+<!-- MISSING LINE 903 -->
+<!-- MISSING LINE 904 -->
+<!-- MISSING LINE 905 -->
+<!-- MISSING LINE 906 -->
+<!-- MISSING LINE 907 -->
+<!-- MISSING LINE 908 -->
+<!-- MISSING LINE 909 -->
+<!-- MISSING LINE 910 -->
+<!-- MISSING LINE 911 -->
+<!-- MISSING LINE 912 -->
+<!-- MISSING LINE 913 -->
+<!-- MISSING LINE 914 -->
+<!-- MISSING LINE 915 -->
+<!-- MISSING LINE 916 -->
+<!-- MISSING LINE 917 -->
+<!-- MISSING LINE 918 -->
+<!-- MISSING LINE 919 -->
+<!-- MISSING LINE 920 -->
+<!-- MISSING LINE 921 -->
+<!-- MISSING LINE 922 -->
+<!-- MISSING LINE 923 -->
+<!-- MISSING LINE 924 -->
+<!-- MISSING LINE 925 -->
+<!-- MISSING LINE 926 -->
+<!-- MISSING LINE 927 -->
+<!-- MISSING LINE 928 -->
+<!-- MISSING LINE 929 -->
+<!-- MISSING LINE 930 -->
+<!-- MISSING LINE 931 -->
+<!-- MISSING LINE 932 -->
+<!-- MISSING LINE 933 -->
+<!-- MISSING LINE 934 -->
+<!-- MISSING LINE 935 -->
+<!-- MISSING LINE 936 -->
+<!-- MISSING LINE 937 -->
+<!-- MISSING LINE 938 -->
+<!-- MISSING LINE 939 -->
+<!-- MISSING LINE 940 -->
+<!-- MISSING LINE 941 -->
+<!-- MISSING LINE 942 -->
+<!-- MISSING LINE 943 -->
+<!-- MISSING LINE 944 -->
+<!-- MISSING LINE 945 -->
+<!-- MISSING LINE 946 -->
+<!-- MISSING LINE 947 -->
+<!-- MISSING LINE 948 -->
+<!-- MISSING LINE 949 -->
+<!-- MISSING LINE 950 -->
+<!-- MISSING LINE 951 -->
+<!-- MISSING LINE 952 -->
+<!-- MISSING LINE 953 -->
+<!-- MISSING LINE 954 -->
+<!-- MISSING LINE 955 -->
+<!-- MISSING LINE 956 -->
+<!-- MISSING LINE 957 -->
+<!-- MISSING LINE 958 -->
+<!-- MISSING LINE 959 -->
+<!-- MISSING LINE 960 -->
+<!-- MISSING LINE 961 -->
+<!-- MISSING LINE 962 -->
+<!-- MISSING LINE 963 -->
+<!-- MISSING LINE 964 -->
+<!-- MISSING LINE 965 -->
+<!-- MISSING LINE 966 -->
+<!-- MISSING LINE 967 -->
+<!-- MISSING LINE 968 -->
+<!-- MISSING LINE 969 -->
+<!-- MISSING LINE 970 -->
+<!-- MISSING LINE 971 -->
+<!-- MISSING LINE 972 -->
+<!-- MISSING LINE 973 -->
+<!-- MISSING LINE 974 -->
+<!-- MISSING LINE 975 -->
+<!-- MISSING LINE 976 -->
+<!-- MISSING LINE 977 -->
+<!-- MISSING LINE 978 -->
+<!-- MISSING LINE 979 -->
+<!-- MISSING LINE 980 -->
+<!-- MISSING LINE 981 -->
+<!-- MISSING LINE 982 -->
+<!-- MISSING LINE 983 -->
+<!-- MISSING LINE 984 -->
+<!-- MISSING LINE 985 -->
+<!-- MISSING LINE 986 -->
+<!-- MISSING LINE 987 -->
+<!-- MISSING LINE 988 -->
+<!-- MISSING LINE 989 -->
+<!-- MISSING LINE 990 -->
+<!-- MISSING LINE 991 -->
+<!-- MISSING LINE 992 -->
+<!-- MISSING LINE 993 -->
+<!-- MISSING LINE 994 -->
+<!-- MISSING LINE 995 -->
+<!-- MISSING LINE 996 -->
+<!-- MISSING LINE 997 -->
+<!-- MISSING LINE 998 -->
+<!-- MISSING LINE 999 -->
+<!-- MISSING LINE 1000 -->
+<!-- MISSING LINE 1001 -->
+<!-- MISSING LINE 1002 -->
+<!-- MISSING LINE 1003 -->
+<!-- MISSING LINE 1004 -->
+<!-- MISSING LINE 1005 -->
+<!-- MISSING LINE 1006 -->
+<!-- MISSING LINE 1007 -->
+<!-- MISSING LINE 1008 -->
+<!-- MISSING LINE 1009 -->
+<!-- MISSING LINE 1010 -->
+<!-- MISSING LINE 1011 -->
+<!-- MISSING LINE 1012 -->
+<!-- MISSING LINE 1013 -->
+<!-- MISSING LINE 1014 -->
+<!-- MISSING LINE 1015 -->
+<!-- MISSING LINE 1016 -->
+<!-- MISSING LINE 1017 -->
+<!-- MISSING LINE 1018 -->
+<!-- MISSING LINE 1019 -->
+<!-- MISSING LINE 1020 -->
+<!-- MISSING LINE 1021 -->
+<!-- MISSING LINE 1022 -->
+<!-- MISSING LINE 1023 -->
+<!-- MISSING LINE 1024 -->
+<!-- MISSING LINE 1025 -->
+<!-- MISSING LINE 1026 -->
+<!-- MISSING LINE 1027 -->
+<!-- MISSING LINE 1028 -->
+<!-- MISSING LINE 1029 -->
+<!-- MISSING LINE 1030 -->
+<!-- MISSING LINE 1031 -->
+<!-- MISSING LINE 1032 -->
+<!-- MISSING LINE 1033 -->
+<!-- MISSING LINE 1034 -->
+<!-- MISSING LINE 1035 -->
+<!-- MISSING LINE 1036 -->
+<!-- MISSING LINE 1037 -->
+<!-- MISSING LINE 1038 -->
+<!-- MISSING LINE 1039 -->
+<!-- MISSING LINE 1040 -->
+<!-- MISSING LINE 1041 -->
+<!-- MISSING LINE 1042 -->
+<!-- MISSING LINE 1043 -->
+<!-- MISSING LINE 1044 -->
+<!-- MISSING LINE 1045 -->
+<!-- MISSING LINE 1046 -->
+<!-- MISSING LINE 1047 -->
+<!-- MISSING LINE 1048 -->
+<!-- MISSING LINE 1049 -->
+<!-- MISSING LINE 1050 -->
+<!-- MISSING LINE 1051 -->
+<!-- MISSING LINE 1052 -->
+<!-- MISSING LINE 1053 -->
+<!-- MISSING LINE 1054 -->
+<!-- MISSING LINE 1055 -->
+<!-- MISSING LINE 1056 -->
+<!-- MISSING LINE 1057 -->
+<!-- MISSING LINE 1058 -->
+<!-- MISSING LINE 1059 -->
+<!-- MISSING LINE 1060 -->
+<!-- MISSING LINE 1061 -->
+<!-- MISSING LINE 1062 -->
+<!-- MISSING LINE 1063 -->
+<!-- MISSING LINE 1064 -->
+<!-- MISSING LINE 1065 -->
+<!-- MISSING LINE 1066 -->
+<!-- MISSING LINE 1067 -->
+<!-- MISSING LINE 1068 -->
+<!-- MISSING LINE 1069 -->
+<!-- MISSING LINE 1070 -->
+<!-- MISSING LINE 1071 -->
+<!-- MISSING LINE 1072 -->
+<!-- MISSING LINE 1073 -->
+<!-- MISSING LINE 1074 -->
+<!-- MISSING LINE 1075 -->
+<!-- MISSING LINE 1076 -->
+<!-- MISSING LINE 1077 -->
+<!-- MISSING LINE 1078 -->
+<!-- MISSING LINE 1079 -->
+<!-- MISSING LINE 1080 -->
+<!-- MISSING LINE 1081 -->
+<!-- MISSING LINE 1082 -->
+<!-- MISSING LINE 1083 -->
+<!-- MISSING LINE 1084 -->
+<!-- MISSING LINE 1085 -->
+<!-- MISSING LINE 1086 -->
+<!-- MISSING LINE 1087 -->
+<!-- MISSING LINE 1088 -->
+<!-- MISSING LINE 1089 -->
+<!-- MISSING LINE 1090 -->
+<!-- MISSING LINE 1091 -->
+<!-- MISSING LINE 1092 -->
+<!-- MISSING LINE 1093 -->
+<!-- MISSING LINE 1094 -->
+<!-- MISSING LINE 1095 -->
+<!-- MISSING LINE 1096 -->
+<!-- MISSING LINE 1097 -->
+<!-- MISSING LINE 1098 -->
+<!-- MISSING LINE 1099 -->
+<!-- MISSING LINE 1100 -->
+<!-- MISSING LINE 1101 -->
+<!-- MISSING LINE 1102 -->
+<!-- MISSING LINE 1103 -->
+<!-- MISSING LINE 1104 -->
+<!-- MISSING LINE 1105 -->
+<!-- MISSING LINE 1106 -->
+<!-- MISSING LINE 1107 -->
+<!-- MISSING LINE 1108 -->
+<!-- MISSING LINE 1109 -->
+<!-- MISSING LINE 1110 -->
+<!-- MISSING LINE 1111 -->
+<!-- MISSING LINE 1112 -->
+<!-- MISSING LINE 1113 -->
+<!-- MISSING LINE 1114 -->
+<!-- MISSING LINE 1115 -->
+<!-- MISSING LINE 1116 -->
+<!-- MISSING LINE 1117 -->
+<!-- MISSING LINE 1118 -->
+<!-- MISSING LINE 1119 -->
+<!-- MISSING LINE 1120 -->
+<!-- MISSING LINE 1121 -->
+<!-- MISSING LINE 1122 -->
+<!-- MISSING LINE 1123 -->
+<!-- MISSING LINE 1124 -->
+<!-- MISSING LINE 1125 -->
+<!-- MISSING LINE 1126 -->
+<!-- MISSING LINE 1127 -->
+<!-- MISSING LINE 1128 -->
+<!-- MISSING LINE 1129 -->
+<!-- MISSING LINE 1130 -->
+<!-- MISSING LINE 1131 -->
+<!-- MISSING LINE 1132 -->
+<!-- MISSING LINE 1133 -->
+<!-- MISSING LINE 1134 -->
+<!-- MISSING LINE 1135 -->
+<!-- MISSING LINE 1136 -->
+<!-- MISSING LINE 1137 -->
+<!-- MISSING LINE 1138 -->
+<!-- MISSING LINE 1139 -->
+<!-- MISSING LINE 1140 -->
+<!-- MISSING LINE 1141 -->
+<!-- MISSING LINE 1142 -->
+<!-- MISSING LINE 1143 -->
+<!-- MISSING LINE 1144 -->
+<!-- MISSING LINE 1145 -->
+<!-- MISSING LINE 1146 -->
+<!-- MISSING LINE 1147 -->
+<!-- MISSING LINE 1148 -->
+<!-- MISSING LINE 1149 -->
+<!-- MISSING LINE 1150 -->
+<!-- MISSING LINE 1151 -->
+<!-- MISSING LINE 1152 -->
+<!-- MISSING LINE 1153 -->
+<!-- MISSING LINE 1154 -->
+<!-- MISSING LINE 1155 -->
+<!-- MISSING LINE 1156 -->
+<!-- MISSING LINE 1157 -->
+<!-- MISSING LINE 1158 -->
+<!-- MISSING LINE 1159 -->
+<!-- MISSING LINE 1160 -->
+<!-- MISSING LINE 1161 -->
+<!-- MISSING LINE 1162 -->
+<!-- MISSING LINE 1163 -->
+<!-- MISSING LINE 1164 -->
+<!-- MISSING LINE 1165 -->
+<!-- MISSING LINE 1166 -->
+<!-- MISSING LINE 1167 -->
+<!-- MISSING LINE 1168 -->
+<!-- MISSING LINE 1169 -->
+<!-- MISSING LINE 1170 -->
+<!-- MISSING LINE 1171 -->
+<!-- MISSING LINE 1172 -->
+<!-- MISSING LINE 1173 -->
+<!-- MISSING LINE 1174 -->
+<!-- MISSING LINE 1175 -->
+<!-- MISSING LINE 1176 -->
+<!-- MISSING LINE 1177 -->
+<!-- MISSING LINE 1178 -->
+<!-- MISSING LINE 1179 -->
+<!-- MISSING LINE 1180 -->
+<!-- MISSING LINE 1181 -->
+<!-- MISSING LINE 1182 -->
+<!-- MISSING LINE 1183 -->
+<!-- MISSING LINE 1184 -->
+<!-- MISSING LINE 1185 -->
+<!-- MISSING LINE 1186 -->
+<!-- MISSING LINE 1187 -->
+<!-- MISSING LINE 1188 -->
+<!-- MISSING LINE 1189 -->
+<!-- MISSING LINE 1190 -->
+<!-- MISSING LINE 1191 -->
+<!-- MISSING LINE 1192 -->
+<!-- MISSING LINE 1193 -->
+<!-- MISSING LINE 1194 -->
+<!-- MISSING LINE 1195 -->
+<!-- MISSING LINE 1196 -->
+<!-- MISSING LINE 1197 -->
+<!-- MISSING LINE 1198 -->
+<!-- MISSING LINE 1199 -->
+<!-- MISSING LINE 1200 -->
+<!-- MISSING LINE 1201 -->
+<!-- MISSING LINE 1202 -->
+<!-- MISSING LINE 1203 -->
+<!-- MISSING LINE 1204 -->
+<!-- MISSING LINE 1205 -->
+<!-- MISSING LINE 1206 -->
+<!-- MISSING LINE 1207 -->
+<!-- MISSING LINE 1208 -->
+<!-- MISSING LINE 1209 -->
+<!-- MISSING LINE 1210 -->
+<!-- MISSING LINE 1211 -->
+<!-- MISSING LINE 1212 -->
+<!-- MISSING LINE 1213 -->
+<!-- MISSING LINE 1214 -->
+<!-- MISSING LINE 1215 -->
+<!-- MISSING LINE 1216 -->
+<!-- MISSING LINE 1217 -->
+<!-- MISSING LINE 1218 -->
+<!-- MISSING LINE 1219 -->
+<!-- MISSING LINE 1220 -->
+<!-- MISSING LINE 1221 -->
+<!-- MISSING LINE 1222 -->
+<!-- MISSING LINE 1223 -->
+<!-- MISSING LINE 1224 -->
+<!-- MISSING LINE 1225 -->
+<!-- MISSING LINE 1226 -->
+<!-- MISSING LINE 1227 -->
+<!-- MISSING LINE 1228 -->
+<!-- MISSING LINE 1229 -->
+<!-- MISSING LINE 1230 -->
+<!-- MISSING LINE 1231 -->
+<!-- MISSING LINE 1232 -->
+<!-- MISSING LINE 1233 -->
+<!-- MISSING LINE 1234 -->
+<!-- MISSING LINE 1235 -->
+<!-- MISSING LINE 1236 -->
+<!-- MISSING LINE 1237 -->
+<!-- MISSING LINE 1238 -->
+<!-- MISSING LINE 1239 -->
+<!-- MISSING LINE 1240 -->
+<!-- MISSING LINE 1241 -->
+<!-- MISSING LINE 1242 -->
+<!-- MISSING LINE 1243 -->
+<!-- MISSING LINE 1244 -->
+<!-- MISSING LINE 1245 -->
+<!-- MISSING LINE 1246 -->
+<!-- MISSING LINE 1247 -->
+<!-- MISSING LINE 1248 -->
+<!-- MISSING LINE 1249 -->
+<!-- MISSING LINE 1250 -->
+<!-- MISSING LINE 1251 -->
+<!-- MISSING LINE 1252 -->
+<!-- MISSING LINE 1253 -->
+<!-- MISSING LINE 1254 -->
+<!-- MISSING LINE 1255 -->
+<!-- MISSING LINE 1256 -->
+<!-- MISSING LINE 1257 -->
+<!-- MISSING LINE 1258 -->
+<!-- MISSING LINE 1259 -->
+<!-- MISSING LINE 1260 -->
+<!-- MISSING LINE 1261 -->
+<!-- MISSING LINE 1262 -->
+<!-- MISSING LINE 1263 -->
+<!-- MISSING LINE 1264 -->
+<!-- MISSING LINE 1265 -->
+<!-- MISSING LINE 1266 -->
+<!-- MISSING LINE 1267 -->
+<!-- MISSING LINE 1268 -->
+<!-- MISSING LINE 1269 -->
+<!-- MISSING LINE 1270 -->
+<!-- MISSING LINE 1271 -->
+<!-- MISSING LINE 1272 -->
+<!-- MISSING LINE 1273 -->
+<!-- MISSING LINE 1274 -->
+<!-- MISSING LINE 1275 -->
+<!-- MISSING LINE 1276 -->
+<!-- MISSING LINE 1277 -->
+<!-- MISSING LINE 1278 -->
+<!-- MISSING LINE 1279 -->
+<!-- MISSING LINE 1280 -->
+<!-- MISSING LINE 1281 -->
+<!-- MISSING LINE 1282 -->
+<!-- MISSING LINE 1283 -->
+<!-- MISSING LINE 1284 -->
+<!-- MISSING LINE 1285 -->
+<!-- MISSING LINE 1286 -->
+<!-- MISSING LINE 1287 -->
+<!-- MISSING LINE 1288 -->
+<!-- MISSING LINE 1289 -->
+<!-- MISSING LINE 1290 -->
+<!-- MISSING LINE 1291 -->
+<!-- MISSING LINE 1292 -->
+<!-- MISSING LINE 1293 -->
+<!-- MISSING LINE 1294 -->
+<!-- MISSING LINE 1295 -->
+<!-- MISSING LINE 1296 -->
+<!-- MISSING LINE 1297 -->
+<!-- MISSING LINE 1298 -->
+<!-- MISSING LINE 1299 -->
+<!-- MISSING LINE 1300 -->
+<!-- MISSING LINE 1301 -->
+<!-- MISSING LINE 1302 -->
+<!-- MISSING LINE 1303 -->
+<!-- MISSING LINE 1304 -->
+<!-- MISSING LINE 1305 -->
+<!-- MISSING LINE 1306 -->
+<!-- MISSING LINE 1307 -->
+<!-- MISSING LINE 1308 -->
+<!-- MISSING LINE 1309 -->
+<!-- MISSING LINE 1310 -->
+<!-- MISSING LINE 1311 -->
+<!-- MISSING LINE 1312 -->
+<!-- MISSING LINE 1313 -->
+<!-- MISSING LINE 1314 -->
+<!-- MISSING LINE 1315 -->
+<!-- MISSING LINE 1316 -->
+<!-- MISSING LINE 1317 -->
+<!-- MISSING LINE 1318 -->
+<!-- MISSING LINE 1319 -->
+<!-- MISSING LINE 1320 -->
+<!-- MISSING LINE 1321 -->
+<!-- MISSING LINE 1322 -->
+<!-- MISSING LINE 1323 -->
+<!-- MISSING LINE 1324 -->
+<!-- MISSING LINE 1325 -->
+<!-- MISSING LINE 1326 -->
+<!-- MISSING LINE 1327 -->
+<!-- MISSING LINE 1328 -->
+<!-- MISSING LINE 1329 -->
+<!-- MISSING LINE 1330 -->
+<!-- MISSING LINE 1331 -->
+<!-- MISSING LINE 1332 -->
+<!-- MISSING LINE 1333 -->
+<!-- MISSING LINE 1334 -->
+<!-- MISSING LINE 1335 -->
+<!-- MISSING LINE 1336 -->
+<!-- MISSING LINE 1337 -->
+<!-- MISSING LINE 1338 -->
+<!-- MISSING LINE 1339 -->
+<!-- MISSING LINE 1340 -->
+<!-- MISSING LINE 1341 -->
+<!-- MISSING LINE 1342 -->
+<!-- MISSING LINE 1343 -->
+<!-- MISSING LINE 1344 -->
+<!-- MISSING LINE 1345 -->
+<!-- MISSING LINE 1346 -->
+<!-- MISSING LINE 1347 -->
+<!-- MISSING LINE 1348 -->
+<!-- MISSING LINE 1349 -->
+<!-- MISSING LINE 1350 -->
+<!-- MISSING LINE 1351 -->
+<!-- MISSING LINE 1352 -->
+<!-- MISSING LINE 1353 -->
+<!-- MISSING LINE 1354 -->
+<!-- MISSING LINE 1355 -->
+<!-- MISSING LINE 1356 -->
+<!-- MISSING LINE 1357 -->
+<!-- MISSING LINE 1358 -->
+<!-- MISSING LINE 1359 -->
+<!-- MISSING LINE 1360 -->
+<!-- MISSING LINE 1361 -->
+<!-- MISSING LINE 1362 -->
+<!-- MISSING LINE 1363 -->
+<!-- MISSING LINE 1364 -->
+<!-- MISSING LINE 1365 -->
+<!-- MISSING LINE 1366 -->
+<!-- MISSING LINE 1367 -->
+<!-- MISSING LINE 1368 -->
+<!-- MISSING LINE 1369 -->
+<!-- MISSING LINE 1370 -->
+<!-- MISSING LINE 1371 -->
+<!-- MISSING LINE 1372 -->
+<!-- MISSING LINE 1373 -->
+<!-- MISSING LINE 1374 -->
+<!-- MISSING LINE 1375 -->
+<!-- MISSING LINE 1376 -->
+<!-- MISSING LINE 1377 -->
+<!-- MISSING LINE 1378 -->
+<!-- MISSING LINE 1379 -->
+<!-- MISSING LINE 1380 -->
+<!-- MISSING LINE 1381 -->
+<!-- MISSING LINE 1382 -->
+<!-- MISSING LINE 1383 -->
+<!-- MISSING LINE 1384 -->
+<!-- MISSING LINE 1385 -->
+<!-- MISSING LINE 1386 -->
+<!-- MISSING LINE 1387 -->
+<!-- MISSING LINE 1388 -->
+<!-- MISSING LINE 1389 -->
+<!-- MISSING LINE 1390 -->
+<!-- MISSING LINE 1391 -->
+<!-- MISSING LINE 1392 -->
+<!-- MISSING LINE 1393 -->
+<!-- MISSING LINE 1394 -->
+<!-- MISSING LINE 1395 -->
+<!-- MISSING LINE 1396 -->
+<!-- MISSING LINE 1397 -->
+<!-- MISSING LINE 1398 -->
+<!-- MISSING LINE 1399 -->
+<!-- MISSING LINE 1400 -->
+<!-- MISSING LINE 1401 -->
+<!-- MISSING LINE 1402 -->
+<!-- MISSING LINE 1403 -->
+<!-- MISSING LINE 1404 -->
+<!-- MISSING LINE 1405 -->
+<!-- MISSING LINE 1406 -->
+<!-- MISSING LINE 1407 -->
+<!-- MISSING LINE 1408 -->
+<!-- MISSING LINE 1409 -->
+<!-- MISSING LINE 1410 -->
+<!-- MISSING LINE 1411 -->
+<!-- MISSING LINE 1412 -->
+<!-- MISSING LINE 1413 -->
+<!-- MISSING LINE 1414 -->
+<!-- MISSING LINE 1415 -->
+<!-- MISSING LINE 1416 -->
+<!-- MISSING LINE 1417 -->
+<!-- MISSING LINE 1418 -->
+<!-- MISSING LINE 1419 -->
+<!-- MISSING LINE 1420 -->
+<!-- MISSING LINE 1421 -->
+<!-- MISSING LINE 1422 -->
+<!-- MISSING LINE 1423 -->
+<!-- MISSING LINE 1424 -->
+<!-- MISSING LINE 1425 -->
+<!-- MISSING LINE 1426 -->
+<!-- MISSING LINE 1427 -->
+<!-- MISSING LINE 1428 -->
+<!-- MISSING LINE 1429 -->
+<!-- MISSING LINE 1430 -->
+<!-- MISSING LINE 1431 -->
+<!-- MISSING LINE 1432 -->
+<!-- MISSING LINE 1433 -->
+<!-- MISSING LINE 1434 -->
+<!-- MISSING LINE 1435 -->
+<!-- MISSING LINE 1436 -->
+<!-- MISSING LINE 1437 -->
+<!-- MISSING LINE 1438 -->
+<!-- MISSING LINE 1439 -->
+<!-- MISSING LINE 1440 -->
+<!-- MISSING LINE 1441 -->
+<!-- MISSING LINE 1442 -->
+<!-- MISSING LINE 1443 -->
+<!-- MISSING LINE 1444 -->
+<!-- MISSING LINE 1445 -->
+<!-- MISSING LINE 1446 -->
+<!-- MISSING LINE 1447 -->
+<!-- MISSING LINE 1448 -->
+<!-- MISSING LINE 1449 -->
+<!-- MISSING LINE 1450 -->
+<!-- MISSING LINE 1451 -->
+<!-- MISSING LINE 1452 -->
+<!-- MISSING LINE 1453 -->
+<!-- MISSING LINE 1454 -->
+<!-- MISSING LINE 1455 -->
+<!-- MISSING LINE 1456 -->
+<!-- MISSING LINE 1457 -->
+<!-- MISSING LINE 1458 -->
+<!-- MISSING LINE 1459 -->
+<!-- MISSING LINE 1460 -->
+<!-- MISSING LINE 1461 -->
+<!-- MISSING LINE 1462 -->
+<!-- MISSING LINE 1463 -->
+<!-- MISSING LINE 1464 -->
+<!-- MISSING LINE 1465 -->
+<!-- MISSING LINE 1466 -->
+<!-- MISSING LINE 1467 -->
+<!-- MISSING LINE 1468 -->
+<!-- MISSING LINE 1469 -->
+<!-- MISSING LINE 1470 -->
+<!-- MISSING LINE 1471 -->
+<!-- MISSING LINE 1472 -->
+<!-- MISSING LINE 1473 -->
+<!-- MISSING LINE 1474 -->
+<!-- MISSING LINE 1475 -->
+<!-- MISSING LINE 1476 -->
+<!-- MISSING LINE 1477 -->
+<!-- MISSING LINE 1478 -->
+<!-- MISSING LINE 1479 -->
+<!-- MISSING LINE 1480 -->
+<!-- MISSING LINE 1481 -->
+<!-- MISSING LINE 1482 -->
+<!-- MISSING LINE 1483 -->
+<!-- MISSING LINE 1484 -->
+<!-- MISSING LINE 1485 -->
+<!-- MISSING LINE 1486 -->
+<!-- MISSING LINE 1487 -->
+<!-- MISSING LINE 1488 -->
+<!-- MISSING LINE 1489 -->
+<!-- MISSING LINE 1490 -->
+<!-- MISSING LINE 1491 -->
+<!-- MISSING LINE 1492 -->
+<!-- MISSING LINE 1493 -->
+<!-- MISSING LINE 1494 -->
+<!-- MISSING LINE 1495 -->
+<!-- MISSING LINE 1496 -->
+<!-- MISSING LINE 1497 -->
+<!-- MISSING LINE 1498 -->
+<!-- MISSING LINE 1499 -->
+<!-- MISSING LINE 1500 -->
+<!-- MISSING LINE 1501 -->
+<!-- MISSING LINE 1502 -->
+<!-- MISSING LINE 1503 -->
+<!-- MISSING LINE 1504 -->
+<!-- MISSING LINE 1505 -->
+<!-- MISSING LINE 1506 -->
+<!-- MISSING LINE 1507 -->
+<!-- MISSING LINE 1508 -->
+<!-- MISSING LINE 1509 -->
+<!-- MISSING LINE 1510 -->
+<!-- MISSING LINE 1511 -->
+<!-- MISSING LINE 1512 -->
+<!-- MISSING LINE 1513 -->
+<!-- MISSING LINE 1514 -->
+<!-- MISSING LINE 1515 -->
+<!-- MISSING LINE 1516 -->
+<!-- MISSING LINE 1517 -->
+<!-- MISSING LINE 1518 -->
+<!-- MISSING LINE 1519 -->
+<!-- MISSING LINE 1520 -->
+<!-- MISSING LINE 1521 -->
+<!-- MISSING LINE 1522 -->
+<!-- MISSING LINE 1523 -->
+<!-- MISSING LINE 1524 -->
+<!-- MISSING LINE 1525 -->
+<!-- MISSING LINE 1526 -->
+<!-- MISSING LINE 1527 -->
+<!-- MISSING LINE 1528 -->
+<!-- MISSING LINE 1529 -->
+<!-- MISSING LINE 1530 -->
+<!-- MISSING LINE 1531 -->
+<!-- MISSING LINE 1532 -->
+<!-- MISSING LINE 1533 -->
+<!-- MISSING LINE 1534 -->
+<!-- MISSING LINE 1535 -->
+<!-- MISSING LINE 1536 -->
+<!-- MISSING LINE 1537 -->
+<!-- MISSING LINE 1538 -->
+<!-- MISSING LINE 1539 -->
+<!-- MISSING LINE 1540 -->
+<!-- MISSING LINE 1541 -->
+<!-- MISSING LINE 1542 -->
+<!-- MISSING LINE 1543 -->
+<!-- MISSING LINE 1544 -->
+<!-- MISSING LINE 1545 -->
+<!-- MISSING LINE 1546 -->
+<!-- MISSING LINE 1547 -->
+<!-- MISSING LINE 1548 -->
+<!-- MISSING LINE 1549 -->
+<!-- MISSING LINE 1550 -->
+<!-- MISSING LINE 1551 -->
+<!-- MISSING LINE 1552 -->
+<!-- MISSING LINE 1553 -->
+<!-- MISSING LINE 1554 -->
+<!-- MISSING LINE 1555 -->
+<!-- MISSING LINE 1556 -->
+<!-- MISSING LINE 1557 -->
+<!-- MISSING LINE 1558 -->
+<!-- MISSING LINE 1559 -->
+<!-- MISSING LINE 1560 -->
+<!-- MISSING LINE 1561 -->
+<!-- MISSING LINE 1562 -->
+<!-- MISSING LINE 1563 -->
+<!-- MISSING LINE 1564 -->
+<!-- MISSING LINE 1565 -->
+<!-- MISSING LINE 1566 -->
+<!-- MISSING LINE 1567 -->
+<!-- MISSING LINE 1568 -->
+<!-- MISSING LINE 1569 -->
+<!-- MISSING LINE 1570 -->
+<!-- MISSING LINE 1571 -->
+<!-- MISSING LINE 1572 -->
+<!-- MISSING LINE 1573 -->
+<!-- MISSING LINE 1574 -->
+<!-- MISSING LINE 1575 -->
+<!-- MISSING LINE 1576 -->
+<!-- MISSING LINE 1577 -->
+<!-- MISSING LINE 1578 -->
+<!-- MISSING LINE 1579 -->
+loading="lazy" sizes="(max-width: 1919px) 100vw, 1480.99609375px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605b193b7764e8bdcbe723_VIDEO%20FRAME-16.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605b193b7764e8bdcbe723_VIDEO%20FRAME-16.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605b193b7764e8bdcbe723_VIDEO%20FRAME-16.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605b193b7764e8bdcbe723_VIDEO%20FRAME-16.webp 1481w"
+alt="" class="dar-grid-image-c" /></div>
+<div class="dar-grid-item-c"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a57453260e6815c5f43_VIDEO%20FRAME-17.webp"
+loading="lazy" sizes="(max-width: 1919px) 100vw, 1480.99609375px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a57453260e6815c5f43_VIDEO%20FRAME-17.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a57453260e6815c5f43_VIDEO%20FRAME-17.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a57453260e6815c5f43_VIDEO%20FRAME-17.webp 1080w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a57453260e6815c5f43_VIDEO%20FRAME-17.webp 1481w"
+alt="" class="dar-grid-image-c" /></div>
+<div class="dar-grid-item-c"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/
+<!-- MISSING LINE 1590 -->
+<!-- MISSING LINE 1591 -->
+<!-- MISSING LINE 1592 -->
+<!-- MISSING LINE 1593 -->
+<!-- MISSING LINE 1594 -->
+<!-- MISSING LINE 1595 -->
+<!-- MISSING LINE 1596 -->
+<!-- MISSING LINE 1597 -->
+<!-- MISSING LINE 1598 -->
+<!-- MISSING LINE 1599 -->
+<!-- MISSING LINE 1600 -->
+<!-- MISSING LINE 1601 -->
+<!-- MISSING LINE 1602 -->
+<!-- MISSING LINE 1603 -->
+<!-- MISSING LINE 1604 -->
+<!-- MISSING LINE 1605 -->
+<!-- MISSING LINE 1606 -->
+<!-- MISSING LINE 1607 -->
+<!-- MISSING LINE 1608 -->
+<!-- MISSING LINE 1609 -->
+<!-- MISSING LINE 1610 -->
+<!-- MISSING LINE 1611 -->
+<!-- MISSING LINE 1612 -->
+<!-- MISSING LINE 1613 -->
+<!-- MISSING LINE 1614 -->
+<!-- MISSING LINE 1615 -->
+<!-- MISSING LINE 1616 -->
+<!-- MISSING LINE 1617 -->
+<!-- MISSING LINE 1618 -->
+<!-- MISSING LINE 1619 -->
+<!-- MISSING LINE 1620 -->
+<!-- MISSING LINE 1621 -->
+<!-- MISSING LINE 1622 -->
+<!-- MISSING LINE 1623 -->
+<!-- MISSING LINE 1624 -->
+<!-- MISSING LINE 1625 -->
+<!-- MISSING LINE 1626 -->
+<!-- MISSING LINE 1627 -->
+<!-- MISSING LINE 1628 -->
+<!-- MISSING LINE 1629 -->
+<!-- MISSING LINE 1630 -->
+<!-- MISSING LINE 1631 -->
+<!-- MISSING LINE 1632 -->
+<!-- MISSING LINE 1633 -->
+<!-- MISSING LINE 1634 -->
+<!-- MISSING LINE 1635 -->
+<!-- MISSING LINE 1636 -->
+<!-- MISSING LINE 1637 -->
+<!-- MISSING LINE 1638 -->
+<!-- MISSING LINE 1639 -->
+<!-- MISSING LINE 1640 -->
+<!-- MISSING LINE 1641 -->
+<!-- MISSING LINE 1642 -->
+<!-- MISSING LINE 1643 -->
+<!-- MISSING LINE 1644 -->
+<!-- MISSING LINE 1645 -->
+<!-- MISSING LINE 1646 -->
+<!-- MISSING LINE 1647 -->
+<!-- MISSING LINE 1648 -->
+<!-- MISSING LINE 1649 -->
+<!-- MISSING LINE 1650 -->
+<!-- MISSING LINE 1651 -->
+<!-- MISSING LINE 1652 -->
+<!-- MISSING LINE 1653 -->
+<!-- MISSING LINE 1654 -->
+<!-- MISSING LINE 1655 -->
+<!-- MISSING LINE 1656 -->
+<!-- MISSING LINE 1657 -->
+<!-- MISSING LINE 1658 -->
+<!-- MISSING LINE 1659 -->
+<!-- MISSING LINE 1660 -->
+<!-- MISSING LINE 1661 -->
+<!-- MISSING LINE 1662 -->
+<!-- MISSING LINE 1663 -->
+<!-- MISSING LINE 1664 -->
+<!-- MISSING LINE 1665 -->
+<!-- MISSING LINE 1666 -->
+<!-- MISSING LINE 1667 -->
+<!-- MISSING LINE 1668 -->
+<!-- MISSING LINE 1669 -->
+<!-- MISSING LINE 1670 -->
+<!-- MISSING LINE 1671 -->
+<!-- MISSING LINE 1672 -->
+<!-- MISSING LINE 1673 -->
+<!-- MISSING LINE 1674 -->
+<!-- MISSING LINE 1675 -->
+<!-- MISSING LINE 1676 -->
+<!-- MISSING LINE 1677 -->
+<!-- MISSING LINE 1678 -->
+<!-- MISSING LINE 1679 -->
+<!-- MISSING LINE 1680 -->
+<!-- MISSING LINE 1681 -->
+<!-- MISSING LINE 1682 -->
+<!-- MISSING LINE 1683 -->
+<!-- MISSING LINE 1684 -->
+<!-- MISSING LINE 1685 -->
+<!-- MISSING LINE 1686 -->
+<!-- MISSING LINE 1687 -->
+<!-- MISSING LINE 1688 -->
+<!-- MISSING LINE 1689 -->
+<!-- MISSING LINE 1690 -->
+<!-- MISSING LINE 1691 -->
+<!-- MISSING LINE 1692 -->
+<!-- MISSING LINE 1693 -->
+<!-- MISSING LINE 1694 -->
+<!-- MISSING LINE 1695 -->
+<!-- MISSING LINE 1696 -->
+<!-- MISSING LINE 1697 -->
+<!-- MISSING LINE 1698 -->
+<!-- MISSING LINE 1699 -->
+<!-- MISSING LINE 1700 -->
+<!-- MISSING LINE 1701 -->
+<!-- MISSING LINE 1702 -->
+<!-- MISSING LINE 1703 -->
+<!-- MISSING LINE 1704 -->
+<!-- MISSING LINE 1705 -->
+<!-- MISSING LINE 1706 -->
+<!-- MISSING LINE 1707 -->
+<!-- MISSING LINE 1708 -->
+<!-- MISSING LINE 1709 -->
+<!-- MISSING LINE 1710 -->
+<!-- MISSING LINE 1711 -->
+<!-- MISSING LINE 1712 -->
+<!-- MISSING LINE 1713 -->
+<!-- MISSING LINE 1714 -->
+<!-- MISSING LINE 1715 -->
+<!-- MISSING LINE 1716 -->
+<!-- MISSING LINE 1717 -->
+<!-- MISSING LINE 1718 -->
+<!-- MISSING LINE 1719 -->
+<!-- MISSING LINE 1720 -->
+<!-- MISSING LINE 1721 -->
+<!-- MISSING LINE 1722 -->
+<!-- MISSING LINE 1723 -->
+<!-- MISSING LINE 1724 -->
+<!-- MISSING LINE 1725 -->
+<!-- MISSING LINE 1726 -->
+<!-- MISSING LINE 1727 -->
+<!-- MISSING LINE 1728 -->
+<!-- MISSING LINE 1729 -->
+<!-- MISSING LINE 1730 -->
+<!-- MISSING LINE 1731 -->
+<!-- MISSING LINE 1732 -->
+<!-- MISSING LINE 1733 -->
+<!-- MISSING LINE 1734 -->
+<!-- MISSING LINE 1735 -->
+<!-- MISSING LINE 1736 -->
+<!-- MISSING LINE 1737 -->
+<!-- MISSING LINE 1738 -->
+<!-- MISSING LINE 1739 -->
+<!-- MISSING LINE 1740 -->
+<!-- MISSING LINE 1741 -->
+<!-- MISSING LINE 1742 -->
+<!-- MISSING LINE 1743 -->
+<!-- MISSING LINE 1744 -->
+<!-- MISSING LINE 1745 -->
+<!-- MISSING LINE 1746 -->
+<!-- MISSING LINE 1747 -->
+<!-- MISSING LINE 1748 -->
+<!-- MISSING LINE 1749 -->
+<!-- MISSING LINE 1750 -->
+<!-- MISSING LINE 1751 -->
+<!-- MISSING LINE 1752 -->
+<!-- MISSING LINE 1753 -->
+<!-- MISSING LINE 1754 -->
+<!-- MISSING LINE 1755 -->
+<!-- MISSING LINE 1756 -->
+<!-- MISSING LINE 1757 -->
+<!-- MISSING LINE 1758 -->
+<!-- MISSING LINE 1759 -->
+<!-- MISSING LINE 1760 -->
+<!-- MISSING LINE 1761 -->
+<!-- MISSING LINE 1762 -->
+<!-- MISSING LINE 1763 -->
+<!-- MISSING LINE 1764 -->
+<!-- MISSING LINE 1765 -->
+<!-- MISSING LINE 1766 -->
+<!-- MISSING LINE 1767 -->
+<!-- MISSING LINE 1768 -->
+<!-- MISSING LINE 1769 -->
+<!-- MISSING LINE 1770 -->
+<!-- MISSING LINE 1771 -->
+<!-- MISSING LINE 1772 -->
+<!-- MISSING LINE 1773 -->
+<!-- MISSING LINE 1774 -->
+<!-- MISSING LINE 1775 -->
+<!-- MISSING LINE 1776 -->
+<!-- MISSING LINE 1777 -->
+<!-- MISSING LINE 1778 -->
+<!-- MISSING LINE 1779 -->
+<!-- MISSING LINE 1780 -->
+<!-- MISSING LINE 1781 -->
+<!-- MISSING LINE 1782 -->
+<!-- MISSING LINE 1783 -->
+<!-- MISSING LINE 1784 -->
+<!-- MISSING LINE 1785 -->
+<!-- MISSING LINE 1786 -->
+<!-- MISSING LINE 1787 -->
+<!-- MISSING LINE 1788 -->
+<!-- MISSING LINE 1789 -->
+<!-- MISSING LINE 1790 -->
+<!-- MISSING LINE 1791 -->
+<!-- MISSING LINE 1792 -->
+<!-- MISSING LINE 1793 -->
+<!-- MISSING LINE 1794 -->
+<!-- MISSING LINE 1795 -->
+<!-- MISSING LINE 1796 -->
+<!-- MISSING LINE 1797 -->
+<!-- MISSING LINE 1798 -->
+<!-- MISSING LINE 1799 -->
+<!-- MISSING LINE 1800 -->
+<!-- MISSING LINE 1801 -->
+<!-- MISSING LINE 1802 -->
+<!-- MISSING LINE 1803 -->
+<!-- MISSING LINE 1804 -->
+<!-- MISSING LINE 1805 -->
+<!-- MISSING LINE 1806 -->
+<!-- MISSING LINE 1807 -->
+<!-- MISSING LINE 1808 -->
+<!-- MISSING LINE 1809 -->
+<!-- MISSING LINE 1810 -->
+<!-- MISSING LINE 1811 -->
+<!-- MISSING LINE 1812 -->
+<!-- MISSING LINE 1813 -->
+<!-- MISSING LINE 1814 -->
+<!-- MISSING LINE 1815 -->
+<!-- MISSING LINE 1816 -->
+<!-- MISSING LINE 1817 -->
+<!-- MISSING LINE 1818 -->
+<!-- MISSING LINE 1819 -->
+<!-- MISSING LINE 1820 -->
+<!-- MISSING LINE 1821 -->
+<!-- MISSING LINE 1822 -->
+<!-- MISSING LINE 1823 -->
+<!-- MISSING LINE 1824 -->
+<!-- MISSING LINE 1825 -->
+<!-- MISSING LINE 1826 -->
+<!-- MISSING LINE 1827 -->
+<!-- MISSING LINE 1828 -->
+<!-- MISSING LINE 1829 -->
+<!-- MISSING LINE 1830 -->
+<!-- MISSING LINE 1831 -->
+<!-- MISSING LINE 1832 -->
+<!-- MISSING LINE 1833 -->
+<!-- MISSING LINE 1834 -->
+<!-- MISSING LINE 1835 -->
+<!-- MISSING LINE 1836 -->
+<!-- MISSING LINE 1837 -->
+<!-- MISSING LINE 1838 -->
+<!-- MISSING LINE 1839 -->
+<!-- MISSING LINE 1840 -->
+<!-- MISSING LINE 1841 -->
+<!-- MISSING LINE 1842 -->
+<!-- MISSING LINE 1843 -->
+<!-- MISSING LINE 1844 -->
+<!-- MISSING LINE 1845 -->
+<!-- MISSING LINE 1846 -->
+<!-- MISSING LINE 1847 -->
+<!-- MISSING LINE 1848 -->
+<!-- MISSING LINE 1849 -->
+<!-- MISSING LINE 1850 -->
+<!-- MISSING LINE 1851 -->
+<!-- MISSING LINE 1852 -->
+<!-- MISSING LINE 1853 -->
+<!-- MISSING LINE 1854 -->
+<!-- MISSING LINE 1855 -->
+<!-- MISSING LINE 1856 -->
+<!-- MISSING LINE 1857 -->
+<!-- MISSING LINE 1858 -->
+<!-- MISSING LINE 1859 -->
+<!-- MISSING LINE 1860 -->
+<!-- MISSING LINE 1861 -->
+<!-- MISSING LINE 1862 -->
+<!-- MISSING LINE 1863 -->
+<!-- MISSING LINE 1864 -->
+<!-- MISSING LINE 1865 -->
+<!-- MISSING LINE 1866 -->
+<!-- MISSING LINE 1867 -->
+<!-- MISSING LINE 1868 -->
+<!-- MISSING LINE 1869 -->
+<!-- MISSING LINE 1870 -->
+<!-- MISSING LINE 1871 -->
+<!-- MISSING LINE 1872 -->
+<!-- MISSING LINE 1873 -->
+<!-- MISSING LINE 1874 -->
+<!-- MISSING LINE 1875 -->
+<!-- MISSING LINE 1876 -->
+<!-- MISSING LINE 1877 -->
+<!-- MISSING LINE 1878 -->
+<!-- MISSING LINE 1879 -->
+<!-- MISSING LINE 1880 -->
+<!-- MISSING LINE 1881 -->
+<!-- MISSING LINE 1882 -->
+<!-- MISSING LINE 1883 -->
+<!-- MISSING LINE 1884 -->
+<!-- MISSING LINE 1885 -->
+<!-- MISSING LINE 1886 -->
+<!-- MISSING LINE 1887 -->
+<!-- MISSING LINE 1888 -->
+<!-- MISSING LINE 1889 -->
+<!-- MISSING LINE 1890 -->
+<!-- MISSING LINE 1891 -->
+<!-- MISSING LINE 1892 -->
+<!-- MISSING LINE 1893 -->
+<!-- MISSING LINE 1894 -->
+<!-- MISSING LINE 1895 -->
+<!-- MISSING LINE 1896 -->
+<!-- MISSING LINE 1897 -->
+<!-- MISSING LINE 1898 -->
+<!-- MISSING LINE 1899 -->
+<!-- MISSING LINE 1900 -->
+<!-- MISSING LINE 1901 -->
+<!-- MISSING LINE 1902 -->
+<!-- MISSING LINE 1903 -->
+<!-- MISSING LINE 1904 -->
+<!-- MISSING LINE 1905 -->
+<!-- MISSING LINE 1906 -->
+<!-- MISSING LINE 1907 -->
+<!-- MISSING LINE 1908 -->
+<!-- MISSING LINE 1909 -->
+<!-- MISSING LINE 1910 -->
+<!-- MISSING LINE 1911 -->
+<!-- MISSING LINE 1912 -->
+<!-- MISSING LINE 1913 -->
+<!-- MISSING LINE 1914 -->
+<!-- MISSING LINE 1915 -->
+<!-- MISSING LINE 1916 -->
+<!-- MISSING LINE 1917 -->
+<!-- MISSING LINE 1918 -->
+<!-- MISSING LINE 1919 -->
+<!-- MISSING LINE 1920 -->
+<!-- MISSING LINE 1921 -->
+<!-- MISSING LINE 1922 -->
+<!-- MISSING LINE 1923 -->
+<!-- MISSING LINE 1924 -->
+<!-- MISSING LINE 1925 -->
+<!-- MISSING LINE 1926 -->
+<!-- MISSING LINE 1927 -->
+<!-- MISSING LINE 1928 -->
+<!-- MISSING LINE 1929 -->
+<!-- MISSING LINE 1930 -->
+<!-- MISSING LINE 1931 -->
+<!-- MISSING LINE 1932 -->
+<!-- MISSING LINE 1933 -->
+<!-- MISSING LINE 1934 -->
+<!-- MISSING LINE 1935 -->
+<!-- MISSING LINE 1936 -->
+<!-- MISSING LINE 1937 -->
+<!-- MISSING LINE 1938 -->
+<!-- MISSING LINE 1939 -->
+<!-- MISSING LINE 1940 -->
+<!-- MISSING LINE 1941 -->
+<!-- MISSING LINE 1942 -->
+<!-- MISSING LINE 1943 -->
+<!-- MISSING LINE 1944 -->
+<!-- MISSING LINE 1945 -->
+<!-- MISSING LINE 1946 -->
+<!-- MISSING LINE 1947 -->
+<!-- MISSING LINE 1948 -->
+<!-- MISSING LINE 1949 -->
+<!-- MISSING LINE 1950 -->
+<!-- MISSING LINE 1951 -->
+<!-- MISSING LINE 1952 -->
+<!-- MISSING LINE 1953 -->
+<!-- MISSING LINE 1954 -->
+<!-- MISSING LINE 1955 -->
+<!-- MISSING LINE 1956 -->
+<!-- MISSING LINE 1957 -->
+<!-- MISSING LINE 1958 -->
+<!-- MISSING LINE 1959 -->
+<!-- MISSING LINE 1960 -->
+<!-- MISSING LINE 1961 -->
+<!-- MISSING LINE 1962 -->
+<!-- MISSING LINE 1963 -->
+<!-- MISSING LINE 1964 -->
+<!-- MISSING LINE 1965 -->
+<!-- MISSING LINE 1966 -->
+<!-- MISSING LINE 1967 -->
+<!-- MISSING LINE 1968 -->
+<!-- MISSING LINE 1969 -->
+<!-- MISSING LINE 1970 -->
+<!-- MISSING LINE 1971 -->
+<!-- MISSING LINE 1972 -->
+<!-- MISSING LINE 1973 -->
+<!-- MISSING LINE 1974 -->
+<!-- MISSING LINE 1975 -->
+<!-- MISSING LINE 1976 -->
+<!-- MISSING LINE 1977 -->
+<!-- MISSING LINE 1978 -->
+<!-- MISSING LINE 1979 -->
+<!-- MISSING LINE 1980 -->
+<!-- MISSING LINE 1981 -->
+<!-- MISSING LINE 1982 -->
+<!-- MISSING LINE 1983 -->
+<!-- MISSING LINE 1984 -->
+<!-- MISSING LINE 1985 -->
+<!-- MISSING LINE 1986 -->
+<!-- MISSING LINE 1987 -->
+<!-- MISSING LINE 1988 -->
+<!-- MISSING LINE 1989 -->
+<!-- MISSING LINE 1990 -->
+<!-- MISSING LINE 1991 -->
+<!-- MISSING LINE 1992 -->
+<!-- MISSING LINE 1993 -->
+<!-- MISSING LINE 1994 -->
+<!-- MISSING LINE 1995 -->
+<!-- MISSING LINE 1996 -->
+<!-- MISSING LINE 1997 -->
+<!-- MISSING LINE 1998 -->
+<!-- MISSING LINE 1999 -->
+<!-- MISSING LINE 2000 -->
+<!-- MISSING LINE 2001 -->
+<!-- MISSING LINE 2002 -->
+<!-- MISSING LINE 2003 -->
+<!-- MISSING LINE 2004 -->
+<!-- MISSING LINE 2005 -->
+<!-- MISSING LINE 2006 -->
+<!-- MISSING LINE 2007 -->
+<!-- MISSING LINE 2008 -->
+<!-- MISSING LINE 2009 -->
+<!-- MISSING LINE 2010 -->
+<!-- MISSING LINE 2011 -->
+<!-- MISSING LINE 2012 -->
+<!-- MISSING LINE 2013 -->
+<!-- MISSING LINE 2014 -->
+<!-- MISSING LINE 2015 -->
+<!-- MISSING LINE 2016 -->
+<!-- MISSING LINE 2017 -->
+<!-- MISSING LINE 2018 -->
+<!-- MISSING LINE 2019 -->
+<!-- MISSING LINE 2020 -->
+<!-- MISSING LINE 2021 -->
+<!-- MISSING LINE 2022 -->
+<!-- MISSING LINE 2023 -->
+<!-- MISSING LINE 2024 -->
+<!-- MISSING LINE 2025 -->
+<!-- MISSING LINE 2026 -->
+<!-- MISSING LINE 2027 -->
+<!-- MISSING LINE 2028 -->
+<!-- MISSING LINE 2029 -->
+<!-- MISSING LINE 2030 -->
+<!-- MISSING LINE 2031 -->
+<!-- MISSING LINE 2032 -->
+<!-- MISSING LINE 2033 -->
+<!-- MISSING LINE 2034 -->
+<!-- MISSING LINE 2035 -->
+<!-- MISSING LINE 2036 -->
+<!-- MISSING LINE 2037 -->
+<!-- MISSING LINE 2038 -->
+<!-- MISSING LINE 2039 -->
+<!-- MISSING LINE 2040 -->
+<!-- MISSING LINE 2041 -->
+<!-- MISSING LINE 2042 -->
+<!-- MISSING LINE 2043 -->
+<!-- MISSING LINE 2044 -->
+<!-- MISSING LINE 2045 -->
+<!-- MISSING LINE 2046 -->
+<!-- MISSING LINE 2047 -->
+<!-- MISSING LINE 2048 -->
+<!-- MISSING LINE 2049 -->
+<!-- MISSING LINE 2050 -->
+<!-- MISSING LINE 2051 -->
+<!-- MISSING LINE 2052 -->
+<!-- MISSING LINE 2053 -->
+<!-- MISSING LINE 2054 -->
+<!-- MISSING LINE 2055 -->
+alt="" sizes="(max-width: 767px) 100vw, 692.998046875px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e79856e43321a604b6_1.webp 693w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2.webp"
+alt="" sizes="(max-width: 1050px) 100vw, 1050px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2-p-800.webp 800w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e2ecc7703ef116cf4c_2.webp 1050w"
+class="dar_full-image" /></div>
+<div class="dar_img-2"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e732fd54e7c1005168_2.webp"
+alt="" sizes="(max-width: 767px) 100vw, 692.998046875px"
+srcset="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e732fd54e7c1005168_2-p-500.webp 500w, https://cdn.prod.website-files.com/652e625ed083f8127673075c/66bf42e732fd54e7c1005168_2.webp 693w"
+class="dar_full-image" /></div>
+<div class="dar_img-1"><img src="assets/images/crew.jpg" alt="ForeShadow Crew"
+
+<!-- MISSING LINE 2071 -->
+<!-- MISSING LINE 2072 -->
+<!-- MISSING LINE 2073 -->
+<!-- MISSING LINE 2074 -->
+<!-- MISSING LINE 2075 -->
+<!-- MISSING LINE 2076 -->
+<!-- MISSING LINE 2077 -->
+<!-- MISSING LINE 2078 -->
+<!-- MISSING LINE 2079 -->
+<!-- MISSING LINE 2080 -->
+<!-- MISSING LINE 2081 -->
+<!-- MISSING LINE 2082 -->
+<!-- MISSING LINE 2083 -->
+<!-- MISSING LINE 2084 -->
+<!-- MISSING LINE 2085 -->
+<!-- MISSING LINE 2086 -->
+<!-- MISSING LINE 2087 -->
+<!-- MISSING LINE 2088 -->
+<!-- MISSING LINE 2089 -->
+<!-- MISSING LINE 2090 -->
+<!-- MISSING LINE 2091 -->
+<!-- MISSING LINE 2092 -->
+<!-- MISSING LINE 2093 -->
+<!-- MISSING LINE 2094 -->
+<!-- MISSING LINE 2095 -->
+<!-- MISSING LINE 2096 -->
+<!-- MISSING LINE 2097 -->
+<!-- MISSING LINE 2098 -->
+<!-- MISSING LINE 2099 -->
+<!-- MISSING LINE 2100 -->
+<!-- MISSING LINE 2101 -->
+<!-- MISSING LINE 2102 -->
+<!-- MISSING LINE 2103 -->
+<!-- MISSING LINE 2104 -->
+<!-- MISSING LINE 2105 -->
+<!-- MISSING LINE 2106 -->
+<!-- MISSING LINE 2107 -->
+<!-- MISSING LINE 2108 -->
+<!-- MISSING LINE 2109 -->
+<!-- MISSING LINE 2110 -->
+<!-- MISSING LINE 2111 -->
+<!-- MISSING LINE 2112 -->
+<!-- MISSING LINE 2113 -->
+<!-- MISSING LINE 2114 -->
+<!-- MISSING LINE 2115 -->
+<!-- MISSING LINE 2116 -->
+<!-- MISSING LINE 2117 -->
+<!-- MISSING LINE 2118 -->
+<!-- MISSING LINE 2119 -->
+<!-- MISSING LINE 2120 -->
+<!-- MISSING LINE 2121 -->
+<!-- MISSING LINE 2122 -->
+<!-- MISSING LINE 2123 -->
+<!-- MISSING LINE 2124 -->
+<!-- MISSING LINE 2125 -->
+<!-- MISSING LINE 2126 -->
+<!-- MISSING LINE 2127 -->
+<!-- MISSING LINE 2128 -->
+<!-- MISSING LINE 2129 -->
+<!-- MISSING LINE 2130 -->
+<!-- MISSING LINE 2131 -->
+<!-- MISSING LINE 2132 -->
+<!-- MISSING LINE 2133 -->
+<!-- MISSING LINE 2134 -->
+<!-- MISSING LINE 2135 -->
+<!-- MISSING LINE 2136 -->
+<!-- MISSING LINE 2137 -->
+<!-- MISSING LINE 2138 -->
+<!-- MISSING LINE 2139 -->
+<!-- MISSING LINE 2140 -->
+<!-- MISSING LINE 2141 -->
+<!-- MISSING LINE 2142 -->
+<!-- MISSING LINE 2143 -->
+<!-- MISSING LINE 2144 -->
+<!-- MISSING LINE 2145 -->
+<!-- MISSING LINE 2146 -->
+<!-- MISSING LINE 2147 -->
+<!-- MISSING LINE 2148 -->
+<!-- MISSING LINE 2149 -->
+<!-- MISSING LINE 2150 -->
+<!-- MISSING LINE 2151 -->
+<!-- MISSING LINE 2152 -->
+<!-- MISSING LINE 2153 -->
+<!-- MISSING LINE 2154 -->
+<!-- MISSING LINE 2155 -->
+<!-- MISSING LINE 2156 -->
+<!-- MISSING LINE 2157 -->
+<!-- MISSING LINE 2158 -->
+<!-- MISSING LINE 2159 -->
+<!-- MISSING LINE 2160 -->
+<!-- MISSING LINE 2161 -->
+<!-- MISSING LINE 2162 -->
+<!-- MISSING LINE 2163 -->
+<!-- MISSING LINE 2164 -->
+<!-- MISSING LINE 2165 -->
+<!-- MISSING LINE 2166 -->
+<!-- MISSING LINE 2167 -->
+<!-- MISSING LINE 2168 -->
+<!-- MISSING LINE 2169 -->
+<!-- MISSING LINE 2170 -->
+<!-- MISSING LINE 2171 -->
+<!-- MISSING LINE 2172 -->
+<!-- MISSING LINE 2173 -->
+<!-- MISSING LINE 2174 -->
+<!-- MISSING LINE 2175 -->
+<!-- MISSING LINE 2176 -->
+<!-- MISSING LINE 2177 -->
+<!-- MISSING LINE 2178 -->
+<!-- MISSING LINE 2179 -->
+<!-- MISSING LINE 2180 -->
+<!-- MISSING LINE 2181 -->
+<!-- MISSING LINE 2182 -->
+<!-- MISSING LINE 2183 -->
+<!-- MISSING LINE 2184 -->
+<!-- MISSING LINE 2185 -->
+<!-- MISSING LINE 2186 -->
+<!-- MISSING LINE 2187 -->
+<!-- MISSING LINE 2188 -->
+<!-- MISSING LINE 2189 -->
+<!-- MISSING LINE 2190 -->
+<!-- MISSING LINE 2191 -->
+<!-- MISSING LINE 2192 -->
+<!-- MISSING LINE 2193 -->
+<!-- MISSING LINE 2194 -->
+<!-- MISSING LINE 2195 -->
+<!-- MISSING LINE 2196 -->
+<!-- MISSING LINE 2197 -->
+<!-- MISSING LINE 2198 -->
+<!-- MISSING LINE 2199 -->
+<!-- MISSING LINE 2200 -->
+<!-- MISSING LINE 2201 -->
+<!-- MISSING LINE 2202 -->
+<!-- MISSING LINE 2203 -->
+<!-- MISSING LINE 2204 -->
+<!-- MISSING LINE 2205 -->
+<!-- MISSING LINE 2206 -->
+<!-- MISSING LINE 2207 -->
+<!-- MISSING LINE 2208 -->
+<!-- MISSING LINE 2209 -->
+<!-- MISSING LINE 2210 -->
+<!-- MISSING LINE 2211 -->
+<!-- MISSING LINE 2212 -->
+<!-- MISSING LINE 2213 -->
+<!-- MISSING LINE 2214 -->
+<!-- MISSING LINE 2215 -->
+<!-- MISSING LINE 2216 -->
+<!-- MISSING LINE 2217 -->
+<!-- MISSING LINE 2218 -->
+<!-- MISSING LINE 2219 -->
+<div class="dar_padding-global padding">
+<div class="dar_padding-vertical dar_padding-small dar-small">
+<div class="dar_content-wrapper">
+<div class="dar-content-header">
+<p class="dar-paragraph-small is-hidden"><span>BOLLYWOOD</span></p>
+<div class="dar_max-width-huge">
+<h2 class="dar-h2 dar-h2-center">Revolutionizing wedding trends, our crew has become synonymous
+with pop culture. this is the crew you want at your wedding!</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><img src="assets/images/crew.jpg" loading="eager" sizes="(max-width: 1500px) 100vw, 1500px"
+alt="ForeShadow Crew" class="bollywood-img" />
+<div
+data-poster-url="https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-poster-00001.jpg"
+data-video-urls="https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-transcode.mp4,https://cdn.prod.website-files.com/652e625ed083f8127673075c%2F66b9bd73612fa2517764988e_Gif%20Website-transcode.webm"
+data-autoplay="true" data-loop="true" data-wf-ignore="true"
+class="bollywood-img w-background-video w-background-video-atom"><video
+
+<!-- MISSING LINE 2241 -->
+<!-- MISSING LINE 2242 -->
+<!-- MISSING LINE 2243 -->
+<!-- MISSING LINE 2244 -->
+<!-- MISSING LINE 2245 -->
+<!-- MISSING LINE 2246 -->
+<!-- MISSING LINE 2247 -->
+<!-- MISSING LINE 2248 -->
+<!-- MISSING LINE 2249 -->
+<!-- MISSING LINE 2250 -->
+<!-- MISSING LINE 2251 -->
+<!-- MISSING LINE 2252 -->
+<!-- MISSING LINE 2253 -->
+<!-- MISSING LINE 2254 -->
+<!-- MISSING LINE 2255 -->
+<!-- MISSING LINE 2256 -->
+<!-- MISSING LINE 2257 -->
+<div class="dar_success-wrap">
+<h3 class="dar_h3 space-less">ForeShadow’s success is not one person’s alone. It has taken
+relentless passion, dedication and determination from an entire crew of <span
+class="color-red">people to do what they love the most</span></h3>
+<div class="buttons"><a href="/" class="button-white w-button">Return to home</a><a
+href="/crew" class="button-black w-button">Book our crew</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="success-absolute-image"><img src="assets/images/crew.jpg" loading="lazy"
+data-w-id="0983370e-ed59-f207-8991-e19cbf04d5c5" sizes="(max-width: 1919px) 100vw, 1442.998046875px"
+alt="ForeShadow Crew" class="dar-success-img" /></div>
+</div>
+</div>
+<div class="dar-arrow"><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a5c453260e6815c622c_arrow-gold.webp"
+loading="lazy" alt="" class="golden-arrow" /><img
+src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605a5c453260e6815c6225_down-arrow.webp"
+loading="lazy" alt="" class="black-arrow" /></div>
+</div>
+
+<!-- ============================================
+OUR CREW SECTION (Visit Team Expansion)
+============================================ -->
+<div id="crew-section" data-lenis-prevent>
+<!-- Close Button -->
+<div class="crew-close-btn" id="crew-close-btn">
+<span>← exit</span>
+</div>
+
+<!-- Banner -->
+<div class="team-banner dekstop">
+<div class="team-banner-wrapper" style="background-image: url('assets/images/crew.jpg');">
+<div class="overlay"></div>
+<div class="our--workshop-wrapper">
+<h1 class="heading-6 lorem blog">ForeShadow</h1>
+<h1 class="title-heading r-font-w line-hight color-white">MEET OUR CREW</h1>
+<p class="paragraph b-p white">If our crew in a studio group shot looks this good,<br/>imagine what your wedding photos & films will look like.</p>
+</div>
+</div>
+</div>
+<div class="team-banner mobile">
+<div class="team-banner-wrapper" style="background-image: url('assets/images/crew.jpg');">
+<div class="overlay"></div>
+</div>
+<div class="crew-banner-content">
+<h1 class="heading-6 lorem blog">ForeShadow</h1>
+<h1 class="heading-6 blog-press white">MEET OUR CREW</h1>
+<p class="paragraph b-p white">If our crew in a studio group shot looks this good,<br/>imagine what your wedding photos & films will look like.</p>
+</div>
+</div>
+
+<!-- Grid of Crew Members -->
+<div class="full-team">
+<div class="team-wrapper">
+<div class="crew--list--wrapper w-dyn-list">
+<div role="list" class="crew-list w-dyn-items">
+
+<!-- Prathamesh Kale -->
+<div role="listitem" class="crew-item w-dyn-item">
+<div class="crew-box _2">
+<div class="crew-image-item">
+<img src="assets/images/pratemesh_1.jpeg" loading="lazy" alt="Prathamesh Kale" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Prathamesh Kale</h4>
+<h4 class="job-titel">( Founder & Director )</h4>
+<p class="job-dis">Driven by a relentless passion for storytelling and capturing honest emotions.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Arjun Kale -->
+<div role="listitem" class="crew-item w-dyn-item">
+<div class="crew-box _2">
+<div class="crew-image-item _2">
+<img src="assets/images/animesh_arohi.png" loading="lazy" alt="Arjun Kale" class="image-82"/>
+<div class="linear-grad
+});
+</script>
+
+<!-- Site Scripts (Hamburger, Mobile Menu overlays, Page Transitions) -->
+<script src="js/main.js"></script>
+
+<!-- Standalone Fail-safe Scripts for Transitions and Webflow Loaders -->
+<script>
+// 1. Force Page Transition slide-out after 1.2s in case main.js fails
+setTimeout(function () {
+var transition = document.querySelector('.page-transition');
+if (transition && !transition.classList.contains('loaded')) {
+transition.classList.add('loaded');
+console.warn("Failsafe: Forced page transition slide-out due to script timeout.");
+}
+}, 1200);
+
+// 2. Webflow Initialization Check & Opacity Fallback after 2.5s
+<p class="job-dis">Capturing fine art movements and intimate interactions behind the lens.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Shantanu Thakare -->
+<div role="listitem" class="crew-item w-dyn-item">
+<div class="crew-box _2">
+<div class="crew-image-item _2">
+<img src="assets/images/bg3.JPG.jpeg" loading="lazy" alt="Shantanu Thakare" class="image-82"/>
+<div class="linear-grad"></div>
+<div class="content-crew">
+<h4 class="member-name">Shantanu Thakare</h4>
+<h4 class="job-titel">( Lead Film Editor )</h4>
+<p class="job-dis">Assembling narratives and pacing transitions to make every frame sing.</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</div>
+
+
+
+<!-- Custom Cursor -->
+<div class="custom-cursor"></div>
+<div class="custom-cursor-dot"></div>
+
+<!-- Scripts -->
+<!-- jQuery -->
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=652e625ed083f8127673075c"
+type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"></script>
+
+<!-- Webflow engine chunks -->
+<!-- MISSING LINE 2401 -->
+<!-- MISSING LINE 2402 -->
+<!-- MISSING LINE 2403 -->
+<!-- MISSING LINE 2404 -->
+<!-- MISSING LINE 2405 -->
+<!-- MISSING LINE 2406 -->
+<!-- MISSING LINE 2407 -->
+<!-- MISSING LINE 2408 -->
+<!-- MISSING LINE 2409 -->
+<!-- MISSING LINE 2410 -->
+<!-- MISSING LINE 2411 -->
+<!-- MISSING LINE 2412 -->
+<!-- MISSING LINE 2413 -->
+<!-- MISSING LINE 2414 -->
+<!-- MISSING LINE 2415 -->
+<!-- MISSING LINE 2416 -->
+<!-- MISSING LINE 2417 -->
+<!-- MISSING LINE 2418 -->
+<!-- MISSING LINE 2419 -->
+<!-- MISSING LINE 2420 -->
+<!-- MISSING LINE 2421 -->
+<!-- MISSING LINE 2422 -->
+<!-- MISSING LINE 2423 -->
+<!-- MISSING LINE 2424 -->
+<!-- MISSING LINE 2425 -->
+<!-- MISSING LINE 2426 -->
+<!-- MISSING LINE 2427 -->
+<!-- MISSING LINE 2428 -->
+<!-- MISSING LINE 2429 -->
+<!-- MISSING LINE 2430 -->
+$(this).toggleClass("stop-scroll");
+if ($(this).hasClass("stop-scroll")) {
+lenis.stop();
+} else {
+});
+$("[data-lenis-toggle]").on("click", function () {
+$(this).toggleClass("stop-scroll");
+if ($(this).hasClass("stop-scroll")) {
+lenis.stop();
+} else {
+lenis.start();
+}
+});
+
+// Visit Team Button scroll & show handler
+document.addEventListener("DOMContentLoaded", function () {
+var visitTeamBtn = document.getElementById("visit-team-btn");
+var crewSection = document.getElementById("crew-section");
+var crewCloseBtn = document.getElementById("crew-close-btn");
+
+if (visitTeamBtn && crewSection) {
+visitTeamBtn.addEventListener("click", function (e) {
+e.preventDefault();
+
+// Reset scroll of the overlay to top
+crewSection.scrollTop = 0;
+
+// Show the crew section with the animation class
+crewSection.classList.add("show");
+
+// Stop main page Lenis scrolling to prevent background movement
+if (lenis) {
+lenis.stop();
+}
+});
+}
+
+if (crewCloseBtn && crewSection) {
+crewCloseBtn.addEventListener("click", function (e) {
+e.preventDefault();
+
+// Hide the crew section modal
+crewSection.classList.remove("show");
+
+// Resume main page Lenis scrolling
+if (lenis) {
+lenis.start();
+}
+});
+}
+});
+</script>
+
+<!-- Site Scripts (Hamburger, Mobile Menu overlays, Page Transitions) -->
+<script src="js/main.js"></script>
+
+<!-- Standalone Fail-safe Scripts for Transitions and Webflow Loaders -->
+<script>
+// 1. Force Page Transition slide-out after 1.2s in case main.js fails
+<h4 class="job-titel">( Assistant Editor )</h4>
+<p class="job-dis">Refining cuts, syncing audio and delivering polished final deliverables.</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</div>
+
+
+
+<!-- Custom Cursor -->
+<div class="custom-cursor"></div>
+<div class="custom-cursor-dot"></div>
+
+<!-- Scripts -->
+<!-- jQuery -->
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=652e625ed083f8127673075c"
+type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+<!-- Scripts -->
+<!-- jQuery -->
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=652e625ed083f8127673075c"
+type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"></script>
+
+<!-- Webflow engine chunks -->
+<script src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/js/webflow.schunk.36b8fb49256177c8.js"
+type="text/javascript" integrity="sha384-4abIlA5/v7XaW1HMXKBgnUuhnjBYJ/Z9C1OSg4OhmVw9O3QeHJ/qJqFBERCDPv7G"
+crossorigin="anonymous"></script>
+<script src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/js/webflow.schunk.9dfc9fed772a1569.js"
+type="text/javascript" integrity="sha384-sdet+UDEXic8MbK/kuKT1dwSzT9rDpDXk1osfpbEHCKRlrrWYIok4g+WSr792VF1"
+crossorigin="anonymous"></script>
+<script src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/js/webflow.ed1ad3a8.a5b30f1d73daf875.js"
+type="text/javascript" integrity="sha384-QEOgcT5Lbc2xybaUwVC/peI0PCG+J08iHwamf10cHZhDJ9FAmyJJZiSHHiK2l/2h"
