@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <meta name="theme-color" content="#EFE9D7">
+  <title>HOME — ForeShadow</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <meta name="description"
+    content="ForeShadow is a fine art destination wedding photographer & wedding videographer creating cinematic, authentic wedding stories.">
+  <meta property="og:title" content="HOME — ForeShadow">
+  <meta property="og:description" content="Destination wedding photography & films capturing real, authentic emotions.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Google Fonts: Bodoni Moda, Manrope & Inter (Cineglimpse Stories) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,300;1,6..96,400;1,6..96,500;1,6..96,600;1,6..96,700&family=Manrope:wght@200;300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script>
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.documentElement.classList.add('is-mobile');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+
+<body>
+  <div class="page-transition"></div>
+
+  <!-- Animated Gradient Loading Screen -->
+  <div id="gradient-loader" class="gradient-loader">
+    <!-- WebGL Gradient Canvas -->
+    <canvas id="gradient-canvas"></canvas>
+    <!-- Noise Texture Overlay -->
+    <div class="gradient-noise"></div>
+    <!-- Center Content -->
+    <div class="gradient-content">
+      <div class="gradient-name-wrap">
+        <span class="gradient-letter">F</span>
+        <span class="gradient-letter">O</span>
+        <span class="gradient-letter">R</span>
+        <span class="gradient-letter">E</span>
+        <span class="gradient-letter">S</span>
+        <span class="gradient-letter">H</span>
+        <span class="gradient-letter">A</span>
+        <span class="gradient-letter">D</span>
+        <span class="gradient-letter">O</span>
+        <span class="gradient-letter">W</span>
+      </div>
+      <button class="gradient-enter-btn" id="gradient-enter-btn">
+        <span class="gradient-enter-text">ENTER</span>
+        <span class="gradient-enter-line"></span>
+      </button>
+    </div>
+  </div>
+
+
+
+
+  <nav class="nav nav--dark" id="nav">
+    <!-- Left Menu Links -->
+    <ul class="nav-links nav-links--left">
+      <li><a href="index.html" class="nav-link active" data-page>Home</a></li>
+      <li><a href="portfolio.html" class="nav-link" data-page>Stories</a></li>
+      <li><a href="films.html" class="nav-link" data-page>Films</a></li>
+    </ul>
+
+    <!-- Centered Logo/Brand -->
+    <div class="nav-brand-container">
+      <a href="index.html" class="nav-logo-link">
+        <img src="assets/images/logo.png" alt="ForeShadow Logo" class="nav-logo-img">
+      </a>
+    </div>
+
+    <!-- Right Menu Links -->
+    <ul class="nav-links nav-links--right">
+      <li><a href="about.html" class="nav-link" data-page>About</a></li>
+      <li><a href="contact.html" class="nav-link" data-page>Contact</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link" data-page-dropdown>More</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="exclusive.html" class="nav-dropdown-item" data-page>Exclusive</a></li>
+          <li><a href="careers.html" class="nav-dropdown-item" data-page>Careers</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Fullscreen Mobile Menu -->
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="nav-overlay-links">
+      <a href="index.html" class="nav-overlay-link active" data-page>HOME</a>
+      <a href="portfolio.html" class="nav-overlay-link" data-page>STORIES</a>
+      <a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
+      <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
+      <a href="contact.html" class="nav-overlay-link" data-page>CONTACT</a>
+      <div class="nav-overlay-dropdown">
+        <a href="#" class="nav-overlay-link" id="mobile-more-toggle">MORE</a>
+        <div class="nav-overlay-dropdown-menu" id="mobile-submenu">
+          <a href="exclusive.html" class="nav-overlay-dropdown-link" data-page>EXCLUSIVE</a>
+          <a href="careers.html" class="nav-overlay-dropdown-link" data-page>CAREERS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FIXED VIDEO PARALLAX WRAPPER ═══════════════ -->
+  <div class="home-video-fixed-wrapper">
+    <div class="hero-video-bg"
+      style="background-image: url('assets/images/home_hero_backup.jpg'); background-size: cover; background-position: center;">
+      <iframe id="hero-youtube-video"
+        src="https://www.youtube.com/embed/PSAEz3Xyrvg?autoplay=1&mute=1&loop=1&playlist=PSAEz3Xyrvg&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&cc_load_policy=3"
+        title="ForeShadow Hero Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+    </div>
+
+    <div class="fixed-wrapper-content">
+      <!-- ═══════════════ HERO — Full Viewport ═══════════════ -->
+      <section class="home-hero" id="hometop">
+        <!-- Sound On/Off Toggle Button -->
+        <button class="hero-sound-toggle" id="hero-sound-btn" aria-label="Toggle Sound">
+          <svg class="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="icon-unmute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <!-- Hero Text Overlay -->
+        <div class="home-hero-content luca-hero-content bottom-left-hero-content"
+          style="z-index: 3; position: relative;">
+          <h1 class="home-hero-title luca-mori-title">Stories Before<br>The Vows</h1>
+          <p class="home-hero-subtitle" style="color: #ffffff !important; font-weight: 600;">We Don't Just Film
+            Weddings, We Make Cinema.</p>
+        </div>
+      </section>
+
+      <!-- ═══════════════ SECTION TRANSITION: Hero → Modern Approach ═══════════════ -->
+      <div class="section-transition hero-to-modern">
+        <div class="transition-fade-overlay"></div>
+      </div>
+
+      <!-- ═══════════════ CINEMATIC ARTISTRY CONTENT SECTION ═══════════════ -->
+      <section class="cinematic-content why-foreshadow-manifesto" id="cinematic-reality-section">
+        <div class="container manifesto-container">
+          <div class="manifesto-left">
+            <span class="manifesto-label">WHY FORESHADOW — MANIFESTO</span>
+          </div>
+          <div class="manifesto-right">
+            <h3 class="manifesto-heading">
+              A wedding is not a production.<br>
+              It is the slow, accidental<br>
+              composition of a life.
+            </h3>
+            <div class="manifesto-desc-block">
+              <p class="manifesto-desc">
+                ForeShadow is a studio that observes more than it directs. Our films and photographs aspire to the
+                stillness of a printed page — quiet enough to listen, patient enough to find the frame that matters
+                most. We work with couples who treat memory as something worth keeping for a hundred years.
+              </p>
+              <p class="manifesto-desc">
+                Every film we create is guided by authenticity, emotion, and purpose. We don’t just capture how your day
+                looked — we preserve how it felt, crafting timeless films that allow you to relive your story exactly as
+                it unfolded.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION TRANSITION: Modern Approach → Grid ═══════════════ -->
+  <div class="section-transition modern-to-grid">
+    <div class="transition-fade-overlay"></div>
+  </div>
+
+  <section class="scroll-heart-line-section section--cream" id="scroll-heart-line">
+    <div class="scroll-heart-line-container">
+      <svg class="scroll-heart-line-svg" viewBox="0 0 1000 100" preserveAspectRatio="none" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <!-- Left Path -->
+        <path class="scroll-heart-line-path left-path"
+          d="M 0,55 C 100,55 180,35 220,40 C 240,43 250,60 240,75 C 230,85 210,85 210,70 C 210,50 240,55 300,60 C 350,65 400,65 450,60 C 470,60 480,75 500,85 C 485,75 465,45 465,30 C 465,15 480,15 490,25 C 495,30 498,35 500,38"
+          stroke="#e31c25" stroke-width="0.6" stroke-linecap="round" />
+        <!-- Right Path -->
+        <path class="scroll-heart-line-path right-path"
+          d="M 1000,55 C 900,55 820,35 780,40 C 760,43 750,60 760,83 C 770,93 785,93 785,80 C 785,65 755,60 700,60 C 650,60 600,55 550,60 C 530,60 520,75 500,85 C 515,75 535,45 535,30 C 535,15 520,15 510,25 C 505,30 502,35 500,38"
+          stroke="#e31c25" stroke-width="0.6" stroke-linecap="round" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ETHOS SECTION (Cinema, Art & Documentary — Iconic Grid) ═══════════════ -->
+  <!-- ═══════════════ ETHOS SLIDER SECTION (Play the Novel Style) ═══════════════ -->
+  <section class="aesthetic-slider-section section--cream" id="ethos">
+    <div class="aesthetic-slider-header reveal">
+      <h2 class="aesthetic-slider-quote">
+        “Bridging timeless Indian heritage and raw emotions with a modern cinematic vision.”
+      </h2>
+    </div>
+
+    <div class="aesthetic-slider-container reveal stagger-1">
+      <!-- Navigation Arrows -->
+      <button class="aesthetic-slider-arrow arrow-left" id="aesthetic-prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="aesthetic-slider-track" id="aesthetic-slider-track">
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/1.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/2.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/3.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/4.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/5.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/6.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/7.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/8.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/9.jpg" alt="Wedding Moment"></div>
+        <div class="aesthetic-slide"><img loading="lazy" src="assets/images/homescreen/10.jpg" alt="Wedding Moment"></div>
+      </div>
+
+      <button class="aesthetic-slider-arrow arrow-right" id="aesthetic-next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+  <!-- ═══════════════ CINEMATIC STORYTELLING SECTION ═══════════════ -->
+  <section class="cinematic-section" id="cinematic-storytelling">
+    <!-- ═══════════════ SOUL + CINEMA BANNER ═══════════════ -->
+    <div class="soul-cinema-container">
+      <div class="soul-cinema-bg-wrap">
+        <div class="soul-cinema-video-bg">
+          <iframe
+            src="https://www.youtube.com/embed/42adYrBvK0E?autoplay=1&mute=1&loop=1&playlist=42adYrBvK0E&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&cc_load_policy=3"
+            title="ForeShadow Background Video" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+        </div>
+        <div class="soul-cinema-overlay"></div>
+      </div>
+      <div class="soul-cinema-text-wrap">
+        <h2 class="soul-cinema-title">WHERE EMOTIONS BECOME CINEMA</h2>
+        <p class="soul-cinema-description">
+          every film should feel like you're watching the most beautiful movie of your own life
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ A MODERN APPROACH SECTION ═══════════════ -->
+  <section class="modern-tradition-section section--cream" id="modern-approach">
+    <div class="modern-tradition-container">
+
+      <!-- Title Area -->
+      <div class="modern-tradition-header reveal">
+        <h2 class="modern-tradition-title">
+          <span class="main-title-line">A MODERN APPROACH</span>
+          <span class="sub-title-line"><span class="to-an-text">to</span> <span class="highlight-serif">timeless love
+              stories</span></span>
+        </h2>
+      </div>
+
+      <!-- Left Column: Single Photo (Colourful) -->
+      <div class="modern-column col-left reveal stagger-1">
+        <div class="modern-image-wrapper left-img">
+          <img src="assets/images/parag_nora_modern.jpg" alt="A Modern Approach - Timeless Love Story" class="modern-img"
+            loading="lazy">
+        </div>
+      </div>
+
+      <!-- Right Column: Philosophy Text Info -->
+      <div class="modern-column col-right">
+        <h3 class="philosophy-title reveal stagger-1">OUR PHILOSOPHY</h3>
+ 
+        <p class="philosophy-text lead-text reveal stagger-2">
+          At ForeShadow, we believe the most unforgettable moments are never staged—they are simply felt.
+        </p>
+ 
+        <p class="philosophy-text reveal stagger-3">
+          We don’t just capture your wedding; we preserve the emotions that make it yours. The laughter you didn’t
+          notice, the tears you couldn’t hold back, the silent glances, and the people who made your day unforgettable.
+        </p>
+ 
+        <p class="philosophy-text reveal stagger-4">
+          Our purpose is simple: when you press play years from now, it shouldn’t feel like watching a wedding video—it
+          should feel like watching the most beautiful movie of your life.
+        </p>
+ 
+        <p class="philosophy-text reveal stagger-5">
+          Every frame is crafted with honesty, elegance, and emotion, so your story can be relived exactly as it
+          happened.
+        </p>
+ 
+        <p class="philosophy-text conclusion-text reveal stagger-6">
+          Because memories fade. Great stories never do.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ FEATURED STORIES / CAROUSEL ═══════════════ -->
+  <section class="featured-stories-section section--dark" id="featured-stories-section">
+    <div class="container">
+      <div class="stories-header">
+        <p class="stories-subtitle reveal">SELECTED LOVE STORIES</p>
+        <h2 class="stories-title reveal stagger-1">FEATURED FILMS</h2>
+      </div>
+
+      <div class="stories-slider-container">
+        <!-- Slide 1 -->
+        <div class="story-slide active" data-slide-index="0">
+          <div class="story-image-side">
+            <img src="https://img.youtube.com/vi/Nd7c--y9vYc/maxresdefault.jpg" alt="Rishi and Suprima Film">
+          </div>
+          <div class="story-content-side">
+            <p class="story-label reveal">CLASSIC STORY TELLING</p>
+            <h3 class="story-couple-names reveal stagger-1">Rishi and Suprima</h3>
+            <p class="story-description reveal stagger-2">
+              A heartwarming destination wedding filled with laughter, vibrant traditions, and a pawsome celebration of
+              love.
+            </p>
+            <div class="reveal stagger-3">
+              <a href="films.html?film=0" class="story-btn">VIEW FILMS</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="story-slide" data-slide-index="1">
+          <div class="story-image-side">
+            <img src="https://vumbnail.com/853395145.jpg" alt="Sanjana & Prateek Film">
+          </div>
+          <div class="story-content-side">
+            <p class="story-label">NEW AGE MODERN</p>
+            <h3 class="story-couple-names">Sanjana & Prateek</h3>
+            <p class="story-description">
+              A modern, cinematic wedding narrative capturing the grand celebration and intimate moments in stunning
+              detail.
+            </p>
+            <div>
+              <a href="films.html?film=1" class="story-btn">VIEW FILMS</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="story-slide" data-slide-index="2">
+          <div class="story-image-side">
+            <img src="https://vumbnail.com/853394252.jpg" alt="Shailesh & Sayali Film">
+          </div>
+          <div class="story-content-side">
+            <p class="story-label">INTIMATES</p>
+            <h3 class="story-couple-names">Shailesh & Sayali</h3>
+            <p class="story-description">
+              An elegant and quiet celebration of love, focusing on pure emotions and the simple beauty of two families
+              coming together.
+            </p>
+            <div>
+              <a href="films.html?film=2" class="story-btn">VIEW FILMS</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation arrows -->
+        <button class="story-slider-arrow arrow-prev" id="story-prev" aria-label="Previous story">‹</button>
+        <button class="story-slider-arrow arrow-next" id="story-next" aria-label="Next story">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ LES VOYAGES SECTION ═══════════════ -->
+  <section class="les-voyages-section">
+    <div class="les-voyages-bg-overlay"></div>
+    <div class="les-voyages-container">
+      <h2 class="les-voyages-title reveal">LET'S TELL YOUR STORY</h2>
+      <p class="les-voyages-subtitle reveal stagger-1">Years from now, your wedding shouldn’t feel like a memory. It
+        should feel like the movie of your life.</p>
+      <div class="reveal stagger-2" style="margin-top: 2.5rem;">
+        <a href="contact.html" class="btn-primary btn-primary--light" data-page>BOOK NOW</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ WANT TO KNOW MORE SECTION ═══════════════ -->
+  <section class="heading-section section--crimson">
+    <div class="container">
+      <p class="section-subtitle reveal"><a href="about.html" data-page
+          style="color: inherit; text-decoration: none;">WANT TO KNOW MORE ABOUT US? THEN CLICK HERE</a></p>
+      <div style="margin-top: 2rem;" class="reveal stagger-1">
+        <a href="about.html" class="btn-primary" data-page>ABOUT US</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TESTIMONIALS SECTION ═══════════════ -->
+  <section class="testimonials-section section--cream" id="testimonials-section">
+    <div class="container testimonials-header text-center reveal">
+      <p class="section-label">Selected Kind Words</p>
+      <h2 class="section-title">Testimonials</h2>
+      <p class="section-subtitle">
+        What our couples say about their experience with ForeShadow. Click any card to read their full story.
+      </p>
+    </div>
+
+    <div class="testimonials-marquee-container reveal stagger-1">
+      <div class="testimonials-marquee-row" id="testimonials-marquee">
+        <!-- Track Block 1 -->
+        <div class="marquee-track">
+          <!-- Card 1 -->
+          <div class="testimonial-card" data-index="0">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/animesh_arohi.png" alt="Arohi & Animesh" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Arohi & Animesh</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">First of all it was our luck that we found you. From day 1 you put such
+                excellent efforts in the wedding...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="testimonial-card" data-index="1">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/harish_rasika.png" alt="Harish & Rasika" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Harish & Rasika</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I was in search of a passionate photographer — someone who would truly
+                understand my expectations...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="testimonial-card" data-index="2">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/review_couple.jpg" alt="Shubham & Shibani" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Shubham & Shibani</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">Having you capture our wedding was one of the best decisions—we felt so
+                comfortable because it was you...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="testimonial-card" data-index="3">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/sanyukta_rohan.jpg" alt="Sanyukta & Rohan" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Sanyukta & Rohan</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I just wanted to say a huge thank you for the incredible work you did
+                capturing our wedding day...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track Block 2 (Repeated for infinite loop) -->
+        <div class="marquee-track">
+          <!-- Card 1 -->
+          <div class="testimonial-card" data-index="0">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/animesh_arohi.png" alt="Arohi & Animesh" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Arohi & Animesh</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">First of all it was our luck that we found you. From day 1 you put such
+                excellent efforts in the wedding...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="testimonial-card" data-index="1">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/harish_rasika.png" alt="Harish & Rasika" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Harish & Rasika</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I was in search of a passionate photographer — someone who would truly
+                understand my expectations...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="testimonial-card" data-index="2">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/review_couple.jpg" alt="Shubham & Shibani" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Shubham & Shibani</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">Having you capture our wedding was one of the best decisions—we felt so
+                comfortable because it was you...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="testimonial-card" data-index="3">
+            <div class="testimonial-card-inner">
+              <div class="testimonial-card-header">
+                <img src="assets/images/sanyukta_rohan.jpg" alt="Sanyukta & Rohan" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <h4 class="testimonial-name">Sanyukta & Rohan</h4>
+                  <p class="testimonial-role">Wedding Couple</p>
+                </div>
+              </div>
+              <p class="testimonial-content">I just wanted to say a huge thank you for the incredible work you did
+                capturing our wedding day...</p>
+              <div class="testimonial-rating">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                  class="star">★</span><span class="star">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TESTIMONIAL MODAL FRAME ═══════════════ -->
+  <div class="testimonial-modal" id="testimonial-modal" aria-hidden="true">
+    <div class="testimonial-modal-overlay" id="testimonial-modal-overlay"></div>
+
+    <button class="testimonial-modal-close" id="testimonial-modal-close" aria-label="Close review modal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Background Watermarks -->
+    <div class="testimonial-modal-watermarks" id="testimonial-modal-watermarks"></div>
+
+    <div class="testimonial-modal-container">
+
+      <div class="testimonial-modal-layout">
+        <!-- Left Side: Review Text & Details -->
+        <div class="testimonial-modal-left">
+          <div class="testimonial-modal-text-content">
+            <p class="testimonial-modal-text" id="testimonial-modal-text"></p>
+            <div class="testimonial-modal-author">
+              <span class="testimonial-modal-love">Love</span>
+              <h3 class="testimonial-modal-name" id="testimonial-modal-name"></h3>
+              <p class="testimonial-modal-role" id="testimonial-modal-role"></p>
+              <div class="testimonial-modal-rating" id="testimonial-modal-rating"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Oval Frame & Rotated Names -->
+        <div class="testimonial-modal-right">
+          <div class="testimonial-oval-wrapper">
+            <span class="testimonial-oval-name testimonial-oval-name-left" id="testimonial-oval-name-left"></span>
+            <div class="testimonial-oval-frame">
+              <img src="" alt="" class="testimonial-modal-avatar" id="testimonial-modal-avatar">
+            </div>
+            <span class="testimonial-oval-name testimonial-oval-name-right" id="testimonial-oval-name-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG definitions for the liquid glass filter effect -->
+  <svg class="hidden">
+    <defs>
+      <filter id="container-glass" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02 0.02" numOctaves="1" seed="1" result="turbulence" />
+        <feGaussianBlur in="turbulence" stdDeviation="2" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="120" xChannelSelector="R" yChannelSelector="B"
+          result="displaced" />
+        <feGaussianBlur in="displaced" stdDeviation="4" result="finalBlur" />
+        <feComposite in="finalBlur" in2="finalBlur" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+
+
+
+  <!-- ═══════════════ CAMERA SCROLL GALLERY SECTION (LATEST CREATIONS) ═══════════════ -->
+  <section class="latest-creations-camera-section" id="latest-creations-camera">
+    <div class="camera-section-sticky">
+      <div class="camera-section-header text-center">
+        <h2 class="camera-section-title">Our Latest Creations</h2>
+        <p class="camera-section-subtitle">
+          A visual collection of our most recent works – each piece crafted with intention, emotion, and style.
+        </p>
+      </div>
+
+      <div class="camera-animation-viewport">
+        <!-- The photos fanning out -->
+        <div class="camera-photos-container" id="camera-photos-container">
+          <div class="camera-photo-card card-1" data-index="0">
+            <div class="camera-photo-inner">
+              <img src="https://iili.io/CoMdRtf.md.jpg" alt="Rishi & Suprima">
+              <span class="camera-photo-caption">Rishi & Suprima</span>
+            </div>
+          </div>
+          <div class="camera-photo-card card-2" data-index="1">
+            <div class="camera-photo-inner">
+              <img src="https://iili.io/CvJs1RV.md.jpg" alt="Sujoy & Abhilasha">
+              <span class="camera-photo-caption">Sujoy & Abhilasha</span>
+            </div>
+          </div>
+          <div class="camera-photo-card card-3" data-index="2">
+            <div class="camera-photo-inner">
+              <img src="https://iili.io/CN2e7rx.md.jpg" alt="Aishwarya & Shankar">
+              <span class="camera-photo-caption">Aishwarya & Shankar</span>
+            </div>
+          </div>
+          <div class="camera-photo-card card-4" data-index="3">
+            <div class="camera-photo-inner">
+              <img src="https://iili.io/C73U6YP.md.jpg" alt="Saurabh & Ashwini">
+              <span class="camera-photo-caption">Saurabh & Ashwini</span>
+            </div>
+          </div>
+          <div class="camera-photo-card card-5" data-index="4">
+            <div class="camera-photo-inner">
+              <img src="https://iili.io/C8OQdZv.md.jpg" alt="Shreyash & Sakshi">
+              <span class="camera-photo-caption">Shreyash & Sakshi</span>
+            </div>
+          </div>
+          <div class="camera-photo-card card-6" data-index="5">
+            <div class="camera-photo-inner">
+              <img src="https://iili.io/C8eFmcg.md.jpg" alt="Rohan & Tejashree">
+              <span class="camera-photo-caption">Rohan & Tejashree</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Camera graphics -->
+        <div class="camera-visuals-wrapper">
+          <img src="https://cdn.prod.website-files.com/652e625ed083f8127673075c/66605b033b7764e8bdcbd9df_CAMERA.webp"
+            alt="Vintage Camera" class="camera-body-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER — 3-Column Sitemap ═══════════════ -->
+  <!-- ═══════════════ FOOTER — Custom Wedding Filmer Style ═══════════════ -->
+  <footer class="custom-footer">
+    <div class="custom-footer-video-wrap">
+      <!-- Background Autoplay Video -->
+      <div class="custom-footer-video-bg">
+        <iframe
+          src="https://www.youtube.com/embed/lQDGmkPki8Q?autoplay=1&mute=1&loop=1&playlist=lQDGmkPki8Q&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&cc_load_policy=3"
+          title="ForeShadow Footer Video" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+      </div>
+      <div class="custom-footer-overlay"></div>
+
+      <!-- Video Player Controls -->
+      <div class="custom-footer-controls">
+        <button class="footer-control-btn prev-btn" aria-label="Previous Video">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="19,6 19,18 10,12"></polygon>
+            <rect x="5" y="6" width="3" height="12"></rect>
+          </svg>
+        </button>
+        <button class="footer-control-btn play-pause-btn" aria-label="Play/Pause Video">
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="8,5 19,12 8,19"></polygon>
+          </svg>
+        </button>
+        <button class="footer-control-btn next-btn" aria-label="Next Video">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,6 5,18 14,12"></polygon>
+            <rect x="16" y="6" width="3" height="12"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Enquire Now Button -->
+      <a href="contact.html" class="custom-footer-enquire-btn">
+        Enquire Now
+        <svg viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Glassmorphism Card -->
+    <div class="custom-footer-glass-card">
+      <div class="custom-footer-card-col left-col">
+        <span class="custom-footer-label">Phone</span>
+        <a href="tel:+917887334267" class="custom-footer-value">+91 7887334267</a>
+      </div>
+      <div class="custom-footer-card-col center-col">
+        <span class="custom-footer-label">The Studio</span>
+        <span class="custom-footer-value address-value">Chandani Chowk, Pune, Maharashtra</span>
+      </div>
+      <div class="custom-footer-card-col right-col">
+        <span class="custom-footer-label">Email</span>
+        <a href="mailto:hello@foreshadow.in" class="custom-footer-value">hello@foreshadow.in</a>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="custom-footer-bottom-bar">
+      <div class="custom-footer-copyright">
+        © 2026 — ForeShadow. All Rights Reserved. | Website Partners - <a
+          href="https://rohitthakareportfolio.netlify.app/" target="_blank">Rohit Thakare</a>
+      </div>
+      <div class="custom-footer-socials">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/foreshadow.in?igsh=Y2RhaHdyN2I4dmNj" target="_blank"
+          class="custom-footer-social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://youtube.com/@foreshadow-pkp?si=d2lc0o6XlELBHqq-" target="_blank"
+          class="custom-footer-social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z">
+            </path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+          </svg>
+        </a>
+        <!-- Google -->
+        <a href="https://share.google/tRevF98nrM2tIgpxx" target="_blank" class="custom-footer-social-btn"
+          aria-label="Google">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M18.64 13C17.75 16.5 14.5 19 10.68 19 6.44 19 3 15.5 3 11s3.44-8 7.68-8c1.97 0 3.8.75 5.2 2L13.64 7C12.8 6.4 11.8 6 10.68 6 7.92 6 5.68 8.2 5.68 11s2.24 5 5 5c2.4 0 4.2-1.5 4.8-3.5H10.68v-3h7.96c.04.4.08.8.08 1.3 0 4.7-3.16 8.2-8.04 8.2" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ LIGHTBOX MODAL ═══════════════ -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close gallery">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-content-container">
+      <div class="lightbox-slider-track" id="lightbox-track">
+        <!-- Slides dynamically created by JS -->
+      </div>
+    </div>
+    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
+
+  <!-- ═══════════════ Scripts ═══════════════ -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

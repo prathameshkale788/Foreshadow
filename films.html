@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <meta name="theme-color" content="#EFE9D7">
+  <title>Wedding Films — ForeShadow</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <meta name="description" content="Watch the cinematic wedding films and reels crafted by ForeShadow.">
+  <meta property="og:title" content="Wedding Films — ForeShadow">
+  <meta property="og:description" content="Cinematic narratives of love, emotion, and celebration captured on film.">
+
+  <!-- Stylesheets -->
+    <!-- Google Fonts: Bodoni Moda, Manrope & Inter (Cineglimpse Stories) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,300;1,6..96,400;1,6..96,500;1,6..96,600;1,6..96,700&family=Manrope:wght@200;300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script>
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.documentElement.classList.add('is-mobile');
+    }
+  </script>
+</head>
+
+<body>
+  <div class="page-transition"></div>
+
+
+  <nav class="nav nav--dark" id="nav">
+    <!-- Left Menu Links -->
+    <ul class="nav-links nav-links--left">
+      <li><a href="index.html" class="nav-link" data-page>Home</a></li>
+      <li><a href="portfolio.html" class="nav-link" data-page>Stories</a></li>
+      <li><a href="films.html" class="nav-link active" data-page>Films</a></li>
+    </ul>
+
+    <!-- Centered Logo/Brand -->
+    <div class="nav-brand-container">
+      <a href="index.html" class="nav-logo-link">
+        <img src="assets/images/logo.png" alt="ForeShadow Logo" class="nav-logo-img">
+      </a>
+    </div>
+
+    <!-- Right Menu Links -->
+    <ul class="nav-links nav-links--right">
+      <li><a href="about.html" class="nav-link" data-page>About</a></li>
+      <li><a href="contact.html" class="nav-link" data-page>Contact</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link" data-page-dropdown>More</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="exclusive.html" class="nav-dropdown-item" data-page>Exclusive</a></li>
+          <li><a href="careers.html" class="nav-dropdown-item" data-page>Careers</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Fullscreen Mobile Menu -->
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="nav-overlay-links">
+      <a href="index.html" class="nav-overlay-link" data-page>HOME</a>
+      <a href="portfolio.html" class="nav-overlay-link" data-page>STORIES</a>
+      <a href="films.html" class="nav-overlay-link active" data-page>FILMS</a>
+      <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
+      <a href="contact.html" class="nav-overlay-link" data-page>CONTACT</a>
+      <div class="nav-overlay-dropdown">
+        <a href="#" class="nav-overlay-link" id="mobile-more-toggle">MORE</a>
+        <div class="nav-overlay-dropdown-menu" id="mobile-submenu">
+          <a href="exclusive.html" class="nav-overlay-dropdown-link" data-page>EXCLUSIVE</a>
+          <a href="careers.html" class="nav-overlay-dropdown-link" data-page>CAREERS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE HERO ═══════════════ -->
+  <section class="page-hero films-video-hero" id="pagetop">
+    <div class="hero-video-bg"
+      style="background-image: url('assets/images/films_hero_backup.jpg'); background-size: cover; background-position: center;">
+      <iframe
+        src="https://player.vimeo.com/video/853395145?autoplay=1&loop=1&muted=1&background=1&controls=0&dnt=1&app_id=122963"
+        title="ForeShadow Hero Video" allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+      <div class="hero-video-overlay"></div>
+    </div>
+    <div class="films-hero-overlay-content">
+      <h1 class="films-hero-headline">Modern Documentary<br>Wedding <em>Films</em></h1>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FILMS LIST ═══════════════ -->
+  <section class="films-section section">
+    <div class="container">
+      <!-- Tab Filter Menu -->
+      <div class="films-filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <span class="filter-separator">|</span>
+        <button class="filter-btn" data-filter="trending">Trendings</button>
+        <span class="filter-separator">|</span>
+        <button class="filter-btn" data-filter="classic">Classic</button>
+        <span class="filter-separator">|</span>
+        <button class="filter-btn" data-filter="prewedding">Pre Weddings</button>
+      </div>
+
+      <!-- Unified Films Grid -->
+      <div class="films-grid dynamic-filtered-grid">
+        <!-- Film 1: Rishi & Suprima -->
+        <div class="film-card reveal-scale stagger-1" data-video-url="https://youtu.be/Nd7c--y9vYc?si=qObi0Y97sA2tIe2f"
+          data-category="trending" tabindex="0" role="button" aria-label="Play Rishi & Suprima Wedding Film">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/Nd7c--y9vYc/maxresdefault.jpg" alt="Rishi & Suprima Wedding Film">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Rishi & Suprima</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Trending</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">02/12/2025</span>
+            </div>
+            <p class="film-card-excerpt">A heartwarming destination wedding filled with laughter, vibrant traditions,
+              and a pawsome celebration of love.</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 2: Rohan & Tejashree -->
+        <div class="film-card reveal-scale stagger-2" data-video-url="https://youtu.be/rDYZwL_vBf0"
+          data-category="trending" tabindex="0" role="button" aria-label="Play Rohan & Tejashree Teaser">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/rDYZwL_vBf0/maxresdefault.jpg" alt="Rohan & Tejashree Teaser">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Rohan & Tejashree</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Trending</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">26/01/2025</span>
+            </div>
+            <p class="film-card-excerpt">Rohan & Tejashree Teaser | Foreshadow</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 3: Shubham & Shibani -->
+        <div class="film-card reveal-scale stagger-3" data-video-url="https://youtu.be/SiMcwypL3Zo"
+          data-category="trending" tabindex="0" role="button" aria-label="Play Shubham & Shibani Wedding Film">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/SiMcwypL3Zo/maxresdefault.jpg" alt="Shubham & Shibani Wedding Film">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Shubham & Shibani</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Trending</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">30/12/2025</span>
+            </div>
+            <p class="film-card-excerpt">The full cinematic narrative of Shubham & Shibani's wedding day—vibrant colors,
+              sacred vows, and standard emotional storytelling.</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 4: Minal & Lalit -->
+        <div class="film-card reveal-scale stagger-1" data-video-url="https://youtu.be/r3Huh0eiiVQ"
+          data-category="classic" tabindex="0" role="button" aria-label="Play Minal & Lalit Teaser">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/r3Huh0eiiVQ/maxresdefault.jpg" alt="Minal & Lalit Teaser">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Minal & Lalit</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Classic Story Telling</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">23/11/2024</span>
+            </div>
+            <p class="film-card-excerpt">Minal & Lalit Teaser | Foreshadow</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 5: Parag & Nora -->
+        <div class="film-card reveal-scale stagger-2" data-video-url="https://youtu.be/PIVGEnlq7AA?si=vli7IlxFpKjJIaDW"
+          data-category="trending" tabindex="0" role="button" aria-label="Play Parag & Nora Wedding Film">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/PIVGEnlq7AA/maxresdefault.jpg?v=2" alt="Parag & Nora Wedding Film">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Parag & Nora</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Trending</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">25/11/2025</span>
+            </div>
+            <p class="film-card-excerpt">A cinematic capture of raw emotions, absolute joy, and the beautiful union of
+              Parag & Nora.</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 6: Sakshi & Sahil -->
+        <div class="film-card reveal-scale stagger-3" data-video-url="https://youtu.be/6PgjY3z-Svw"
+          data-category="trending" tabindex="0" role="button" aria-label="Play Sakshi & Sahil Wedding Film">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/6PgjY3z-Svw/maxresdefault.jpg" alt="Sakshi & Sahil Wedding Film">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Sakshi & Sahil</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Trending</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">15/11/2025</span>
+            </div>
+            <p class="film-card-excerpt">Sakshi & Sahil Wedding Film | Foreshadow</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 7: Parag & Sayali -->
+        <div class="film-card reveal-scale stagger-1" data-video-url="https://youtu.be/x34RnU_BL0U"
+          data-category="classic" tabindex="0" role="button" aria-label="Play Parag & Sayali Wedding Teaser">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/x34RnU_BL0U/maxresdefault.jpg" alt="Parag & Sayali Wedding Teaser">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Parag & Sayali</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Classic Story Telling</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">23/12/2024</span>
+            </div>
+            <p class="film-card-excerpt">Parag & Sayali Wedding Teaser | Foreshadow</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 8: Sourabh & Ashwini -->
+        <div class="film-card reveal-scale stagger-2" data-video-url="https://youtu.be/4Ov_LTs1Hwc"
+          data-category="prewedding" tabindex="0" role="button" aria-label="Play Sourabh & Ashwini Prewedding Film">
+          <div class="film-card-image">
+            <img src="https://img.youtube.com/vi/4Ov_LTs1Hwc/maxresdefault.jpg" alt="Sourabh & Ashwini Prewedding Film">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Sourabh & Ashwini</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Pre Weddings</span>
+            </div>
+            <p class="film-card-excerpt">Sourabh & Ashwini Prewedding Film</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 9: Ajay & Ankita -->
+        <div class="film-card reveal-scale stagger-3" data-video-url="https://vimeo.com/1009796436"
+          data-category="classic" tabindex="0" role="button" aria-label="Play Ajay & Ankita Wedding Film">
+          <div class="film-card-image">
+            <img src="https://vumbnail.com/1009796436.jpg" alt="Ajay & Ankita Wedding Film">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Ajay & Ankita</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Classic Story Telling</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="film-date">14/07/2024</span>
+            </div>
+            <p class="film-card-excerpt">A classic narrative of eternal vows, family traditions, and timeless joy
+              captured through an artistic lens.</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+
+        <!-- Film 10: Shailesh & Sayali -->
+        <div class="film-card reveal-scale stagger-1" data-video-url="https://vimeo.com/853394252"
+          data-category="classic" tabindex="0" role="button" aria-label="Play Shailesh & Sayali Wedding Film">
+          <div class="film-card-image">
+            <img src="https://vumbnail.com/853394252.jpg" alt="Shailesh & Sayali Wedding Film">
+            <div class="film-play-btn">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="film-card-info">
+            <h3 class="film-card-title">Shailesh & Sayali</h3>
+            <div class="film-card-meta">
+              <span class="film-category">Classic Story Telling</span>
+            </div>
+            <p class="film-card-excerpt">An elegant and quiet celebration of love, focusing on pure emotions and the
+              simple beauty of two families coming together.</p>
+            <span class="film-watch-link">Watch Film</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FILM DETAIL SECTION ═══════════════ -->
+  <section id="film-detail-section" class="film-detail-section" style="display: none;">
+    <div class="container">
+      <button class="back-to-grid-btn" id="back-to-grid">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: middle;">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span style="vertical-align: middle;">Back to Films</span>
+      </button>
+
+      <!-- Video Player Wrapper -->
+      <div class="detail-video-wrapper" id="detail-video-wrapper">
+        <!-- Iframe injected by JS -->
+      </div>
+
+      <!-- Video Meta & Excerpt -->
+      <div class="detail-info-container">
+        <div class="detail-meta" id="detail-meta"></div>
+        <h1 class="detail-title" id="detail-title"></h1>
+        <p class="detail-excerpt" id="detail-excerpt"></p>
+      </div>
+
+      <!-- Suggestions Grid -->
+      <div class="suggestions-section">
+        <h2 class="suggestions-title">You Might Also Like</h2>
+        <div class="films-grid" id="suggestions-grid">
+          <!-- Loaded dynamically by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ Lightbox Video Modal ═══════════════ -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="lightbox-content-container">
+      <div class="lightbox-video-wrapper" id="lightbox-video-wrapper">
+        <!-- Iframe injected by Javascript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FOOTER — 3-Column Sitemap ═══════════════ -->
+  <!-- ═══════════════ FOOTER — Custom Wedding Filmer Style ═══════════════ -->
+  <footer class="custom-footer">
+    <div class="custom-footer-video-wrap">
+      <!-- Background Autoplay Video -->
+      <div class="custom-footer-video-bg">
+        <iframe
+          src="https://www.youtube.com/embed/lQDGmkPki8Q?autoplay=1&mute=1&loop=1&playlist=lQDGmkPki8Q&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&cc_load_policy=3"
+          title="ForeShadow Footer Video" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+      </div>
+      <div class="custom-footer-overlay"></div>
+
+      <!-- Video Player Controls -->
+      <div class="custom-footer-controls">
+        <button class="footer-control-btn prev-btn" aria-label="Previous Video">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="19,6 19,18 10,12"></polygon>
+            <rect x="5" y="6" width="3" height="12"></rect>
+          </svg>
+        </button>
+        <button class="footer-control-btn play-pause-btn" aria-label="Play/Pause Video">
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="8,5 19,12 8,19"></polygon>
+          </svg>
+        </button>
+        <button class="footer-control-btn next-btn" aria-label="Next Video">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,6 5,18 14,12"></polygon>
+            <rect x="16" y="6" width="3" height="12"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Enquire Now Button -->
+      <a href="contact.html" class="custom-footer-enquire-btn">
+        Enquire Now
+        <svg viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Glassmorphism Card -->
+    <div class="custom-footer-glass-card">
+      <div class="custom-footer-card-col left-col">
+        <span class="custom-footer-label">Phone</span>
+        <a href="tel:+917887334267" class="custom-footer-value">+91 7887334267</a>
+      </div>
+      <div class="custom-footer-card-col center-col">
+        <span class="custom-footer-label">The Studio</span>
+        <span class="custom-footer-value address-value">Chandani Chowk, Pune, Maharashtra</span>
+      </div>
+      <div class="custom-footer-card-col right-col">
+        <span class="custom-footer-label">Email</span>
+        <a href="mailto:hello@foreshadow.in" class="custom-footer-value">hello@foreshadow.in</a>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="custom-footer-bottom-bar">
+      <div class="custom-footer-copyright">
+        © 2026 — ForeShadow. All Rights Reserved. | Website Partners - <a
+          href="https://rohitthakareportfolio.netlify.app/" target="_blank">Rohit Thakare</a>
+      </div>
+      <div class="custom-footer-socials">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/foreshadow.in?igsh=Y2RhaHdyN2I4dmNj" target="_blank"
+          class="custom-footer-social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://youtube.com/@foreshadow-pkp?si=d2lc0o6XlELBHqq-" target="_blank"
+          class="custom-footer-social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z">
+            </path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+          </svg>
+        </a>
+        <!-- Google -->
+        <a href="https://share.google/tRevF98nrM2tIgpxx" target="_blank" class="custom-footer-social-btn" aria-label="Google">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18.64 13C17.75 16.5 14.5 19 10.68 19 6.44 19 3 15.5 3 11s3.44-8 7.68-8c1.97 0 3.8.75 5.2 2L13.64 7C12.8 6.4 11.8 6 10.68 6 7.92 6 5.68 8.2 5.68 11s2.24 5 5 5c2.4 0 4.2-1.5 4.8-3.5H10.68v-3h7.96c.04.4.08.8.08 1.3 0 4.7-3.16 8.2-8.04 8.2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
+
+  <!-- ═══════════════ Scripts ═══════════════ -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.films-filter-container .filter-btn');
+      const cards = document.querySelectorAll('.dynamic-filtered-grid .film-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Toggle active class
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filterValue === 'all' || category === filterValue) {
+              card.style.display = 'flex';
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  card.style.opacity = '1';
+                  card.style.transform = 'scale(1)';
+                  card.style.pointerEvents = 'auto';
+                });
+              });
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'scale(0.98)';
+              card.style.pointerEvents = 'none';
+              setTimeout(() => {
+                if (card.style.opacity === '0') {
+                  card.style.display = 'none';
+                }
+              }, 400);
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

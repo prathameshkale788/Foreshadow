@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <meta name="theme-color" content="#EFE9D7">
+  <title>Enquire — ForeShadow</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <meta name="description"
+    content="Get in touch with ForeShadow to enquire about wedding photography and cinematography pricing. Custom packages available.">
+  <meta property="og:title" content="Enquire — ForeShadow">
+  <meta property="og:description"
+    content="Let's create something beautiful together. Reach out for availability and custom quotes.">
+
+  <!-- Stylesheets -->
+    <!-- Google Fonts: Bodoni Moda, Manrope & Inter (Cineglimpse Stories) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,300;1,6..96,400;1,6..96,500;1,6..96,600;1,6..96,700&family=Manrope:wght@200;300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+
+<body>
+  <div class="page-transition"></div>
+
+  <!-- ═══════════════ Navigation (Split: Centered Logo, Split Links) ═══════════════ -->
+  <nav class="nav nav--dark" id="nav">
+    <!-- Left Menu Links -->
+    <ul class="nav-links nav-links--left">
+      <li><a href="index.html" class="nav-link" data-page>Home</a></li>
+      <li><a href="portfolio.html" class="nav-link" data-page>Stories</a></li>
+      <li><a href="films.html" class="nav-link" data-page>Films</a></li>
+    </ul>
+
+    <!-- Centered Logo/Brand -->
+    <div class="nav-brand-container">
+      <a href="index.html" class="nav-logo-link">
+        <img src="assets/images/logo.png" alt="ForeShadow Logo" class="nav-logo-img">
+      </a>
+    </div>
+
+    <!-- Right Menu Links -->
+    <ul class="nav-links nav-links--right">
+      <li><a href="about.html" class="nav-link" data-page>About</a></li>
+      <li><a href="contact.html" class="nav-link active" data-page>Contact</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link" data-page-dropdown>More</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="exclusive.html" class="nav-dropdown-item" data-page>Exclusive</a></li>
+          <li><a href="careers.html" class="nav-dropdown-item" data-page>Careers</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Fullscreen Mobile Menu -->
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="nav-overlay-links">
+      <a href="index.html" class="nav-overlay-link" data-page>HOME</a>
+      <a href="portfolio.html" class="nav-overlay-link" data-page>STORIES</a>
+      <a href="films.html" class="nav-overlay-link" data-page>FILMS</a>
+      <a href="about.html" class="nav-overlay-link" data-page>ABOUT</a>
+      <a href="contact.html" class="nav-overlay-link active" data-page>CONTACT</a>
+      <div class="nav-overlay-dropdown">
+        <a href="#" class="nav-overlay-link" id="mobile-more-toggle">MORE</a>
+        <div class="nav-overlay-dropdown-menu" id="mobile-submenu">
+          <a href="exclusive.html" class="nav-overlay-dropdown-link" data-page>EXCLUSIVE</a>
+          <a href="careers.html" class="nav-overlay-dropdown-link" data-page>CAREERS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE HERO ═══════════════ -->
+  <section class="page-hero contact-page-hero" id="pagetop">
+    <div class="page-hero-bg">
+      <img src="assets/images/contact_hero.jpg" alt="Contact Hero">
+    </div>
+    <div class="page-hero-content">
+    </div>
+  </section>
+
+  <!-- ═══════════════ CONTACT SECTION ═══════════════ -->
+  <section class="fs-contact-section section--cream">
+    <div class="fs-contact-container">
+      <div class="fs-contact-header">
+        <h2 class="fs-story-heading">Tell Us Your Story</h2>
+        <p class="fs-contact-sub-info">
+          Fill out the form below and share a few details about your celebration. The more we know, the better we can craft an experience that reflects your vision.<br><br>
+          We’ll get back to you within 24–48 hours. For urgent enquiries, feel free to reach out directly.
+        </p>
+      </div>
+
+      <form class="fs-contact-form" id="contact-form">
+        <!-- Honeypot field for spam prevention -->
+        <input type="hidden" name="access_key" value="869cbdae-ec04-4b53-8594-0b07b34f29d3">
+        <div class="fs-form-group fs-honeypot" style="display: none !important;">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" autocomplete="off" tabindex="-1">
+        </div>
+
+        <!-- Field 1: Name (First Name, Last Name) -->
+        <div class="fs-form-group">
+          <label class="fs-field-label">Name <span class="required-star">*</span></label>
+          <div class="fs-name-row">
+            <div class="fs-name-col">
+              <input type="text" id="first-name" name="firstName" required>
+              <label for="first-name" class="fs-sub-label">First Name</label>
+            </div>
+            <div class="fs-name-col">
+              <input type="text" id="last-name" name="lastName" required>
+              <label for="last-name" class="fs-sub-label">Last Name</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Field 2: Email -->
+        <div class="fs-form-group">
+          <label for="email" class="fs-field-label">Email <span class="required-star">*</span></label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <!-- Field 3: Phone -->
+        <div class="fs-form-group">
+          <label for="phone" class="fs-field-label">Phone <span class="required-star">*</span></label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <!-- Field 4: Subject -->
+        <div class="fs-form-group">
+          <label for="subject" class="fs-field-label">Subject <span class="required-star">*</span></label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+
+        <!-- Field 5: How did you hear about us? -->
+        <div class="fs-form-group">
+          <label for="source" class="fs-field-label">How did you hear about us ? <span
+              class="required-star">*</span></label>
+          <select id="source" name="source" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Referred by a Friend">Referred by a Friend</option>
+            <option value="Youtube">Youtube</option>
+            <option value="Any other">Any other</option>
+          </select>
+        </div>
+
+        <!-- Field 6: Wedding Dates -->
+        <div class="fs-form-group">
+          <label for="wedding-dates" class="fs-field-label">Wedding Dates <span class="required-star">*</span></label>
+          <input type="text" id="wedding-dates" name="weddingDates" required>
+        </div>
+
+        <!-- Field 7: Wedding Location -->
+        <div class="fs-form-group">
+          <label for="wedding-location" class="fs-field-label">Wedding Location (Venue, City, Country) <span
+              class="required-star">*</span></label>
+          <input type="text" id="wedding-location" name="weddingLocation" required>
+        </div>
+
+        <!-- Field 8: List of wedding events -->
+        <div class="fs-form-group">
+          <label for="events-details" class="fs-field-label">List of wedding events (by day in case of multiple days)
+            with approximate timings & Guest size: <span class="required-star">*</span></label>
+          <textarea id="events-details" name="eventsDetails" rows="6" required></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="fs-form-submit">SUBMIT</button>
+      </form>
+
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ WEDDING MOMENTS PHOTO FEED (3:4 GRID) ═══════════════ -->
+  <section class="fs-instagram-feed">
+    <div class="fs-feed-header">
+      <span class="fs-feed-label">recent moments</span>
+      <h3 class="fs-feed-title">Stories from our lenses</h3>
+    </div>
+
+    <div class="fs-feed-grid">
+      <!-- Item 1 -->
+      <a href="https://www.instagram.com/p/DV03tqFjGfo/?igsh=MXI4end3anY5YXpwMA==" target="_blank" class="fs-feed-item">
+        <img src="assets/images/insta_1.jpg" alt="Wedding Moment 1" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Honoured to be featured among the Top 20 Best Photographers for Indian Weddings
+              Worldwide. Grateful for every story.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 2 -->
+      <a href="https://www.instagram.com/p/DH8TmWWMLF8/?igsh=MWhnMDZjYnAyZXJ0ag==" target="_blank" class="fs-feed-item">
+        <img src="assets/images/insta_2.jpg" alt="Wedding Moment 2" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Dilpreet and Jai’s beautiful destination wedding. A celebration of love and
+              heritage.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 3 -->
+      <a href="https://www.instagram.com/p/DV4_r4WjPMn/?igsh=aGEzYnZ2Ym42Y3Nm" target="_blank" class="fs-feed-item">
+        <img src="assets/images/insta_3.jpg" alt="Wedding Moment 3" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Purti & Amit’s beautiful wedding at Six Senses Fort. Effortless regal splendor.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 4 -->
+      <a href="https://www.instagram.com/p/DYcHGoeDBfi/?igsh=MXJzcHRoajR3bzY4Zg==" target="_blank" class="fs-feed-item">
+        <img src="assets/images/insta_4.jpg" alt="Wedding Moment 4" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">Rashi and Dhruv’s wedding at Umaid Bhawan Palace, Jodhpur. Timeless tradition with
+              modern luxury.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 5 -->
+      <a href="https://www.instagram.com/p/DMehVcrILO1/?igsh=a3d6bTd3cDVva25m" target="_blank" class="fs-feed-item">
+        <img src="assets/images/insta_5.jpg" alt="Wedding Moment 5" loading="lazy">
+        <div class="fs-feed-overlay">
+          <div class="fs-feed-desc">
+            <p class="fs-feed-text">A love that felt like home. In every glance, every laugh, every tear. Captured
+              forever.</p>
+            <span class="fs-feed-tag">@foreshadow.in</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER — 3-Column Sitemap ═══════════════ -->
+  <!-- ═══════════════ FOOTER — Custom Wedding Filmer Style ═══════════════ -->
+  <footer class="custom-footer">
+    <div class="custom-footer-video-wrap">
+      <!-- Background Autoplay Video -->
+      <div class="custom-footer-video-bg">
+        <iframe
+          src="https://www.youtube.com/embed/lQDGmkPki8Q?autoplay=1&mute=1&loop=1&playlist=lQDGmkPki8Q&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&cc_load_policy=3"
+          title="ForeShadow Footer Video" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+      </div>
+      <div class="custom-footer-overlay"></div>
+
+      <!-- Enquire Now Button -->
+      <a href="contact.html" class="custom-footer-enquire-btn">
+        Enquire Now
+        <svg viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Glassmorphism Card -->
+    <div class="custom-footer-glass-card">
+      <div class="custom-footer-card-col left-col">
+        <span class="custom-footer-label">Phone</span>
+        <a href="tel:+917887334267" class="custom-footer-value">+91 7887334267</a>
+      </div>
+      <div class="custom-footer-card-col center-col">
+        <span class="custom-footer-label">The Studio</span>
+        <span class="custom-footer-value address-value">Chandani Chowk, Pune, Maharashtra</span>
+      </div>
+      <div class="custom-footer-card-col right-col">
+        <span class="custom-footer-label">Email</span>
+        <a href="mailto:hello@foreshadow.in" class="custom-footer-value">hello@foreshadow.in</a>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="custom-footer-bottom-bar">
+      <div class="custom-footer-copyright">
+        © 2026 — ForeShadow. All Rights Reserved. | Website Partners - <a
+          href="https://rohitthakareportfolio.netlify.app/" target="_blank">Rohit Thakare</a>
+      </div>
+      <div class="custom-footer-socials">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/foreshadow.in?igsh=Y2RhaHdyN2I4dmNj" target="_blank"
+          class="custom-footer-social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://youtube.com/@foreshadow-pkp?si=d2lc0o6XlELBHqq-" target="_blank"
+          class="custom-footer-social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z">
+            </path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+          </svg>
+        </a>
+        <!-- Google -->
+        <a href="https://share.google/tRevF98nrM2tIgpxx" target="_blank" class="custom-footer-social-btn" aria-label="Google">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18.64 13C17.75 16.5 14.5 19 10.68 19 6.44 19 3 15.5 3 11s3.44-8 7.68-8c1.97 0 3.8.75 5.2 2L13.64 7C12.8 6.4 11.8 6 10.68 6 7.92 6 5.68 8.2 5.68 11s2.24 5 5 5c2.4 0 4.2-1.5 4.8-3.5H10.68v-3h7.96c.04.4.08.8.08 1.3 0 4.7-3.16 8.2-8.04 8.2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
+
+  <!-- ═══════════════ Scripts ═══════════════ -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
